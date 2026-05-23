@@ -1,4 +1,4 @@
-# @track-any-device/components
+# @trackany-device/components
 
 Shared React component library for the **Track Any Device** platform.  
 Built with React 19, Tailwind CSS v4, Radix UI primitives, and shadcn/ui conventions.
@@ -10,7 +10,7 @@ Built with React 19, Tailwind CSS v4, Radix UI primitives, and shadcn/ui convent
 ## Install
 
 ```bash
-npm install @track-any-device/components
+npm install @trackany-device/components
 ```
 
 > **Peer dependencies** — install the ones you use:
@@ -30,10 +30,10 @@ In your app's CSS entry point (e.g. `app.css`):
 
 ```css
 @import "tailwindcss";
-@import "@track-any-device/components/styles/themes.css";
+@import "@trackany-device/components/styles/themes.css";
 
 /* If you use KeenIcons: */
-@import "@track-any-device/components/styles/keenicons.css";
+@import "@trackany-device/components/styles/keenicons.css";
 ```
 
 ### 2. Wrap your app with a theme
@@ -56,7 +56,7 @@ The library abstracts routing/forms behind a `PlatformProvider`. Pick the adapte
 
 ```tsx
 // Next.js
-import { PlatformProvider, createNextjsAdapter } from '@track-any-device/components';
+import { PlatformProvider, createNextjsAdapter } from '@trackany-device/components';
 
 export default function RootLayout({ children }) {
     return (
@@ -69,7 +69,7 @@ export default function RootLayout({ children }) {
 
 ```tsx
 // Inertia.js (Laravel)
-import { PlatformProvider, createInertiaAdapter } from '@track-any-device/components';
+import { PlatformProvider, createInertiaAdapter } from '@trackany-device/components';
 
 createInertiaApp({
     setup({ el, App, props }) {
@@ -87,7 +87,7 @@ createInertiaApp({
 ## Usage
 
 ```tsx
-import { Button, Card, CardContent, CardHeader, CardTitle } from '@track-any-device/components';
+import { Button, Card, CardContent, CardHeader, CardTitle } from '@trackany-device/components';
 
 export default function Example() {
     return (
@@ -155,8 +155,8 @@ Each theme ships with a matching dark variant — add `.dark` to the same elemen
 `KeenIcon` — ~1 200 icons in four styles (`duotone` · `filled` · `outline` · `solid`):
 
 ```tsx
-import { KeenIcon } from '@track-any-device/components';
-// Don't forget: import '@track-any-device/components/styles/keenicons.css';
+import { KeenIcon } from '@trackany-device/components';
+// Don't forget: import '@trackany-device/components/styles/keenicons.css';
 
 <KeenIcon icon="home" style="duotone" className="size-5" />
 ```

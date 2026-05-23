@@ -1,0 +1,6 @@
+.DS_Store
+node_modules/
+storybook-static/
+*.log
+# Metronic source files — large binaries, keep local only
+theme-source/

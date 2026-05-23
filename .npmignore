@@ -1,0 +1,31 @@
+# Raw theme files — never publish these
+theme-source/
+
+# Internal documentation
+guidelines/
+
+# Storybook
+stories/
+storybook-static/
+.storybook/
+
+# Dev & config files
+.github/
+*.test.js
+*.spec.js
+*.test.ts
+*.spec.ts
+jest.config.*
+.eslintrc*
+.prettierrc*
+.editorconfig
+tsconfig*.json
+!tsconfig.build.json
+
+# Build artifacts not needed by consumers
+*.map
+
+# Misc
+.DS_Store
+**/.DS_Store
+*.log

@@ -1,0 +1,583 @@
+/*
+ * Base design tokens (Metronic-compatible).
+ *
+ * These tokens extend the shadcn/ui base with Metronic-specific additions:
+ *   --mono / --mono-foreground     high-contrast text (zinc-950 / zinc-50)
+ *   --chart-1 … --chart-5          chart series colours
+ *   --sidebar-*                    sidebar surface tokens
+ *   --text-2sm / --text-2xs        Metronic custom font-size steps
+ *
+ * Consuming apps import this file via:
+ *   @import '@track-any-device/components/styles/themes.css';
+ * and must also import their Tailwind entry so @theme inline picks up the
+ * --color-* mappings.
+ */
+
+/* ──────────────────────────────────────────────────────────────────────
+   METRONIC BASE TOKENS (light)
+   ────────────────────────────────────────────────────────────────────── */
+
+:root {
+    /* Mono — near-black text used for headings, badges, code */
+    --mono: oklch(0.09 0 0);
+    --mono-foreground: oklch(0.99 0 0);
+
+    /* Chart series — mapped to Tailwind palette */
+    --chart-1: #3b82f6; /* blue-500  */
+    --chart-2: #22c55e; /* green-500 */
+    --chart-3: #eab308; /* yellow-500 */
+    --chart-4: #ef4444; /* red-500   */
+    --chart-5: #a855f7; /* purple-500 */
+
+    /* Sidebar surface (light) */
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: #2563eb;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: #3b82f6;
+}
+
+.dark {
+    /* Mono — near-white in dark mode */
+    --mono: oklch(0.99 0 0);
+    --mono-foreground: oklch(0.09 0 0);
+
+    /* Chart series stay the same in dark — components handle opacity */
+    --chart-1: #3b82f6;
+    --chart-2: #22c55e;
+    --chart-3: #eab308;
+    --chart-4: #ef4444;
+    --chart-5: #a855f7;
+
+    /* Sidebar surface (dark) */
+    --sidebar: oklch(0.18 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: #60a5fa;
+    --sidebar-primary-foreground: #0a0a0a;
+    --sidebar-accent: oklch(0.22 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(0.26 0 0);
+    --sidebar-ring: #60a5fa;
+}
+
+/*
+ * Per-tenant color schemes.
+ *
+ * Each [data-theme="..."] selector overrides ONLY the primary accent
+ * tokens. The neutral / status / surface tokens stay shared across
+ * schemes (defined in app.css :root and .dark blocks) so swapping the
+ * theme name only changes brand colour — neutrals, success greens,
+ * danger reds, warning oranges, and info blues remain stable.
+ *
+ * Tokens overridden per scheme:
+ *   --primary            base accent
+ *   --primary-hover      hover state of the accent
+ *   --primary-subtle     low-alpha tint background
+ *   --primary-foreground text colour on the accent
+ *   --ring               focus ring colour
+ *   --accent             default accent panel bg (= primary-subtle)
+ *   --accent-foreground  text on accent panel
+ *
+ * Dark mode pairs: matched by appending `.dark` to the data-theme
+ * selector. Order matters — the unscoped .dark block in app.css runs
+ * first; these data-theme.dark blocks come AFTER (because this file
+ * is @imported at the top of app.css before the rest) so they win on
+ * specificity (data-attribute + class).
+ *
+ * Compliance: this file is colour-only. It does not change behaviour,
+ * data collection, or any policy-bound surface. No PolicyVersion bump
+ * required.
+ */
+
+/* ──────────────────────────────────────────────────────────────────────
+   STATUS TOKENS (shared, light + dark)
+   ────────────────────────────────────────────────────────────────────── */
+
+:root {
+    --primary-hover: #1d4ed8;
+    --primary-subtle: #dbeafe;
+
+    --success: #16a34a;
+    --success-subtle: #dcfce7;
+    --success-foreground: #ffffff;
+
+    --warning-foreground: #ffffff;
+    --warning-subtle: #fef3c7;
+
+    --info-foreground: #ffffff;
+    --info-subtle: #dbeafe;
+
+    --danger-foreground: #ffffff;
+    --danger-subtle: #fee2e2;
+
+    --surface: oklch(0.99 0 0);
+    --surface-raised: oklch(1 0 0);
+}
+
+.dark {
+    --primary-hover: #3b82f6;
+    --primary-subtle: oklch(0.27 0.04 250);
+
+    --success: #22c55e;
+    --success-subtle: oklch(0.27 0.06 145);
+    --success-foreground: #052e16;
+
+    --warning-foreground: #1f1500;
+    --warning-subtle: oklch(0.27 0.05 70);
+
+    --info-foreground: #02132c;
+    --info-subtle: oklch(0.27 0.05 250);
+
+    --danger-foreground: #ffffff;
+    --danger-subtle: oklch(0.27 0.06 25);
+
+    --surface: oklch(0.18 0 0);
+    --surface-raised: oklch(0.21 0 0);
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   TAILWIND V4 @THEME MAPPINGS
+   Expose custom tokens as Tailwind utility classes.
+   Must come after the :root / .dark declarations above.
+   ────────────────────────────────────────────────────────────────────── */
+
+@theme inline {
+    /* Mono */
+    --color-mono: var(--mono);
+    --color-mono-foreground: var(--mono-foreground);
+
+    /* Sidebar surface */
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+
+    /* Chart series */
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+}
+
+@theme {
+    /* Extra font-size steps (Metronic) — between xs and sm */
+    --text-2sm: 0.8125rem;           /* 13px */
+    --text-2sm--line-height: 1.3231; /* 17.2px / 13px */
+
+    --text-2xs: 0.6875rem;           /* 11px */
+    --text-2xs--line-height: 1.1818; /* 13px / 11px */
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   PER-SCHEME PRIMARY OVERRIDES
+   ────────────────────────────────────────────────────────────────────── */
+
+/* default — Blue-600 — canonical scheme for central host */
+[data-theme='default'],
+[data-theme='blue'] {
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --primary-subtle: #dbeafe;
+    --primary-foreground: #ffffff;
+    --ring: #3b82f6;
+    --accent: #dbeafe;
+    --accent-foreground: #1e3a8a;
+}
+[data-theme='default'].dark,
+[data-theme='blue'].dark {
+    --primary: #60a5fa;
+    --primary-hover: #93c5fd;
+    --primary-subtle: oklch(0.27 0.06 250);
+    --primary-foreground: #0a0a0a;
+    --ring: #60a5fa;
+    --accent: oklch(0.27 0.06 250);
+    --accent-foreground: #dbeafe;
+}
+
+/* neutral — Neutral-700 */
+[data-theme='neutral'] {
+    --primary: #404040;
+    --primary-hover: #262626;
+    --primary-subtle: #f5f5f5;
+    --primary-foreground: #ffffff;
+    --ring: #525252;
+    --accent: #f5f5f5;
+    --accent-foreground: #171717;
+}
+[data-theme='neutral'].dark {
+    --primary: #d4d4d4;
+    --primary-hover: #e5e5e5;
+    --primary-subtle: oklch(0.27 0 0);
+    --primary-foreground: #0a0a0a;
+    --ring: #a3a3a3;
+    --accent: oklch(0.27 0 0);
+    --accent-foreground: #fafafa;
+}
+
+/* slate — Slate-600 */
+[data-theme='slate'] {
+    --primary: #475569;
+    --primary-hover: #334155;
+    --primary-subtle: #f1f5f9;
+    --primary-foreground: #ffffff;
+    --ring: #64748b;
+    --accent: #f1f5f9;
+    --accent-foreground: #0f172a;
+}
+[data-theme='slate'].dark {
+    --primary: #94a3b8;
+    --primary-hover: #cbd5e1;
+    --primary-subtle: oklch(0.28 0.02 260);
+    --primary-foreground: #0a0a0a;
+    --ring: #94a3b8;
+    --accent: oklch(0.28 0.02 260);
+    --accent-foreground: #e2e8f0;
+}
+
+/* gray — Gray-600 */
+[data-theme='gray'] {
+    --primary: #4b5563;
+    --primary-hover: #374151;
+    --primary-subtle: #f3f4f6;
+    --primary-foreground: #ffffff;
+    --ring: #6b7280;
+    --accent: #f3f4f6;
+    --accent-foreground: #111827;
+}
+[data-theme='gray'].dark {
+    --primary: #9ca3af;
+    --primary-hover: #d1d5db;
+    --primary-subtle: oklch(0.28 0.01 260);
+    --primary-foreground: #0a0a0a;
+    --ring: #9ca3af;
+    --accent: oklch(0.28 0.01 260);
+    --accent-foreground: #e5e7eb;
+}
+
+/* red — Red-600 */
+[data-theme='red'] {
+    --primary: #dc2626;
+    --primary-hover: #b91c1c;
+    --primary-subtle: #fee2e2;
+    --primary-foreground: #ffffff;
+    --ring: #ef4444;
+    --accent: #fee2e2;
+    --accent-foreground: #7f1d1d;
+}
+[data-theme='red'].dark {
+    --primary: #f87171;
+    --primary-hover: #fca5a5;
+    --primary-subtle: oklch(0.27 0.06 25);
+    --primary-foreground: #0a0a0a;
+    --ring: #f87171;
+    --accent: oklch(0.27 0.06 25);
+    --accent-foreground: #fecaca;
+}
+
+/* green — Green-600 (Suthra Punjab brand) */
+[data-theme='green'] {
+    --primary: #16a34a;
+    --primary-hover: #15803d;
+    --primary-subtle: #dcfce7;
+    --primary-foreground: #ffffff;
+    --ring: #22c55e;
+    --accent: #dcfce7;
+    --accent-foreground: #14532d;
+}
+[data-theme='green'].dark {
+    --primary: #4ade80;
+    --primary-hover: #86efac;
+    --primary-subtle: oklch(0.27 0.06 145);
+    --primary-foreground: #052e16;
+    --ring: #4ade80;
+    --accent: oklch(0.27 0.06 145);
+    --accent-foreground: #bbf7d0;
+}
+
+/* purple — Purple-600 */
+[data-theme='purple'] {
+    --primary: #9333ea;
+    --primary-hover: #7e22ce;
+    --primary-subtle: #f3e8ff;
+    --primary-foreground: #ffffff;
+    --ring: #a855f7;
+    --accent: #f3e8ff;
+    --accent-foreground: #581c87;
+}
+[data-theme='purple'].dark {
+    --primary: #c084fc;
+    --primary-hover: #d8b4fe;
+    --primary-subtle: oklch(0.27 0.07 310);
+    --primary-foreground: #0a0a0a;
+    --ring: #c084fc;
+    --accent: oklch(0.27 0.07 310);
+    --accent-foreground: #e9d5ff;
+}
+
+/* orange — Orange-500 */
+[data-theme='orange'] {
+    --primary: #f97316;
+    --primary-hover: #ea580c;
+    --primary-subtle: #ffedd5;
+    --primary-foreground: #ffffff;
+    --ring: #fb923c;
+    --accent: #ffedd5;
+    --accent-foreground: #7c2d12;
+}
+[data-theme='orange'].dark {
+    --primary: #fb923c;
+    --primary-hover: #fdba74;
+    --primary-subtle: oklch(0.27 0.07 50);
+    --primary-foreground: #0a0a0a;
+    --ring: #fb923c;
+    --accent: oklch(0.27 0.07 50);
+    --accent-foreground: #fed7aa;
+}
+
+/* rose — Rose-600 */
+[data-theme='rose'] {
+    --primary: #e11d48;
+    --primary-hover: #be123c;
+    --primary-subtle: #ffe4e6;
+    --primary-foreground: #ffffff;
+    --ring: #f43f5e;
+    --accent: #ffe4e6;
+    --accent-foreground: #881337;
+}
+[data-theme='rose'].dark {
+    --primary: #fb7185;
+    --primary-hover: #fda4af;
+    --primary-subtle: oklch(0.27 0.06 15);
+    --primary-foreground: #0a0a0a;
+    --ring: #fb7185;
+    --accent: oklch(0.27 0.06 15);
+    --accent-foreground: #fecdd3;
+}
+
+/* sky — Sky-500 */
+[data-theme='sky'] {
+    --primary: #0ea5e9;
+    --primary-hover: #0284c7;
+    --primary-subtle: #e0f2fe;
+    --primary-foreground: #ffffff;
+    --ring: #38bdf8;
+    --accent: #e0f2fe;
+    --accent-foreground: #0c4a6e;
+}
+[data-theme='sky'].dark {
+    --primary: #38bdf8;
+    --primary-hover: #7dd3fc;
+    --primary-subtle: oklch(0.27 0.06 230);
+    --primary-foreground: #0a0a0a;
+    --ring: #38bdf8;
+    --accent: oklch(0.27 0.06 230);
+    --accent-foreground: #bae6fd;
+}
+
+/* yellow — Yellow-500 */
+[data-theme='yellow'] {
+    --primary: #eab308;
+    --primary-hover: #ca8a04;
+    --primary-subtle: #fef9c3;
+    --primary-foreground: #422006;
+    --ring: #facc15;
+    --accent: #fef9c3;
+    --accent-foreground: #713f12;
+}
+[data-theme='yellow'].dark {
+    --primary: #facc15;
+    --primary-hover: #fde047;
+    --primary-subtle: oklch(0.27 0.07 90);
+    --primary-foreground: #0a0a0a;
+    --ring: #facc15;
+    --accent: oklch(0.27 0.07 90);
+    --accent-foreground: #fef08a;
+}
+
+/* fuchsia — Fuchsia-600 */
+[data-theme='fuchsia'] {
+    --primary: #c026d3;
+    --primary-hover: #a21caf;
+    --primary-subtle: #fae8ff;
+    --primary-foreground: #ffffff;
+    --ring: #d946ef;
+    --accent: #fae8ff;
+    --accent-foreground: #701a75;
+}
+[data-theme='fuchsia'].dark {
+    --primary: #e879f9;
+    --primary-hover: #f0abfc;
+    --primary-subtle: oklch(0.27 0.08 330);
+    --primary-foreground: #0a0a0a;
+    --ring: #e879f9;
+    --accent: oklch(0.27 0.08 330);
+    --accent-foreground: #f5d0fe;
+}
+
+/* amber — Amber-500 */
+[data-theme='amber'] {
+    --primary: #f59e0b;
+    --primary-hover: #d97706;
+    --primary-subtle: #fef3c7;
+    --primary-foreground: #422006;
+    --ring: #fbbf24;
+    --accent: #fef3c7;
+    --accent-foreground: #78350f;
+}
+[data-theme='amber'].dark {
+    --primary: #fbbf24;
+    --primary-hover: #fcd34d;
+    --primary-subtle: oklch(0.27 0.07 70);
+    --primary-foreground: #0a0a0a;
+    --ring: #fbbf24;
+    --accent: oklch(0.27 0.07 70);
+    --accent-foreground: #fde68a;
+}
+
+/* pink — Pink-500 */
+[data-theme='pink'] {
+    --primary: #ec4899;
+    --primary-hover: #db2777;
+    --primary-subtle: #fce7f3;
+    --primary-foreground: #ffffff;
+    --ring: #f472b6;
+    --accent: #fce7f3;
+    --accent-foreground: #831843;
+}
+[data-theme='pink'].dark {
+    --primary: #f472b6;
+    --primary-hover: #f9a8d4;
+    --primary-subtle: oklch(0.27 0.07 350);
+    --primary-foreground: #0a0a0a;
+    --ring: #f472b6;
+    --accent: oklch(0.27 0.07 350);
+    --accent-foreground: #fbcfe8;
+}
+
+/* lime — Lime-600 */
+[data-theme='lime'] {
+    --primary: #65a30d;
+    --primary-hover: #4d7c0f;
+    --primary-subtle: #ecfccb;
+    --primary-foreground: #ffffff;
+    --ring: #84cc16;
+    --accent: #ecfccb;
+    --accent-foreground: #365314;
+}
+[data-theme='lime'].dark {
+    --primary: #a3e635;
+    --primary-hover: #bef264;
+    --primary-subtle: oklch(0.27 0.07 130);
+    --primary-foreground: #0a0a0a;
+    --ring: #a3e635;
+    --accent: oklch(0.27 0.07 130);
+    --accent-foreground: #d9f99d;
+}
+
+/* cyan — Cyan-600 */
+[data-theme='cyan'] {
+    --primary: #0891b2;
+    --primary-hover: #0e7490;
+    --primary-subtle: #cffafe;
+    --primary-foreground: #ffffff;
+    --ring: #06b6d4;
+    --accent: #cffafe;
+    --accent-foreground: #164e63;
+}
+[data-theme='cyan'].dark {
+    --primary: #22d3ee;
+    --primary-hover: #67e8f9;
+    --primary-subtle: oklch(0.27 0.06 200);
+    --primary-foreground: #0a0a0a;
+    --ring: #22d3ee;
+    --accent: oklch(0.27 0.06 200);
+    --accent-foreground: #a5f3fc;
+}
+
+/* emerald — Emerald-600 */
+[data-theme='emerald'] {
+    --primary: #059669;
+    --primary-hover: #047857;
+    --primary-subtle: #d1fae5;
+    --primary-foreground: #ffffff;
+    --ring: #10b981;
+    --accent: #d1fae5;
+    --accent-foreground: #064e3b;
+}
+[data-theme='emerald'].dark {
+    --primary: #34d399;
+    --primary-hover: #6ee7b7;
+    --primary-subtle: oklch(0.27 0.06 165);
+    --primary-foreground: #0a0a0a;
+    --ring: #34d399;
+    --accent: oklch(0.27 0.06 165);
+    --accent-foreground: #a7f3d0;
+}
+
+/* violet — Violet-600 */
+[data-theme='violet'] {
+    --primary: #7c3aed;
+    --primary-hover: #6d28d9;
+    --primary-subtle: #ede9fe;
+    --primary-foreground: #ffffff;
+    --ring: #8b5cf6;
+    --accent: #ede9fe;
+    --accent-foreground: #4c1d95;
+}
+[data-theme='violet'].dark {
+    --primary: #a78bfa;
+    --primary-hover: #c4b5fd;
+    --primary-subtle: oklch(0.27 0.07 290);
+    --primary-foreground: #0a0a0a;
+    --ring: #a78bfa;
+    --accent: oklch(0.27 0.07 290);
+    --accent-foreground: #ddd6fe;
+}
+
+/* teal — Teal-600 */
+[data-theme='teal'] {
+    --primary: #0d9488;
+    --primary-hover: #0f766e;
+    --primary-subtle: #ccfbf1;
+    --primary-foreground: #ffffff;
+    --ring: #14b8a6;
+    --accent: #ccfbf1;
+    --accent-foreground: #134e4a;
+}
+[data-theme='teal'].dark {
+    --primary: #2dd4bf;
+    --primary-hover: #5eead4;
+    --primary-subtle: oklch(0.27 0.06 180);
+    --primary-foreground: #0a0a0a;
+    --ring: #2dd4bf;
+    --accent: oklch(0.27 0.06 180);
+    --accent-foreground: #99f6e4;
+}
+
+/* indigo — Indigo-600 */
+[data-theme='indigo'] {
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --primary-subtle: #e0e7ff;
+    --primary-foreground: #ffffff;
+    --ring: #6366f1;
+    --accent: #e0e7ff;
+    --accent-foreground: #312e81;
+}
+[data-theme='indigo'].dark {
+    --primary: #818cf8;
+    --primary-hover: #a5b4fc;
+    --primary-subtle: oklch(0.27 0.08 270);
+    --primary-foreground: #0a0a0a;
+    --ring: #818cf8;
+    --accent: oklch(0.27 0.08 270);
+    --accent-foreground: #c7d2fe;
+}

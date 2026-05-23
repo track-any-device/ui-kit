@@ -15,6 +15,15 @@ jobs:
   release:
     name: Semantic Release
     runs-on: ubuntu-latest
+    # Only run for commit types that can produce a release.
+    # chore/docs/style/refactor/test/ci and the automated release
+    # commit itself ([skip ci]) are all skipped.
+    if: |
+      !contains(github.event.head_commit.message, '[skip ci]') && (
+        startsWith(github.event.head_commit.message, 'fix') ||
+        startsWith(github.event.head_commit.message, 'feat') ||
+        contains(github.event.head_commit.message, 'BREAKING CHANGE')
+      )
 
     steps:
       - name: Checkout (full history for semantic-release)

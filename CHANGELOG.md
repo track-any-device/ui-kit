@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/track-any-device/ui-kit/compare/v1.0.0...v1.1.0) (2026-05-23)
+
+
+### Features
+
+* add README.md for component library documentation ([0e5856c](https://github.com/track-any-device/ui-kit/commit/0e5856c2a82c60a5da08cd7f6d3a571ac3e84729))
+
 # 1.0.0 (2026-05-23)
 
 

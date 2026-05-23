@@ -4,8 +4,8 @@ import {
     SplitSidebarLayout, NavbarSidebarLayout, SidebarTabsLayout,
     MegaMenuLayout, SidebarMinimalLayout, MegaMenuNavbarLayout, SidebarDualMenuLayout,
     WorkspaceSidebarLayout, MailLayout, AIChatLayout, CalendarSidebarLayout, FocusSidebarLayout,
-} from '@track-any-device/components';
-import type { NavItem } from '@track-any-device/components';
+} from '@trackany-device/components';
+import type { NavItem } from '@trackany-device/components';
 
 const MOCK_NAV: NavItem[] = [
     { title: 'Dashboard', url: '/dashboard', isActive: true },

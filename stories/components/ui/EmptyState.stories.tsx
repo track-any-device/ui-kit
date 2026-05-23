@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { EmptyState } from '@track-any-device/components';
+import { EmptyState } from '@trackany-device/components';
 import { DatabaseIcon, InboxIcon, SearchIcon } from 'lucide-react';
 
 const meta: Meta<typeof EmptyState> = {

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button, Popover, PopoverContent, PopoverTrigger } from '@track-any-device/components';
+import { Button, Popover, PopoverContent, PopoverTrigger } from '@trackany-device/components';
 
 const meta: Meta<typeof Popover> = {
     title: 'UI/Popover',

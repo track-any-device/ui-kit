@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Breadcrumbs } from '@track-any-device/components';
+import { Breadcrumbs } from '@trackany-device/components';
 
 const meta: Meta<typeof Breadcrumbs> = { title: 'Components/App/Breadcrumbs', component: Breadcrumbs, tags: ['autodocs'] };
 export default meta;

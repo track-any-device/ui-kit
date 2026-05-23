@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AuthLayout } from '@track-any-device/components';
+import { AuthLayout } from '@trackany-device/components';
 
 const meta: Meta<typeof AuthLayout> = {
     title: 'Layouts/AuthLayout',

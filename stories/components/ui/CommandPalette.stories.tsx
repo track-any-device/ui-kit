@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { CommandPalette } from '@track-any-device/components';
+import { CommandPalette } from '@trackany-device/components';
 
 // CommandPalette uses @inertiajs/react usePage for global search.
 const meta: Meta = { title: 'Components/UI/CommandPalette', tags: ['autodocs'] };

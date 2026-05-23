@@ -5,7 +5,7 @@ import {
     TooltipContent,
     TooltipProvider,
     TooltipTrigger,
-} from '@track-any-device/components';
+} from '@trackany-device/components';
 
 const meta: Meta<typeof Tooltip> = {
     title: 'UI/Tooltip',

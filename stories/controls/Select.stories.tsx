@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Select } from '@track-any-device/components';
+import { Select } from '@trackany-device/components';
 
 const meta: Meta<typeof Select> = {
     title: 'Controls/Select',

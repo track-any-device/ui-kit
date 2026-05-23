@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { OtpForm } from '@track-any-device/components';
+import { OtpForm } from '@trackany-device/components';
 
 const meta: Meta<typeof OtpForm> = {
     title: 'Elements/OtpForm',

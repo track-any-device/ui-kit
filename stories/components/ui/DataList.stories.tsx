@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Badge, DataList, DataListItem } from '@track-any-device/components';
+import { Badge, DataList, DataListItem } from '@trackany-device/components';
 
 const meta: Meta<typeof DataList> = {
     title: 'Components/UI/DataList',

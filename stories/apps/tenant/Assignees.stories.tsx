@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AppSidebarLayout } from '@track-any-device/components';
-import { Badge, Avatar, AvatarFallback } from '@track-any-device/components';
+import { AppSidebarLayout } from '@trackany-device/components';
+import { Badge, Avatar, AvatarFallback } from '@trackany-device/components';
 import { mockUser, mockTenant } from '../../_mock-data';
 
 const meta: Meta = {

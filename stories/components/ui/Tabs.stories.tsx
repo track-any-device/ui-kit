@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@track-any-device/components';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@trackany-device/components';
 
 const meta: Meta<typeof Tabs> = {
     title: 'UI/Tabs',

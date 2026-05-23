@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { NavMain, SidebarProvider } from '@track-any-device/components';
+import { NavMain, SidebarProvider } from '@trackany-device/components';
 import { AlertTriangle, LayoutGrid, MapPin, MonitorPlay, Smartphone } from 'lucide-react';
 
 const items = [

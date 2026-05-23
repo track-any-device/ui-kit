@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { HeroSection, CardsGridSection, CtaSection, TextSection, FeaturedSolutionsGridSection } from '@track-any-device/components';
+import { HeroSection, CardsGridSection, CtaSection, TextSection, FeaturedSolutionsGridSection } from '@trackany-device/components';
 
 // CMS sections require @inertiajs/react in consuming apps.
 // These stories show structural rendering with mock data.

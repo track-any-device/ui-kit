@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from '@track-any-device/components';
+import { Button } from '@trackany-device/components';
 
 const meta: Meta<typeof Button> = {
     title: 'Controls/Button',

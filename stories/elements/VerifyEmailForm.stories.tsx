@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { VerifyEmailForm } from '@track-any-device/components';
+import { VerifyEmailForm } from '@trackany-device/components';
 
 const meta: Meta<typeof VerifyEmailForm> = {
     title: 'Elements/VerifyEmailForm',

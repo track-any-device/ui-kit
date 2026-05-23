@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AppSidebarHeader, AppShell, AppSidebar } from '@track-any-device/components';
+import { AppSidebarHeader, AppShell, AppSidebar } from '@trackany-device/components';
 import { mockUser, mockBreadcrumbs } from '../_mock-data';
 
 const meta: Meta = {

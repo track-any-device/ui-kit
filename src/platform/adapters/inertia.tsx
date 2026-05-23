@@ -10,7 +10,7 @@
  * Usage (core/ or login/ resources/js/app.tsx):
  *
  *   import { Link, usePage, useForm, Head, router } from '@inertiajs/react';
- *   import { createInertiaAdapter, PlatformProvider } from '@track-any-device/components';
+ *   import { createInertiaAdapter, PlatformProvider } from '@trackany-device/components';
  *
  *   const adapter = createInertiaAdapter({ Link, usePage, useForm, Head, router });
  *

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Progress, ProgressCircle } from '@track-any-device/components';
+import { Progress, ProgressCircle } from '@trackany-device/components';
 
 const meta: Meta = { title: 'Components/UI/Progress', parameters: { layout: 'padded' } };
 export default meta;

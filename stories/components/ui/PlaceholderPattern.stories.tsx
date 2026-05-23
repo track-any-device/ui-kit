@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { PlaceholderPattern } from '@track-any-device/components';
+import { PlaceholderPattern } from '@trackany-device/components';
 
 const meta: Meta = { title: 'Components/UI/PlaceholderPattern', tags: ['autodocs'] };
 export default meta;

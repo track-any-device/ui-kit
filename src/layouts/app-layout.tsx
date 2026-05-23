@@ -10,7 +10,7 @@
  * exists here so the package exports a consistent AppLayout type.
  *
  * Use in app layouts:
- *   import AppLayoutTemplate from '@track-any-device/components/layouts/app/app-sidebar-layout';
+ *   import AppLayoutTemplate from '@trackany-device/components/layouts/app/app-sidebar-layout';
  */
 export type AppLayoutProps = {
     breadcrumbs?: Array<{ title: string; href: string }>;

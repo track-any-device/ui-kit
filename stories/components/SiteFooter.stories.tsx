@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { SiteFooter } from '@track-any-device/components';
+import { SiteFooter } from '@trackany-device/components';
 
 const meta: Meta = {
     title: 'Components/Web/SiteFooter',

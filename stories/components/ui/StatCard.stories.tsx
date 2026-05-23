@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { StatCard } from '@track-any-device/components';
+import { StatCard } from '@trackany-device/components';
 import { ActivityIcon, AlertTriangleIcon, UsersIcon } from 'lucide-react';
 
 const meta: Meta<typeof StatCard> = {

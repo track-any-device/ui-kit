@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { PasswordInput } from '@track-any-device/components';
+import { PasswordInput } from '@trackany-device/components';
 
 const meta: Meta<typeof PasswordInput> = {
     title: 'Controls/PasswordInput',

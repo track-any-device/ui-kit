@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from '@track-any-device/components';
+import { Button } from '@trackany-device/components';
 import { toast, Toaster } from 'sonner';
 
 // Sonner wraps the `sonner` Toaster — show it standalone for Storybook.

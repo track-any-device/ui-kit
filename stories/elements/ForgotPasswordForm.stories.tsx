@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { ForgotPasswordForm } from '@track-any-device/components';
-import type { ForgotPasswordFormData } from '@track-any-device/components';
+import { ForgotPasswordForm } from '@trackany-device/components';
+import type { ForgotPasswordFormData } from '@trackany-device/components';
 
 const meta: Meta<typeof ForgotPasswordForm> = {
     title: 'Elements/ForgotPasswordForm',

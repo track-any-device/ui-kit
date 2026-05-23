@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AuthLayout, RegisterForm } from '@track-any-device/components';
+import { AuthLayout, RegisterForm } from '@trackany-device/components';
 import { useState } from 'react';
 
 const meta: Meta = {

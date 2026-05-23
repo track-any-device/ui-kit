@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { NotificationBell } from '@track-any-device/components';
+import { NotificationBell } from '@trackany-device/components';
 
 const meta: Meta<typeof NotificationBell> = {
     title: 'Components/App/NotificationBell',

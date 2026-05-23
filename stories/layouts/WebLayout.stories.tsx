@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { WebLayout } from '@track-any-device/components';
+import { WebLayout } from '@trackany-device/components';
 
 const meta: Meta = {
     title: 'Layouts/WebLayout',

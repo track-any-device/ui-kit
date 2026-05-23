@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AppSidebarLayout } from '@track-any-device/components';
-import { StatCard } from '@track-any-device/components';
+import { AppSidebarLayout } from '@trackany-device/components';
+import { StatCard } from '@trackany-device/components';
 import { mockUser, mockTenant } from '../../_mock-data';
 import { MonitorPlay, Users, AlertTriangle, Battery } from 'lucide-react';
 

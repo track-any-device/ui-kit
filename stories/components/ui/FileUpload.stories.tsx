@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FileUpload } from '@track-any-device/components';
+import { FileUpload } from '@trackany-device/components';
 import { useState } from 'react';
 
 const meta: Meta = { title: 'Components/UI/FileUpload', tags: ['autodocs'] };

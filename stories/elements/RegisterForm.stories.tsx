@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { RegisterForm } from '@track-any-device/components';
-import type { RegisterFormData } from '@track-any-device/components';
+import { RegisterForm } from '@trackany-device/components';
+import type { RegisterFormData } from '@trackany-device/components';
 
 const meta: Meta<typeof RegisterForm> = {
     title: 'Elements/RegisterForm',

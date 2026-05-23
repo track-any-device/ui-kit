@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Paragraph } from '@track-any-device/components';
+import { Paragraph } from '@trackany-device/components';
 
 const meta: Meta<typeof Paragraph> = {
     title: 'Controls/Paragraph',

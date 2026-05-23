@@ -8,7 +8,7 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-} from '@track-any-device/components';
+} from '@trackany-device/components';
 
 const meta: Meta<typeof Dialog> = {
     title: 'UI/Dialog',

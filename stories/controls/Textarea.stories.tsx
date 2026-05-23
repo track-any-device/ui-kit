@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Textarea } from '@track-any-device/components';
+import { Textarea } from '@trackany-device/components';
 
 const meta: Meta<typeof Textarea> = {
     title: 'Controls/Textarea',

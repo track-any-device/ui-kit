@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { ConfirmPasswordForm } from '@track-any-device/components';
+import { ConfirmPasswordForm } from '@trackany-device/components';
 
 const meta: Meta<typeof ConfirmPasswordForm> = {
     title: 'Elements/ConfirmPasswordForm',

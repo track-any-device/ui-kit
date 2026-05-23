@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Separator } from '@track-any-device/components';
+import { Separator } from '@trackany-device/components';
 
 const meta: Meta<typeof Separator> = {
     title: 'UI/Separator',

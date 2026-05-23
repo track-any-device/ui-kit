@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AppLogo } from '@track-any-device/components';
+import { AppLogo } from '@trackany-device/components';
 
 const meta: Meta = { title: 'Components/App/AppLogo', tags: ['autodocs'] };
 export default meta;

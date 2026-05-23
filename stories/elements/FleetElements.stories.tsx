@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { VehicleCard, DriverCard, DeviceStatusBadge, IncidentCard } from '@track-any-device/components';
+import { VehicleCard, DriverCard, DeviceStatusBadge, IncidentCard } from '@trackany-device/components';
 
 const meta: Meta = { title: 'Elements/Fleet', parameters: { layout: 'padded' } };
 export default meta;

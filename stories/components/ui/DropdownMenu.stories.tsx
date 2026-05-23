@@ -7,7 +7,7 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from '@track-any-device/components';
+} from '@trackany-device/components';
 import { ChevronDownIcon, CopyIcon, PencilIcon, TrashIcon } from 'lucide-react';
 
 const meta: Meta<typeof DropdownMenu> = {

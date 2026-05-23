@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { SmsChallengeForm } from '@track-any-device/components';
+import { SmsChallengeForm } from '@trackany-device/components';
 
 const meta: Meta<typeof SmsChallengeForm> = {
     title: 'Elements/SmsChallengeForm',

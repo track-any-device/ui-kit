@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { WebLayout, ProductCard } from '@track-any-device/components';
+import { WebLayout, ProductCard } from '@trackany-device/components';
 import { MockPage } from '../../../.storybook/mocks/inertia-react';
 
 const mockNavLinks = [

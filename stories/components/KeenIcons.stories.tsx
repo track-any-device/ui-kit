@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { KeenIcon } from '@track-any-device/components';
-import type { KeeniconsStyle } from '@track-any-device/components';
+import { KeenIcon } from '@trackany-device/components';
+import type { KeeniconsStyle } from '@trackany-device/components';
 
 // Representative subset of KeenIcons for the story grid.
 // See the full list at: packages/node/src/components/keenicons/assets/

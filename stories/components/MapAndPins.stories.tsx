@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { MapPin, Navigation, Wifi, WifiOff } from 'lucide-react';
-import type { MiniMapDevice } from '@track-any-device/components';
+import type { MiniMapDevice } from '@trackany-device/components';
 
 /**
  * Map + Pins stories.

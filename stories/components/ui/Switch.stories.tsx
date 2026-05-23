@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Switch, SwitchWrapper } from '@track-any-device/components';
+import { Switch, SwitchWrapper } from '@trackany-device/components';
 
 const meta: Meta = { title: 'Components/UI/Switch', parameters: { layout: 'padded' } };
 export default meta;

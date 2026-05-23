@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { WebAppLayout } from '@track-any-device/components';
+import { WebAppLayout } from '@trackany-device/components';
 import { MockPage } from '../../../.storybook/mocks/inertia-react';
 import { mockPageProps } from '../../_mock-data';
 import { Smartphone, MapPin, Battery } from 'lucide-react';

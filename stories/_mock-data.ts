@@ -1,4 +1,4 @@
-import type { User } from '@track-any-device/components';
+import type { User } from '@trackany-device/components';
 
 export const mockUser: User = {
     id: 1,

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Alert, AlertDescription, AlertTitle } from '@track-any-device/components';
+import { Alert, AlertDescription, AlertTitle } from '@trackany-device/components';
 import { AlertCircleIcon, InfoIcon } from 'lucide-react';
 
 const meta: Meta<typeof Alert> = {

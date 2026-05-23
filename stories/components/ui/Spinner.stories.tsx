@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Spinner } from '@track-any-device/components';
+import { Spinner } from '@trackany-device/components';
 
 const meta: Meta<typeof Spinner> = {
     title: 'UI/Spinner',

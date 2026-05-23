@@ -12,7 +12,7 @@
  *   'use client';
  *   import Link from 'next/link';
  *   import { useRouter, usePathname } from 'next/navigation';
- *   import { createNextjsAdapter, PlatformProvider } from '@track-any-device/components';
+ *   import { createNextjsAdapter, PlatformProvider } from '@trackany-device/components';
  *
  *   export default function ClientProviders({ children, pageProps }) {
  *     const adapter = createNextjsAdapter({ Link, useRouter, usePathname, pageProps });

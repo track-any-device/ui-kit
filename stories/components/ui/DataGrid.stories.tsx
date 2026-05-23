@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useReactTable, getCoreRowModel, getPaginationRowModel, getSortedRowModel, getFilteredRowModel, createColumnHelper } from '@tanstack/react-table';
-import { DataGrid, DataGridTable, DataGridPagination } from '@track-any-device/components';
+import { DataGrid, DataGridTable, DataGridPagination } from '@trackany-device/components';
 
 interface Vehicle { id: string; registration: string; status: string; driver: string; speed: number; }
 

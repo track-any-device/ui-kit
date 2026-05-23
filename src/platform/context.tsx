@@ -97,7 +97,7 @@ export function usePlatformHead() {
  * Automatically uses the platform's router.
  *
  * Usage:
- *   import { PlatformLink } from '@track-any-device/components';
+ *   import { PlatformLink } from '@trackany-device/components';
  *   <PlatformLink href="/dashboard">Dashboard</PlatformLink>
  */
 export function PlatformLink(props: PlatformLinkProps) {

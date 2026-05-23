@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Heading } from '@track-any-device/components';
+import { Heading } from '@trackany-device/components';
 
 const meta: Meta<typeof Heading> = {
     title: 'Controls/Heading',

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Collapsible, CollapsibleTrigger, CollapsibleContent, Button } from '@track-any-device/components';
+import { Collapsible, CollapsibleTrigger, CollapsibleContent, Button } from '@trackany-device/components';
 import { useState } from 'react';
 
 const meta: Meta = { title: 'Components/UI/Collapsible', tags: ['autodocs'] };

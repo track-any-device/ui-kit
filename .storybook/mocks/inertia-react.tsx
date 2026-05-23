@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import { PlatformProvider, defaultAdapter } from '@track-any-device/components';
+import { PlatformProvider, defaultAdapter } from '@trackany-device/components';
 
 interface MockPageProps {
     props?: Record<string, unknown>;

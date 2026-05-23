@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Divider } from '@track-any-device/components';
+import { Divider } from '@trackany-device/components';
 
 const meta: Meta<typeof Divider> = { title: 'Components/UI/Divider', component: Divider, tags: ['autodocs'] };
 export default meta;

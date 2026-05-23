@@ -23,7 +23,7 @@ const config: StorybookConfig = {
             ...config.resolve,
             alias: {
                 ...config.resolve?.alias,
-                '@track-any-device/components': path.resolve(__dirname, '../src/index.ts'),
+                '@trackany-device/components': path.resolve(__dirname, '../src/index.ts'),
             },
         };
         return config;

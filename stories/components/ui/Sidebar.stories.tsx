@@ -13,7 +13,7 @@ import {
     SidebarMenuItem,
     SidebarProvider,
     SidebarTrigger,
-} from '@track-any-device/components';
+} from '@trackany-device/components';
 import { Home, LayoutDashboard, MapPin, Settings, Users } from 'lucide-react';
 
 const meta: Meta<typeof Sidebar> = {

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Input } from '@track-any-device/components';
+import { Input } from '@trackany-device/components';
 
 const meta: Meta<typeof Input> = {
     title: 'Controls/Input',

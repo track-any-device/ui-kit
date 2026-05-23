@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Label } from '@track-any-device/components';
+import { Label } from '@trackany-device/components';
 
 const meta: Meta<typeof Label> = {
     title: 'Controls/Label',

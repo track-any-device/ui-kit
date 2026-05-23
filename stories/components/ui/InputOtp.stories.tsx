@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from '@track-any-device/components';
+import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from '@trackany-device/components';
 
 const meta: Meta = { title: 'Components/UI/InputOTP', tags: ['autodocs'] };
 export default meta;

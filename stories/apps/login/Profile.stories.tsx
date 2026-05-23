@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { SettingsLayout } from '@track-any-device/components';
+import { SettingsLayout } from '@trackany-device/components';
 import { MockPage } from '../../../.storybook/mocks/inertia-react';
 import { mockPageProps } from '../../_mock-data';
 import { useState } from 'react';

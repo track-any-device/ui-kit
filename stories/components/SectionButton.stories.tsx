@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { SectionButton } from '@track-any-device/components';
+import { SectionButton } from '@trackany-device/components';
 
 // SectionButton uses @inertiajs/react Link for navigation.
 const meta: Meta = { title: 'Components/CMS/SectionButton', tags: ['autodocs'] };

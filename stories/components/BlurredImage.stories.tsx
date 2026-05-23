@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { BlurredImage } from '@track-any-device/components';
+import { BlurredImage } from '@trackany-device/components';
 
 const meta: Meta<typeof BlurredImage> = {
     title: 'Components/CMS/BlurredImage',

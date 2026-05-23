@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Toggle, ToggleGroup, ToggleGroupItem } from '@track-any-device/components';
+import { Toggle, ToggleGroup, ToggleGroupItem } from '@trackany-device/components';
 import { Bold, Italic, Underline } from 'lucide-react';
 
 const meta: Meta = { title: 'Components/UI/Toggle', tags: ['autodocs'] };

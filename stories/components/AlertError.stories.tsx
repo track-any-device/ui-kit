@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AlertError } from '@track-any-device/components';
+import { AlertError } from '@trackany-device/components';
 
 const meta: Meta<typeof AlertError> = { title: 'Components/App/AlertError', component: AlertError, tags: ['autodocs'] };
 export default meta;

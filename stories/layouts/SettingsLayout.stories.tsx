@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { SettingsLayout } from '@track-any-device/components';
+import { SettingsLayout } from '@trackany-device/components';
 
 const meta: Meta<typeof SettingsLayout> = {
     title: 'Layouts/SettingsLayout',

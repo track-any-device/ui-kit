@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FormField, Input, PasswordInput } from '@track-any-device/components';
+import { FormField, Input, PasswordInput } from '@trackany-device/components';
 
 const meta: Meta<typeof FormField> = {
     title: 'Controls/FormField',

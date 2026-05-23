@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { UserInfo } from '@track-any-device/components';
+import { UserInfo } from '@trackany-device/components';
 import { mockUser } from '../_mock-data';
 
 const meta: Meta<typeof UserInfo> = { title: 'Components/App/UserInfo', component: UserInfo, tags: ['autodocs'], parameters: { layout: 'centered' } };

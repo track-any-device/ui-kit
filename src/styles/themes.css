@@ -8,7 +8,7 @@
  *   --text-2sm / --text-2xs        Metronic custom font-size steps
  *
  * Consuming apps import this file via:
- *   @import '@track-any-device/components/styles/themes.css';
+ *   @import '@trackany-device/components/styles/themes.css';
  * and must also import their Tailwind entry so @theme inline picks up the
  * --color-* mappings.
  */

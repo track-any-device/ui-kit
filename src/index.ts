@@ -29,7 +29,7 @@ export { cn, toUrl } from './lib/utils';
 
 // Icons — KeenIcons (font-based, ~1 200 icons in duotone/filled/solid/outline styles)
 // Consumers must also import the font CSS:
-//   import '@track-any-device/components/styles/keenicons.css'
+//   import '@trackany-device/components/styles/keenicons.css'
 export { KeenIcon } from './components/keenicons/keenicons';
 export type { KeeniconsProps, KeeniconsStyle } from './components/keenicons/types';
 

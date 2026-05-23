@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { Button } from '@track-any-device/components';
+import { Button } from '@trackany-device/components';
 
 const THEMES = [
     { name: 'default',  label: 'Blue (Default)' },

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Code, CodeBlock } from '@track-any-device/components';
+import { Code, CodeBlock } from '@trackany-device/components';
 
 const meta: Meta = { title: 'Components/UI/Code', tags: ['autodocs'] };
 export default meta;

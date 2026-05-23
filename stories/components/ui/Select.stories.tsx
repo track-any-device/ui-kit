@@ -7,7 +7,7 @@ import {
     SelectLabel,
     SelectTrigger,
     SelectValue,
-} from '@track-any-device/components';
+} from '@trackany-device/components';
 
 const meta: Meta = {
     title: 'UI/Select',

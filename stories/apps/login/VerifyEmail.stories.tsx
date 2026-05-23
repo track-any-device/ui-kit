@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AuthLayout, VerifyEmailForm } from '@track-any-device/components';
+import { AuthLayout, VerifyEmailForm } from '@trackany-device/components';
 
 const meta: Meta = {
     title: 'Apps/Login/VerifyEmail',

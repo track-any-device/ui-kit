@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AppHeader } from '@track-any-device/components';
+import { AppHeader } from '@trackany-device/components';
 import { LayoutGrid, MonitorPlay, AlertTriangle } from 'lucide-react';
 import { mockUser, mockBreadcrumbs } from '../_mock-data';
 

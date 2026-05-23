@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { DocsShell, DocsCodeBlock, Callout } from '@track-any-device/components';
-import type { DocsSection } from '@track-any-device/components';
+import { DocsShell, DocsCodeBlock, Callout } from '@trackany-device/components';
+import type { DocsSection } from '@trackany-device/components';
 import { BookOpen, Code2, Cpu, List, ScrollText, Wifi } from 'lucide-react';
 
 const meta: Meta<typeof DocsShell> = {

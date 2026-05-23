@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Checkbox } from '@track-any-device/components';
+import { Checkbox } from '@trackany-device/components';
 
 const meta: Meta<typeof Checkbox> = {
     title: 'Controls/Checkbox',

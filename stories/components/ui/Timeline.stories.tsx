@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Timeline, TimelineItem } from '@track-any-device/components';
+import { Timeline, TimelineItem } from '@trackany-device/components';
 import { CheckCircle, AlertCircle, Clock } from 'lucide-react';
 
 const meta: Meta = { title: 'Components/UI/Timeline', tags: ['autodocs'] };

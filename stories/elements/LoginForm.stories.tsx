@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { LoginForm } from '@track-any-device/components';
-import type { LoginFormData } from '@track-any-device/components';
+import { LoginForm } from '@trackany-device/components';
+import type { LoginFormData } from '@trackany-device/components';
 
 const meta: Meta<typeof LoginForm> = {
     title: 'Elements/LoginForm',

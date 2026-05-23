@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { InputError } from '@track-any-device/components';
+import { InputError } from '@trackany-device/components';
 
 const meta: Meta<typeof InputError> = { title: 'Components/App/InputError', component: InputError, tags: ['autodocs'] };
 export default meta;

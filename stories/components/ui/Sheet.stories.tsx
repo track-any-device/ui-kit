@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, Button } from '@track-any-device/components';
+import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, Button } from '@trackany-device/components';
 
 const meta: Meta = { title: 'Components/UI/Sheet', tags: ['autodocs'] };
 export default meta;

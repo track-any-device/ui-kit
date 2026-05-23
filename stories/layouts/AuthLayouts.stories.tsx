@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AuthBrandedLayout, AuthClassicLayout } from '@track-any-device/components';
+import { AuthBrandedLayout, AuthClassicLayout } from '@trackany-device/components';
 
 const Logo = () => <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground text-xs font-bold">SP</div>;
 

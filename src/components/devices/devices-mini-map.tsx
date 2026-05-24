@@ -17,7 +17,7 @@ import { hasGoogleMapsKey, loadGoogleMaps } from '../../lib/google-maps-loader';
 import {
     arrowRotation,
     deviceArrowUrl,
-    devicePinColor,
+    devicePinUrl,
     useArrow,
 } from '../../lib/map-markers';
 import {
@@ -84,19 +84,15 @@ function makeArrowElement(device: MiniMapDevice): HTMLElement {
 }
 
 function makePinElement(device: MiniMapDevice): HTMLElement {
-    const div = document.createElement('div');
-    const color = devicePinColor(device.signal);
-    div.title = device.name ?? device.imei ?? `Device ${device.id}`;
-    div.style.cssText = [
-        `width:${PIN_SIZE_PX}px`,
-        `height:${PIN_SIZE_PX}px`,
-        `border-radius:50%`,
-        `background:${color}`,
-        `border:2.5px solid #fff`,
-        `box-shadow:0 1px 4px rgba(0,0,0,.35)`,
-        `cursor:pointer`,
-    ].join(';');
-    return div;
+    const img = document.createElement('img');
+    img.src = devicePinUrl(device.signal);
+    img.width = PIN_SIZE_PX;
+    img.height = PIN_SIZE_PX;
+    img.title = device.name ?? device.imei ?? `Device ${device.id}`;
+    img.style.display = 'block';
+    img.style.filter = 'drop-shadow(0 1px 3px rgba(0,0,0,.4))';
+    img.style.cursor = 'pointer';
+    return img;
 }
 
 function makeFlagElement(incident: MiniMapIncident): HTMLElement {
@@ -189,19 +185,14 @@ export function DevicesMiniMap({
                     });
                     markersRef.current.push(marker);
                 } else {
-                    // Fallback: legacy Marker with SVG circle icon.
-                    const color = devicePinColor(d.signal);
+                    // Fallback: legacy Marker with PNG icon.
                     const marker = new maps.Marker({
                         position,
                         map: mapRef.current!,
                         title: d.name ?? d.imei ?? `Device ${d.id}`,
                         icon: {
-                            path: maps.SymbolPath.CIRCLE,
-                            scale: 7,
-                            fillColor: color,
-                            fillOpacity: 0.95,
-                            strokeColor: '#ffffff',
-                            strokeWeight: 2,
+                            url: useArrow(d.heading) ? deviceArrowUrl(d.signal) : devicePinUrl(d.signal),
+                            scaledSize: new maps.Size(PIN_SIZE_PX, PIN_SIZE_PX),
                         },
                     });
                     markersRef.current.push(marker as unknown);

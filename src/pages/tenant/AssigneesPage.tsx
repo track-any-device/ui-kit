@@ -6,7 +6,11 @@ import {
 } from '@trackany-device/components';
 import { LayoutResolved } from '../../layouts/LayoutSwitcher';
 import type { LayoutName } from '../../layouts/LayoutSwitcher';
-import { MapPin, Users, Wifi, WifiOff } from 'lucide-react';
+import { Users, Wifi, WifiOff } from 'lucide-react';
+import { DevicesMiniMap } from '../../components/devices/devices-mini-map';
+import type { MiniMapDevice } from '../../components/devices/devices-mini-map';
+
+export type { MiniMapDevice };
 
 export type AssigneeStatus = 'inside' | 'outside' | 'offline';
 export type AssigneeType   = 'Worker' | 'Vehicle';
@@ -100,18 +104,26 @@ export function AssigneesTablePage({ layout, assignees }: { layout: LayoutName; 
     );
 }
 
-export function AssigneesMapPage({ layout, assignees }: { layout: LayoutName; assignees: Assignee[] }) {
+export function AssigneesMapPage({
+    layout,
+    assignees,
+    devices = [],
+}: {
+    layout: LayoutName;
+    assignees: Assignee[];
+    devices?: MiniMapDevice[];
+}) {
     const online  = assignees.filter((a) => a.status !== 'offline').length;
     const offline = assignees.filter((a) => a.status === 'offline').length;
     return (
         <LayoutResolved layout={layout} title="Assignees — Map" currentUrl="/assignees/map">
             <div className="flex h-[calc(100vh-3.5rem)]">
-                <div className="flex-1 relative bg-muted/30 flex items-center justify-center">
-                    <div className="text-center text-muted-foreground">
-                        <MapPin className="h-12 w-12 mx-auto mb-3 opacity-30" />
-                        <p className="text-sm font-medium">Live assignee positions</p>
-                        <p className="text-xs mt-1">Google Maps renders here</p>
-                    </div>
+                <div className="flex-1 relative">
+                    <DevicesMiniMap
+                        devices={devices}
+                        height="100%"
+                        className="rounded-none border-0"
+                    />
                 </div>
                 <div className="w-72 border-l border-border bg-background overflow-y-auto">
                     <div className="p-4 border-b border-border">

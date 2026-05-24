@@ -3,6 +3,11 @@ import arrowGreen  from '../assets/map/arrows/map-arrow-green.png';
 import arrowPurple from '../assets/map/arrows/map-arrow-purple.png';
 import arrowRed    from '../assets/map/arrows/map-arrow-red.png';
 
+import pinBlue   from '../assets/map/pins/map-pin-blue.png';
+import pinGreen  from '../assets/map/pins/map-pin-green.png';
+import pinPurple from '../assets/map/pins/map-pin-purple.png';
+import pinRed    from '../assets/map/pins/map-pin-red.png';
+
 import flagBlue   from '../assets/map/flags/flag-blue.png';
 import flagGreen  from '../assets/map/flags/flag-green.png';
 import flagRed    from '../assets/map/flags/flag-red.png';
@@ -80,11 +85,19 @@ export function deviceArrowUrl(signal: number | null | undefined): string {
     return ARROW_URLS[markerColor(signal)];
 }
 
-// ─── Pin colours (device has no heading) ─────────────────────────────────────
+// ─── Pin markers (device has no heading) ─────────────────────────────────────
+
+/** Pin image URLs keyed by colour. */
+export const PIN_URLS: Record<MarkerColor, string> = {
+    red:    pinRed,
+    purple: pinPurple,
+    blue:   pinBlue,
+    green:  pinGreen,
+};
 
 /**
- * Hex fill colours for the static pin marker (rendered as a DOM element,
- * no separate image needed).
+ * Hex fill colours for the static pin marker (CSS fallback when images
+ * are unavailable or for lightweight circle-only rendering).
  */
 export const PIN_COLORS: Record<MarkerColor, string> = {
     red:    '#ef4444',
@@ -92,6 +105,11 @@ export const PIN_COLORS: Record<MarkerColor, string> = {
     blue:   '#3b82f6',
     green:  '#22c55e',
 };
+
+/** Returns the pin image URL for a device, given its network signal. */
+export function devicePinUrl(signal: number | null | undefined): string {
+    return PIN_URLS[markerColor(signal)];
+}
 
 /** Returns the hex pin colour for a device, given its network signal. */
 export function devicePinColor(signal: number | null | undefined): string {

@@ -1,6 +1,18 @@
-.DS_Store
+# Dependencies
 node_modules/
+
+# Build output
+dist/
 storybook-static/
+
+# Environment — never commit secrets
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
 *.log
-# Metronic source files — large binaries, keep local only
+
+# Local-only source
 theme-source/

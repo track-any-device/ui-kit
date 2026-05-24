@@ -1,7 +1,11 @@
 import { Badge, StatCard, Card, CardContent, CardHeader, CardTitle } from '@trackany-device/components';
 import { LayoutResolved } from '../../layouts/LayoutSwitcher';
 import type { LayoutName } from '../../layouts/LayoutSwitcher';
-import { AlertTriangle, MapPin, MonitorPlay, Users, Wifi } from 'lucide-react';
+import { AlertTriangle, MonitorPlay, Users, Wifi } from 'lucide-react';
+import { DevicesMiniMap } from '../../components/devices/devices-mini-map';
+import type { MiniMapDevice, MiniMapIncident } from '../../components/devices/devices-mini-map';
+
+export type { MiniMapDevice, MiniMapIncident };
 
 export type LiveIncidentPriority = 'critical' | 'high' | 'medium';
 
@@ -32,16 +36,27 @@ const priorityStyle: Record<LiveIncidentPriority, string> = {
     medium:   'text-amber-600 border-amber-200 bg-amber-50 text-xs',
 };
 
-export function LiveStreamPage({ layout, stats }: { layout: LayoutName; stats: LiveStats }) {
+export function LiveStreamPage({
+    layout,
+    stats,
+    devices = [],
+    mapIncidents = [],
+}: {
+    layout: LayoutName;
+    stats: LiveStats;
+    devices?: MiniMapDevice[];
+    mapIncidents?: MiniMapIncident[];
+}) {
     return (
         <LayoutResolved layout={layout} title="Live Monitoring" currentUrl="/map">
             <div className="relative flex h-[calc(100vh-3.5rem)] flex-col">
-                <div className="flex-1 relative bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
-                    <div className="text-center text-muted-foreground">
-                        <MapPin className="h-12 w-12 mx-auto mb-3 opacity-30" />
-                        <p className="text-sm font-medium">Google Maps renders here</p>
-                        <p className="text-xs mt-1">Requires VITE_GOOGLE_MAPS_API_KEY</p>
-                    </div>
+                <div className="flex-1 relative">
+                    <DevicesMiniMap
+                        devices={devices}
+                        incidents={mapIncidents}
+                        height="100%"
+                        className="rounded-none border-0"
+                    />
                 </div>
                 <div className="flex items-center justify-between border-t border-border bg-background/95 px-4 py-2 text-xs text-muted-foreground backdrop-blur-sm">
                     <div className="flex items-center gap-4">
@@ -64,21 +79,26 @@ export function LiveStreamWithSidebarPage({
     stats,
     incidents,
     vehicles,
+    devices = [],
+    mapIncidents = [],
 }: {
     layout: LayoutName;
     stats: Pick<LiveStats, 'online' | 'activeIncidents'>;
     incidents: LiveIncident[];
     vehicles: LiveVehicle[];
+    devices?: MiniMapDevice[];
+    mapIncidents?: MiniMapIncident[];
 }) {
     return (
         <LayoutResolved layout={layout} title="Live Monitoring" currentUrl="/map">
             <div className="flex h-[calc(100vh-3.5rem)]">
-                <div className="flex-1 relative bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
-                    <div className="text-center text-muted-foreground">
-                        <MapPin className="h-12 w-12 mx-auto mb-3 opacity-30" />
-                        <p className="text-sm font-medium">Live Fleet Map</p>
-                        <p className="text-xs mt-1">Requires VITE_GOOGLE_MAPS_API_KEY</p>
-                    </div>
+                <div className="flex-1 relative">
+                    <DevicesMiniMap
+                        devices={devices}
+                        incidents={mapIncidents}
+                        height="100%"
+                        className="rounded-none border-0"
+                    />
                 </div>
                 <div className="w-80 border-l border-border bg-background flex flex-col overflow-hidden">
                     <div className="p-4 border-b border-border space-y-3">

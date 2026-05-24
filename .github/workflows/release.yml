@@ -36,18 +36,22 @@ jobs:
           # won't re-trigger CI, but release itself still works fine).
           token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
 
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
       - name: Setup Node 22
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
+          cache: pnpm
           registry-url: https://registry.npmjs.org
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Type check
-        run: npm run types:check
+        run: pnpm run types:check
 
       - name: Release
         run: npx semantic-release

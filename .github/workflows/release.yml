@@ -16,15 +16,7 @@ jobs:
   release:
     name: Semantic Release
     runs-on: ubuntu-latest
-    # Only run for commit types that can produce a release.
-    # chore/docs/style/refactor/test/ci and the automated release
-    # commit itself ([skip ci]) are all skipped.
-    if: |
-      !contains(github.event.head_commit.message, '[skip ci]') && (
-        startsWith(github.event.head_commit.message, 'fix') ||
-        startsWith(github.event.head_commit.message, 'feat') ||
-        contains(github.event.head_commit.message, 'BREAKING CHANGE')
-      )
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
 
     steps:
       - name: Checkout (full history for semantic-release)
@@ -53,7 +45,12 @@ jobs:
       - name: Type check
         run: pnpm run types:check
 
+      # Only publish for fix/feat/BREAKING CHANGE commits
       - name: Release
+        if: |
+          startsWith(github.event.head_commit.message, 'fix') ||
+          startsWith(github.event.head_commit.message, 'feat') ||
+          contains(github.event.head_commit.message, 'BREAKING CHANGE')
         run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

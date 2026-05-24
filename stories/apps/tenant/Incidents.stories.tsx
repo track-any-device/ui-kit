@@ -24,6 +24,8 @@ const MOCK_INCIDENT_DETAIL: IncidentDetail = {
     assignedTo: 'Ahmad Faryab',
     priority:   'critical',
     status:     'open',
+    lat:        31.5204,
+    lng:        74.3587,
     log: [
         { type: 'sos',          title: 'SOS button pressed',                 datetime: '2026-05-24T09:11:00', variant: 'danger',  description: 'Driver Kamran Arif triggered SOS near Gulberg III.' },
         { type: 'created',      title: 'Incident created automatically',      datetime: '2026-05-24T09:11:05', variant: 'default', description: 'System created INC-0042 from SOS event.' },

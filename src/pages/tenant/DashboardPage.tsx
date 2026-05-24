@@ -6,7 +6,11 @@ import {
 } from '@trackany-device/components';
 import { LayoutResolved } from '../../layouts/LayoutSwitcher';
 import type { LayoutName } from '../../layouts/LayoutSwitcher';
-import { AlertTriangle, Battery, Car, ChevronRight, Clock, MapPin, MonitorPlay, Route, Shield, Users } from 'lucide-react';
+import { AlertTriangle, Battery, Car, ChevronRight, Clock, MonitorPlay, Route, Shield, Users } from 'lucide-react';
+import { DevicesMiniMap } from '../../components/devices/devices-mini-map';
+import type { MiniMapDevice, MiniMapIncident } from '../../components/devices/devices-mini-map';
+
+export type { MiniMapDevice, MiniMapIncident };
 
 export type VehicleStatus = 'online' | 'idle' | 'offline';
 export type ActivityEventType = 'incident' | 'trip' | 'battery' | 'geofence';
@@ -51,11 +55,15 @@ export function DashboardPage({
     stats,
     vehicles,
     recentActivity,
+    devices = [],
+    mapIncidents = [],
 }: {
     layout: LayoutName;
     stats: DashboardStats;
     vehicles: DashboardVehicle[];
     recentActivity: DashboardActivityEvent[];
+    devices?: MiniMapDevice[];
+    mapIncidents?: MiniMapIncident[];
 }) {
     return (
         <LayoutResolved layout={layout} title="Dashboard" currentUrl="/dashboard">
@@ -70,15 +78,10 @@ export function DashboardPage({
                 <Card className="overflow-hidden">
                     <CardHeader>
                         <CardTitle>Live Fleet Map</CardTitle>
-                        <CardDescription>Requires VITE_GOOGLE_MAPS_API_KEY</CardDescription>
+                        <CardDescription>Real-time vehicle positions</CardDescription>
                     </CardHeader>
                     <CardContent className="p-0">
-                        <div className="flex h-64 items-center justify-center bg-muted/40">
-                            <div className="text-center text-muted-foreground">
-                                <MapPin className="mx-auto mb-2 h-8 w-8" />
-                                <p className="text-sm font-medium">DevicesMiniMap renders here</p>
-                            </div>
-                        </div>
+                        <DevicesMiniMap devices={devices} incidents={mapIncidents} height="256px" className="rounded-none border-0 rounded-b-lg" />
                     </CardContent>
                 </Card>
 

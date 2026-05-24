@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type ReactNode } from 'react';
 import { cn } from '../../lib/utils';
-import type { BaseAppLayoutProps, AppLayoutUser } from './layout-types';
+import type { BaseAppLayoutProps } from './layout-types';
 import type { NavItem } from '../../types/navigation';
 import { Toolbar } from './partials/Toolbar';
 import { Footer } from './partials/Footer';
@@ -11,6 +11,7 @@ import { AccordionMenu, AccordionMenuGroup, AccordionMenuItem, AccordionMenuSub,
 import { ScrollArea } from '../../components/ui/scroll-area';
 import { Menu, X } from 'lucide-react';
 import { Button } from '../../controls/Button';
+import '../../styles/layouts/sidebar-fixed.css';
 
 interface SidebarFixedLayoutProps extends BaseAppLayoutProps {
     showToolbar?: boolean;
@@ -95,12 +96,16 @@ export function SidebarFixedLayout({
                 'transition-transform lg:translate-x-0',
                 mobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0',
             )}>
-                {/* Sidebar header / logo */}
-                <div className="sidebar-header flex items-center gap-3 px-4 shrink-0 border-b border-sidebar-border">
+                {/* Logo area — same height as the fixed header */}
+                <div className="sidebar-header h-[70px] flex items-center gap-3 px-4 shrink-0 border-b border-sidebar-border overflow-hidden">
                     {logo && (
-                        <a href={logoHref} className="default-logo flex items-center gap-2 overflow-hidden">
-                            {logo}
-                            {appName && <span className="text-sm font-semibold text-sidebar-foreground whitespace-nowrap">{appName}</span>}
+                        <a href={logoHref} className="default-logo flex items-center gap-2 min-w-0">
+                            <span className="shrink-0">{logo}</span>
+                            {appName && (
+                                <span className="sidebar-app-name text-sm font-semibold text-sidebar-foreground whitespace-nowrap">
+                                    {appName}
+                                </span>
+                            )}
                         </a>
                     )}
                 </div>
@@ -116,9 +121,9 @@ export function SidebarFixedLayout({
             )}
 
             {/* Wrapper (header + content + footer) */}
-            <div className={cn('layout-wrapper flex flex-col flex-1 min-h-screen')}>
-                {/* Fixed header */}
-                <header className="layout-header fixed top-0 inset-x-0 z-20 flex items-center border-b border-border bg-background/95 backdrop-blur-sm px-4 gap-4">
+            <div className="layout-wrapper flex flex-col flex-1 min-h-screen">
+                {/* Fixed header — h-[70px] is the Tailwind fallback; CSS var overrides at breakpoints */}
+                <header className="layout-header h-[70px] fixed top-0 inset-x-0 z-20 flex items-center border-b border-border bg-background/95 backdrop-blur-sm px-4 gap-4">
                     <Button
                         variant="ghost" size="sm"
                         className="size-9 p-0 rounded-full lg:hidden"
@@ -147,7 +152,7 @@ export function SidebarFixedLayout({
                 </header>
 
                 {/* Main content */}
-                <main className="grow pt-5" role="content">
+                <main className="grow" role="content">
                     {showToolbar && (title || breadcrumbs.length > 0 || toolbarActions) && (
                         <Toolbar
                             title={title}

@@ -4,7 +4,7 @@ import type { LayoutName } from '../../../src/layouts/LayoutSwitcher';
 import { DashboardPage, DashboardWithIncidentPage } from '../../../src/pages/tenant/DashboardPage';
 import type {
     DashboardStats, DashboardVehicle, DashboardActivityEvent,
-    ExtendedDashboardStats, IncidentAlert,
+    ExtendedDashboardStats, IncidentAlert, MiniMapDevice,
 } from '../../../src/pages/tenant/DashboardPage';
 
 const MOCK_STATS: DashboardStats = {
@@ -39,6 +39,14 @@ const MOCK_EXTENDED_STATS: ExtendedDashboardStats = {
     activeTrips:        31,
 };
 
+const MOCK_DEVICES: MiniMapDevice[] = [
+    { id: 1, name: 'LP-4821', imei: null, last_lat: 31.5204, last_lon: 74.3587, signal: 100, heading: 45  },
+    { id: 2, name: 'LP-3302', imei: null, last_lat: 31.4697, last_lon: 74.4074, signal: 75,  heading: null },
+    { id: 3, name: 'LP-5510', imei: null, last_lat: 31.5497, last_lon: 74.3436, signal: 75,  heading: 210 },
+    { id: 4, name: 'LP-0091', imei: null, last_lat: 31.5150, last_lon: 74.3700, signal: 0,   heading: null },
+    { id: 5, name: 'LP-7734', imei: null, last_lat: 31.5000, last_lon: 74.3500, signal: 100, heading: 90  },
+];
+
 const MOCK_ALERT: IncidentAlert = {
     title:  'Critical: SOS triggered on LP-4821',
     detail: 'Kamran Arif pressed SOS near Gulberg III, Lahore. Unit dispatched.',
@@ -56,7 +64,7 @@ type Story = StoryObj<{ layout: LayoutName }>;
 
 export const Default: Story = {
     render: ({ layout }) => (
-        <DashboardPage key={layout} layout={layout} stats={MOCK_STATS} vehicles={MOCK_VEHICLES} recentActivity={MOCK_ACTIVITY} />
+        <DashboardPage key={layout} layout={layout} stats={MOCK_STATS} vehicles={MOCK_VEHICLES} recentActivity={MOCK_ACTIVITY} devices={MOCK_DEVICES} />
     ),
 };
 

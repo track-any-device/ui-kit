@@ -20,7 +20,7 @@ const MOCK_API_KEYS: ApiKey[] = [
 ];
 
 const MOCK_HOOKS: WebhookEndpoint[] = [
-    { id: 1, url: 'https://api.suthra.pk/webhooks/tad',          events: ['incident.created', 'sos.triggered', 'device.offline'], status: 'Active',  lastPing: '2m ago', successRate: '99.2%' },
+    { id: 1, url: 'https://api.tad.io/webhooks/tad',          events: ['incident.created', 'sos.triggered', 'device.offline'], status: 'Active',  lastPing: '2m ago', successRate: '99.2%' },
     { id: 2, url: 'https://hooks.zapier.com/hooks/catch/abc123',  events: ['trip.completed', 'geofence.violated'],                status: 'Failing', lastPing: '3h ago', successRate: '41.0%' },
 ];
 

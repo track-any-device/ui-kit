@@ -5,13 +5,13 @@ import { TeamMembersPage, InviteMemberPage, RolesPage, PermissionsTogglePage, Te
 import type { Member, Role, PermissionSection } from '../../../src/pages/tenant/MembersPage';
 
 const MOCK_MEMBERS: Member[] = [
-    { id: 1, name: 'Ahmad Faryab',  email: 'ahmad@suthra.pk',   role: 'Supervisor', status: 'Active',   twofa: true,  initials: 'AF', joined: 'Mar 2024' },
-    { id: 2, name: 'Kamran Arif',   email: 'kamran@suthra.pk',  role: 'Operator',   status: 'Active',   twofa: false, initials: 'KA', joined: 'Jun 2024' },
-    { id: 3, name: 'Zeeshan Butt',  email: 'zeeshan@suthra.pk', role: 'Operator',   status: 'Active',   twofa: true,  initials: 'ZB', joined: 'Aug 2024' },
-    { id: 4, name: 'Tariq Mahmood', email: 'tariq@suthra.pk',   role: 'Admin',      status: 'Active',   twofa: true,  initials: 'TM', joined: 'Jan 2024' },
-    { id: 5, name: 'Usman Malik',   email: 'usman@suthra.pk',   role: 'Operator',   status: 'Active',   twofa: false, initials: 'UM', joined: 'Nov 2024' },
-    { id: 6, name: 'Bilal Chaudhry',email: 'bilal@suthra.pk',   role: 'Member',     status: 'Invited',  twofa: false, initials: 'BC', joined: 'May 2026' },
-    { id: 7, name: 'Sajid Hussain', email: 'sajid@suthra.pk',   role: 'Member',     status: 'Inactive', twofa: false, initials: 'SH', joined: 'Sep 2024' },
+    { id: 1, name: 'Ahmad Faryab',  email: 'ahmad@tad.io',   role: 'Supervisor', status: 'Active',   twofa: true,  initials: 'AF', joined: 'Mar 2024' },
+    { id: 2, name: 'Kamran Arif',   email: 'kamran@tad.io',  role: 'Operator',   status: 'Active',   twofa: false, initials: 'KA', joined: 'Jun 2024' },
+    { id: 3, name: 'Zeeshan Butt',  email: 'zeeshan@tad.io', role: 'Operator',   status: 'Active',   twofa: true,  initials: 'ZB', joined: 'Aug 2024' },
+    { id: 4, name: 'Tariq Mahmood', email: 'tariq@tad.io',   role: 'Admin',      status: 'Active',   twofa: true,  initials: 'TM', joined: 'Jan 2024' },
+    { id: 5, name: 'Usman Malik',   email: 'usman@tad.io',   role: 'Operator',   status: 'Active',   twofa: false, initials: 'UM', joined: 'Nov 2024' },
+    { id: 6, name: 'Bilal Chaudhry',email: 'bilal@tad.io',   role: 'Member',     status: 'Invited',  twofa: false, initials: 'BC', joined: 'May 2026' },
+    { id: 7, name: 'Sajid Hussain', email: 'sajid@tad.io',   role: 'Member',     status: 'Inactive', twofa: false, initials: 'SH', joined: 'Sep 2024' },
 ];
 
 const MOCK_ROLES: Role[] = [

@@ -5,7 +5,7 @@ import { TenantsList } from '../../../src/pages/my/TenantsPage';
 import type { Tenant } from '../../../src/pages/my/TenantsPage';
 
 const MOCK_TENANTS: Tenant[] = [
-    { id: 1, slug: 'suthra-punjab',    display_name: 'Suthra Punjab',    sub_brand: null,              devices: 312, role: 'Supervisor' },
+    { id: 1, slug: 'track-any-device',    display_name: 'Track Any Device',    sub_brand: null,              devices: 312, role: 'Supervisor' },
     { id: 2, slug: 'lahore-police',    display_name: 'Lahore Police',    sub_brand: 'Traffic Division', devices: 89,  role: 'Operator'   },
     { id: 3, slug: 'nha-logistics',    display_name: 'NHA Logistics',    sub_brand: null,              devices: 47,  role: 'Member'     },
     { id: 4, slug: 'punjab-ambulance', display_name: 'Punjab Ambulance', sub_brand: 'EMS Fleet',       devices: 120, role: 'Supervisor' },

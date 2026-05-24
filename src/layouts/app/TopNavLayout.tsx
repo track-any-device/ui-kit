@@ -8,6 +8,8 @@ import { Toolbar } from './partials/Toolbar';
 import { Footer } from './partials/Footer';
 import { HeaderTopbar } from './partials/HeaderTopbar';
 
+const HEADER_HEIGHT = 70;
+
 interface TopNavLayoutProps extends BaseAppLayoutProps {
     headerRightSlot?: ReactNode;
     navRightSlot?: ReactNode;
@@ -26,7 +28,7 @@ export function TopNavLayout({
     breadcrumbs = [],
     toolbarActions,
     stickyHeader = true,
-    stickyOffset = 100,
+    stickyOffset = HEADER_HEIGHT,
     onLogout,
     settingsUrl,
     logoutUrl,
@@ -46,21 +48,14 @@ export function TopNavLayout({
         return () => window.removeEventListener('scroll', handleScroll);
     }, [stickyHeader, stickyOffset]);
 
-    const headerHeight = isSticky ? '60px' : '100px';
-
     return (
-        <div
-            className="flex grow flex-col min-h-screen"
-            style={{ '--header-height': headerHeight } as React.CSSProperties}
-        >
+        <div className="flex grow flex-col min-h-screen">
             {/* Header */}
             <header
                 className={cn(
-                    'flex items-center shrink-0 transition-[height] border-b border-border',
-                    'h-(--header-height)',
-                    stickyHeader && isSticky && 'fixed z-10 top-0 inset-x-0 shadow-xs backdrop-blur-md bg-background/80',
+                    'flex items-center shrink-0 h-[70px] border-b border-border bg-background transition-shadow',
+                    stickyHeader && isSticky && 'fixed z-10 top-0 inset-x-0 shadow-sm backdrop-blur-md bg-background/90',
                 )}
-                style={{ height: headerHeight }}
             >
                 <div className="container mx-auto px-4 flex justify-between items-center gap-4">
                     {/* Logo */}
@@ -81,7 +76,7 @@ export function TopNavLayout({
             </header>
 
             {/* Spacer when header is sticky */}
-            {stickyHeader && isSticky && <div style={{ height: '100px' }} aria-hidden="true" />}
+            {stickyHeader && isSticky && <div style={{ height: `${HEADER_HEIGHT}px` }} aria-hidden="true" />}
 
             {/* Horizontal navbar */}
             <Navbar navItems={navItems} currentUrl={currentUrl} rightSlot={navRightSlot} />

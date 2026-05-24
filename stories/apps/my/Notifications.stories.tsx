@@ -5,7 +5,7 @@ import { NotificationChannelsPage, DoNotDisturbPage } from '../../../src/pages/m
 import type { UserContact, DigestItem } from '../../../src/pages/my/NotificationsPage';
 
 const MOCK_USER: UserContact = {
-    email: 'ahmad@suthra.pk',
+    email: 'ahmad@tad.io',
     phone: '+92-300-1234567',
 };
 

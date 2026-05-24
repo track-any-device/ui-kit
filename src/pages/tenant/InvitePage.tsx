@@ -68,7 +68,7 @@ export function InvitePeoplePage({ layout }: { layout: LayoutName }) {
                     <CardContent className="space-y-3">
                         <p className="text-sm text-muted-foreground">Share this link — anyone with it can join your organisation as a Member.</p>
                         <div className="flex gap-2">
-                            <Input value="https://tad.io/invite/suthra-punjab/abc123xyz" readOnly className="text-xs font-mono" />
+                            <Input value="https://tad.io/invite/track-any-device/abc123xyz" readOnly className="text-xs font-mono" />
                             <Button variant="outline" size="icon"><Copy className="h-4 w-4" /></Button>
                         </div>
                         <Button variant="outline" size="sm" className="w-full"><Link2 className="h-3.5 w-3.5 mr-1.5" />Regenerate link</Button>

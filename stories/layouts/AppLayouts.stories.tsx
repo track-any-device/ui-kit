@@ -36,7 +36,7 @@ const FLEET_NAV: NavItem[] = [
     { title: 'Settings',   url: '/settings' },
 ];
 
-const USER = { name: 'Ahmad Faryab', email: 'ahmad@suthra.pk', avatar: '' };
+const USER = { name: 'Ahmad Faryab', email: 'ahmad@tad.io', avatar: '' };
 
 // ── Reusable page content components ─────────────────────────────────────────
 
@@ -224,8 +224,8 @@ export const TopNav: Story = {
     render: () => (
         <TopNavLayout
             navItems={FLEET_NAV} currentUrl="/dashboard" user={USER}
-            title="Dashboard" appName="Suthra Punjab" logoHref="/"
-            copyright="© 2026 Suthra Punjab" footerLinks={[{ label: 'Support', href: '#' }, { label: 'Privacy', href: '#' }]}
+            title="Dashboard" appName="Track Any Device" logoHref="/"
+            copyright="© 2026 Track Any Device" footerLinks={[{ label: 'Support', href: '#' }, { label: 'Privacy', href: '#' }]}
         >
             <DashboardPage />
         </TopNavLayout>
@@ -235,7 +235,7 @@ export const TopNav: Story = {
 export const SidebarFixed: Story = {
     name: 'Sidebar Fixed',
     render: () => (
-        <SidebarFixedLayout navItems={FLEET_NAV} currentUrl="/dashboard" user={USER} title="Dashboard" appName="Suthra Punjab">
+        <SidebarFixedLayout navItems={FLEET_NAV} currentUrl="/dashboard" user={USER} title="Dashboard" appName="Track Any Device">
             <DashboardPage />
         </SidebarFixedLayout>
     ),
@@ -244,7 +244,7 @@ export const SidebarFixed: Story = {
 export const NavbarCollapsible: Story = {
     name: 'Navbar Collapsible',
     render: () => (
-        <NavbarCollapsibleLayout navItems={FLEET_NAV} currentUrl="/dashboard" user={USER} title="Dashboard" appName="Suthra Punjab">
+        <NavbarCollapsibleLayout navItems={FLEET_NAV} currentUrl="/dashboard" user={USER} title="Dashboard" appName="Track Any Device">
             <DashboardPage />
         </NavbarCollapsibleLayout>
     ),
@@ -335,7 +335,7 @@ export const WorkspaceSidebar: Story = {
         <WorkspaceSidebarLayout
             navItems={FLEET_NAV}
             workspaces={[
-                { id: 'fleet',  name: 'Suthra Punjab',    href: '/' },
+                { id: 'fleet',  name: 'Track Any Device',    href: '/' },
                 { id: 'admin',  name: 'Admin Console',    href: '/admin' },
                 { id: 'epacc',  name: 'EPA Climate Dept', href: '/epacc' },
             ]}
@@ -538,7 +538,7 @@ export const SettingsPage: Story = {
     render: () => (
         <SidebarFixedLayout
             navItems={FLEET_NAV} currentUrl="/settings" user={USER}
-            title="Settings" appName="Suthra Punjab"
+            title="Settings" appName="Track Any Device"
         >
             <div className="p-6 max-w-3xl space-y-6">
                 <Card>
@@ -553,12 +553,12 @@ export const SettingsPage: Story = {
                             </Avatar>
                             <div>
                                 <p className="font-medium">Ahmad Faryab</p>
-                                <p className="text-sm text-muted-foreground">ahmad@suthra.pk · Administrator</p>
+                                <p className="text-sm text-muted-foreground">ahmad@tad.io · Administrator</p>
                                 <Button variant="outline" size="sm" className="mt-2">Change photo</Button>
                             </div>
                         </div>
                         <div className="grid gap-4 sm:grid-cols-2">
-                            {[['Full Name', 'Ahmad Faryab'], ['Email', 'ahmad@suthra.pk'], ['Phone', '+92 300 0000000'], ['Timezone', 'Asia/Karachi (PKT +5)']].map(([label, val]) => (
+                            {[['Full Name', 'Ahmad Faryab'], ['Email', 'ahmad@tad.io'], ['Phone', '+92 300 0000000'], ['Timezone', 'Asia/Karachi (PKT +5)']].map(([label, val]) => (
                                 <div key={label} className="space-y-1.5">
                                     <label className="text-sm font-medium">{label}</label>
                                     <input className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm" defaultValue={val} readOnly />
@@ -605,7 +605,7 @@ export const IncidentsPage: Story = {
     render: () => (
         <SidebarFixedLayout
             navItems={FLEET_NAV} currentUrl="/incidents" user={USER}
-            title="Incidents" appName="Suthra Punjab"
+            title="Incidents" appName="Track Any Device"
         >
             <div className="p-6 space-y-6">
                 <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">

@@ -227,7 +227,7 @@ export function InviteMemberPage({ layout }: { layout: LayoutName }) {
                     </CardHeader>
                     <CardContent className="space-y-3">
                         <div className="flex gap-2">
-                            <Input value="https://tad.io/invite/suthra-punjab/abc123xyz" readOnly className="text-xs font-mono" />
+                            <Input value="https://tad.io/invite/track-any-device/abc123xyz" readOnly className="text-xs font-mono" />
                             <Button variant="outline" size="icon"><Copy className="h-4 w-4" /></Button>
                         </div>
                         <Button variant="outline" size="sm" className="w-full">

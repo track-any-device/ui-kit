@@ -1,161 +1,116 @@
 /**
- * SidebarFixedLayout (Metronic demo1) — structural CSS.
- *
- * Applied via body class ".sidebar-fixed-layout" set by the layout component
- * on mount and removed on unmount.
- *
- * Variables:
- *   --sidebar-width            current sidebar width (collapses to --sidebar-width-collapse)
- *   --sidebar-width-collapse   icon-only width when sidebar is collapsed
- *   --sidebar-default-width    full expanded width (used on hover to re-expand)
- *   --header-height            height of the fixed header
- *   --sidebar-transition-*     animation timing
+ * SidebarFixedLayout structural CSS — plain CSS, no Tailwind directives.
+ * Imported directly by SidebarFixedLayout.tsx so consuming apps get it automatically.
  */
 
-@layer components {
+.sidebar-fixed-layout {
+  --sidebar-transition-duration: 0.3s;
+  --sidebar-transition-timing: ease;
+  --sidebar-width: 280px;
+  --sidebar-width-collapse: 80px;
+  --sidebar-default-width: 280px;
+  --header-height: 70px;
+}
+
+@media (max-width: 1023px) {
   .sidebar-fixed-layout {
-    --sidebar-transition-duration: 0.3s;
-    --sidebar-transition-timing: ease;
     --sidebar-width: 280px;
-    --sidebar-width-collapse: 80px;
-    --sidebar-default-width: 280px;
-    --header-height: 70px;
+    --header-height: 60px;
   }
+}
 
-  @media (max-width: theme(--breakpoint-lg)) {
-    .sidebar-fixed-layout {
-      --sidebar-width: 280px;
-      --header-height: 60px;
-    }
-  }
+/* Header + sidebar-header height */
+.sidebar-fixed-layout .layout-header {
+  height: var(--header-height);
+}
 
-  /* Base chrome */
-  .sidebar-fixed-layout .layout-header {
-    height: var(--header-height);
-  }
+.sidebar-fixed-layout .layout-sidebar .sidebar-header {
+  height: var(--header-height);
+}
 
+/* Fixed header pushes wrapper down */
+.sidebar-fixed-layout.header-fixed .layout-wrapper {
+  padding-top: var(--header-height);
+}
+
+/* Desktop: sidebar width + wrapper offset */
+@media (min-width: 1024px) {
   .sidebar-fixed-layout .layout-sidebar {
     width: var(--sidebar-width);
+    transition: width var(--sidebar-transition-duration) var(--sidebar-transition-timing);
   }
 
-  /* Fixed header pushes wrapper down */
+  .sidebar-fixed-layout .layout-sidebar .sidebar-wrapper {
+    width: var(--sidebar-default-width);
+  }
+
+  .sidebar-fixed-layout .layout-wrapper {
+    padding-inline-start: var(--sidebar-width);
+    transition: padding-inline-start var(--sidebar-transition-duration) var(--sidebar-transition-timing);
+  }
+
+  .sidebar-fixed-layout.header-fixed .layout-header {
+    inset-inline-start: var(--sidebar-width);
+    transition: inset-inline-start var(--sidebar-transition-duration) var(--sidebar-transition-timing);
+  }
+
   .sidebar-fixed-layout.header-fixed .layout-wrapper {
     padding-top: var(--header-height);
   }
 
-  /* Desktop: fixed sidebar offsets the wrapper */
-  @media (min-width: theme(--breakpoint-lg)) {
-    .sidebar-fixed-layout .layout-sidebar {
-      width: var(--sidebar-width);
-      transition: width var(--sidebar-transition-duration)
-        var(--sidebar-transition-timing);
-    }
-
-    .sidebar-fixed-layout .layout-sidebar .sidebar-header {
-      height: var(--header-height);
-    }
-
-    .sidebar-fixed-layout .layout-sidebar .sidebar-wrapper {
-      width: var(--sidebar-default-width);
-    }
-
-    .sidebar-fixed-layout .layout-sidebar .sidebar-logo {
-      width: var(--sidebar-default-width);
-    }
-
-    .sidebar-fixed-layout .layout-sidebar .small-logo {
-      display: none;
-    }
-
-    .sidebar-fixed-layout .layout-wrapper {
-      padding-inline-start: var(--sidebar-width);
-    }
-
-    .sidebar-fixed-layout.header-fixed .layout-header {
-      inset-inline-start: var(--sidebar-width);
-    }
-
-    .sidebar-fixed-layout.header-fixed .layout-wrapper {
-      padding-top: var(--header-height);
-    }
-
-    /* Collapsed state */
-    .sidebar-fixed-layout.sidebar-collapse {
-      --sidebar-width: var(--sidebar-width-collapse);
-    }
-
-    .sidebar-fixed-layout.sidebar-collapse .layout-sidebar {
-      transition: width var(--sidebar-transition-duration)
-        var(--sidebar-transition-timing);
-    }
-
-    .sidebar-fixed-layout.sidebar-collapse .layout-sidebar:hover {
-      width: var(--sidebar-default-width);
-    }
-
-    .sidebar-fixed-layout.sidebar-collapse .layout-sidebar:not(:hover) .default-logo {
-      display: none;
-    }
-
-    .sidebar-fixed-layout.sidebar-collapse .layout-sidebar:not(:hover) .small-logo {
-      display: flex;
-    }
-
-    /* Hide accordion labels/badges when collapsed and not hovered */
-    .sidebar-fixed-layout.sidebar-collapse
-      .layout-sidebar:not(:hover)
-      [data-slot='accordion-menu-title'],
-    .sidebar-fixed-layout.sidebar-collapse
-      .layout-sidebar:not(:hover)
-      [data-slot='badge'],
-    .sidebar-fixed-layout.sidebar-collapse
-      .layout-sidebar:not(:hover)
-      [data-slot='accordion-menu-sub-indicator'] {
-      display: none !important;
-      transition: none !important;
-      animation: none !important;
-    }
-
-    .sidebar-fixed-layout.sidebar-collapse
-      .layout-sidebar:not(:hover)
-      [data-slot='accordion-menu-sub-content'] {
-      visibility: hidden;
-      position: absolute;
-      height: 0;
-      width: 0;
-    }
-
-    .sidebar-fixed-layout.sidebar-collapse
-      .layout-sidebar:not(:hover)
-      [data-slot='accordion-menu-label'] {
-      visibility: hidden;
-      position: relative;
-    }
-
-    .sidebar-fixed-layout.sidebar-collapse
-      .layout-sidebar:not(:hover)
-      [data-slot='accordion-menu-label']::before {
-      content: '...';
-      color: currentColor;
-      font-size: inherit;
-      position: absolute;
-      visibility: visible;
-      display: inline-block;
-      inset-inline-start: 0;
-      top: 0.25rem;
-      margin-inline-start: -0.15rem;
-      transform: translateX(100%);
-    }
+  /* Collapsed state — redefine sidebar-width via custom prop */
+  .sidebar-fixed-layout.sidebar-collapse {
+    --sidebar-width: var(--sidebar-width-collapse);
   }
 
-  /* Smooth transitions after layout initialises (avoids flash on mount) */
-  .sidebar-fixed-layout.layout-initialized .layout-wrapper {
-    transition: padding-inline-start var(--sidebar-transition-duration)
-      var(--sidebar-transition-timing);
+  .sidebar-fixed-layout.sidebar-collapse .layout-sidebar:hover {
+    width: var(--sidebar-default-width);
   }
 
-  .sidebar-fixed-layout.layout-initialized .layout-header {
-    transition: inset-inline-start var(--sidebar-transition-duration)
-      var(--sidebar-transition-timing);
+  /* When collapsed and not hovered, hide app name (logo icon stays visible) */
+  .sidebar-fixed-layout.sidebar-collapse .layout-sidebar:not(:hover) .sidebar-app-name {
+    display: none;
   }
+
+  /* Hide accordion text labels when collapsed and not hovered */
+  .sidebar-fixed-layout.sidebar-collapse .layout-sidebar:not(:hover) [data-slot='accordion-menu-title'],
+  .sidebar-fixed-layout.sidebar-collapse .layout-sidebar:not(:hover) [data-slot='badge'],
+  .sidebar-fixed-layout.sidebar-collapse .layout-sidebar:not(:hover) [data-slot='accordion-menu-sub-indicator'] {
+    display: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .sidebar-fixed-layout.sidebar-collapse .layout-sidebar:not(:hover) [data-slot='accordion-menu-sub-content'] {
+    visibility: hidden;
+    position: absolute;
+    height: 0;
+    width: 0;
+  }
+
+  .sidebar-fixed-layout.sidebar-collapse .layout-sidebar:not(:hover) [data-slot='accordion-menu-label'] {
+    visibility: hidden;
+    position: relative;
+  }
+
+  .sidebar-fixed-layout.sidebar-collapse .layout-sidebar:not(:hover) [data-slot='accordion-menu-label']::before {
+    content: '•••';
+    color: currentColor;
+    font-size: 0.5rem;
+    letter-spacing: 0.1em;
+    position: absolute;
+    visibility: visible;
+    display: inline-block;
+    inset-inline-start: 0;
+    top: 0.15rem;
+  }
+}
+
+/* Smooth transitions after mount (prevents flash on init) */
+.sidebar-fixed-layout.layout-initialized .layout-wrapper {
+  transition: padding-inline-start var(--sidebar-transition-duration) var(--sidebar-transition-timing);
+}
+
+.sidebar-fixed-layout.layout-initialized .layout-header {
+  transition: inset-inline-start var(--sidebar-transition-duration) var(--sidebar-transition-timing);
 }

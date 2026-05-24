@@ -14,7 +14,7 @@ const MOCK_USER: UserProfileData = {
     email: 'ahmad@example.com',
     phone: '+92-300-1234567',
     role: 'Fleet Supervisor',
-    org: 'Suthra Punjab',
+    org: 'Track Any Device',
     initials: 'AF',
 };
 

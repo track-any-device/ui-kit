@@ -13,7 +13,7 @@ export const mockUser: User = {
 };
 
 export const mockTenant = {
-    display_name: 'Suthra Punjab',
+    display_name: 'Track Any Device',
     sub_brand: 'Environment Protection & Climate Change Dept.',
 };
 

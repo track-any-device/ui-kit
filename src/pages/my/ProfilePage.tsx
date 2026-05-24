@@ -464,7 +464,7 @@ export function SettingsSidebarPage({ layout, user }: { layout: LayoutName; user
                             </div>
                             <Separator />
                             <div className="flex items-center justify-between">
-                                <div><p className="text-sm font-medium">Webhook endpoint</p><p className="text-xs text-muted-foreground font-mono">https://api.suthra.pk/webhooks/tad</p></div>
+                                <div><p className="text-sm font-medium">Webhook endpoint</p><p className="text-xs text-muted-foreground font-mono">https://api.tad.io/webhooks/tad</p></div>
                                 <Button variant="outline" size="sm"><Copy className="h-3.5 w-3.5 mr-1" />Copy</Button>
                             </div>
                         </div>

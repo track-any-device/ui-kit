@@ -7,6 +7,7 @@ import { LayoutResolved } from '../../layouts/LayoutSwitcher';
 import type { LayoutName } from '../../layouts/LayoutSwitcher';
 import { AlertTriangle, Battery, CheckCircle, Clock, Shield, Users } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import { DevicesMiniMap } from '../../components/devices/devices-mini-map';
 
 export type IncidentPriority = 'critical' | 'high' | 'medium' | 'low';
 export type IncidentStatus  = 'open' | 'acknowledged' | 'resolved';
@@ -45,6 +46,8 @@ export interface IncidentDetail {
     priority: IncidentPriority;
     status: IncidentStatus;
     log: IncidentLogEntry[];
+    lat?: number;
+    lng?: number;
 }
 
 const priorityStyle: Record<IncidentPriority, string> = {
@@ -169,9 +172,22 @@ export function IncidentDetailPage({ layout, incident }: { layout: LayoutName; i
                         <Card>
                             <CardHeader><CardTitle>Location</CardTitle></CardHeader>
                             <CardContent className="p-0">
-                                <div className="h-48 flex items-center justify-center bg-muted/40 text-sm text-muted-foreground">
-                                    Map renders here when VITE_GOOGLE_MAPS_API_KEY is set
-                                </div>
+                                <DevicesMiniMap
+                                    devices={incident.lat != null && incident.lng != null ? [{
+                                        id: incident.id,
+                                        name: incident.assignee,
+                                        imei: incident.device,
+                                        last_lat: incident.lat,
+                                        last_lon: incident.lng,
+                                        signal: null,
+                                        heading: null,
+                                    }] : []}
+                                    fallbackCenter={incident.lat != null && incident.lng != null
+                                        ? { lat: incident.lat, lng: incident.lng }
+                                        : undefined}
+                                    height="192px"
+                                    className="rounded-none border-0 rounded-b-lg"
+                                />
                             </CardContent>
                         </Card>
                     </div>

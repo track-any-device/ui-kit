@@ -120,7 +120,7 @@ export function UserProfileTabsPage({ layout, user }: { layout: LayoutName; user
                                     <div className="space-y-1.5"><Label>Email</Label><Input value={user.email} disabled className="opacity-60" /></div>
                                     <div className="space-y-1.5"><Label>Role</Label><Input value={user.role} disabled className="opacity-60" /><p className="text-xs text-muted-foreground">Assigned by your administrator.</p></div>
                                 </div>
-                                <div className="space-y-1.5"><Label>Bio</Label><Textarea rows={2} defaultValue="Fleet supervisor at Suthra Punjab." /></div>
+                                <div className="space-y-1.5"><Label>Bio</Label><Textarea rows={2} defaultValue="Fleet supervisor at Track Any Device." /></div>
                                 <div className="flex justify-end"><Button size="sm">Save changes</Button></div>
                             </CardContent>
                         </TabsContent>

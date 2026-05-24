@@ -5,13 +5,19 @@ interface Props extends AuthLayoutProps {
     logo?: ReactNode;
     appName?: string;
     homeUrl?: string;
-    bannerUrl?: string;
+    backgroundImage?: string;
+    backgroundImageDark?: string;
 }
 
-export default function AuthCenteredLayout({ children, title, description, logo, appName, homeUrl = '/', bannerUrl = '/banner.png' }: Props) {
+export default function AuthCenteredLayout({ children, title, description, logo, appName, homeUrl = '/', backgroundImage, backgroundImageDark }: Props) {
     return (
-        <div className="relative flex min-h-svh flex-col items-center justify-center bg-background bg-cover bg-center bg-no-repeat p-6"
-            style={{ backgroundImage: `url(${bannerUrl})` }}>
+        <div className="auth-centered-bg relative flex min-h-svh flex-col items-center justify-center bg-background bg-cover bg-center bg-no-repeat p-6">
+            {(backgroundImage || backgroundImageDark) && (
+                <style>{`
+                    .auth-centered-bg { ${backgroundImage ? `background-image: url('${backgroundImage}');` : ''} }
+                    .dark .auth-centered-bg { ${backgroundImageDark ? `background-image: url('${backgroundImageDark}');` : ''} }
+                `}</style>
+            )}
             <div aria-hidden className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/85 to-primary-subtle/60" />
 
             <div className="relative z-10 w-full max-w-md">

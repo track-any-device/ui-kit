@@ -9,6 +9,8 @@ import { Footer } from './partials/Footer';
 import { HeaderTopbar } from './partials/HeaderTopbar';
 import { AccordionMenu, AccordionMenuGroup, AccordionMenuItem, AccordionMenuSub, AccordionMenuSubContent, AccordionMenuSubTrigger } from '../../components/ui/accordion-menu';
 import { ScrollArea } from '../../components/ui/scroll-area';
+import { Menu, X } from 'lucide-react';
+import { Button } from '../../controls/Button';
 
 /**
  * SidebarTabsLayout (demo6)
@@ -28,12 +30,14 @@ export function SidebarTabsLayout({
     footerLinks = [], copyright, showToolbar = true,
 }: SidebarTabsLayoutProps) {
     const [activeTab, setActiveTab] = useState(primaryNavItems[0]?.title ?? '');
+    const [mobileOpen, setMobileOpen] = useState(false);
     const activeSection = primaryNavItems.find((p) => p.title === activeTab);
     const sideItems = activeSection?.items ?? navItems;
 
     return (
         <div className="flex min-h-screen">
-            <aside className="flex shrink-0">
+            {/* Desktop sidebar — always in-flow, hidden on mobile */}
+            <div className="hidden lg:flex shrink-0">
                 {/* Tab strip */}
                 {primaryNavItems.length > 0 && (
                     <div className="w-16 flex flex-col items-center py-3 gap-1 border-e border-sidebar-border bg-sidebar">
@@ -78,10 +82,52 @@ export function SidebarTabsLayout({
                         </AccordionMenu>
                     </ScrollArea>
                 </div>
-            </aside>
+            </div>
+
+            {/* Mobile sidebar overlay — only rendered when open */}
+            {mobileOpen && (
+                <>
+                    <div className="fixed inset-0 z-30 bg-black/50 lg:hidden" onClick={() => setMobileOpen(false)} />
+                    <aside className="fixed inset-y-0 start-0 z-40 w-[280px] flex flex-col border-e border-sidebar-border bg-sidebar lg:hidden">
+                        <div className="flex items-center gap-2 px-4 h-[70px] border-b border-sidebar-border shrink-0">
+                            {logo && <a href={logoHref}>{logo}</a>}
+                            {appName && <span className="text-sm font-semibold">{appName}</span>}
+                            <Button variant="ghost" size="sm" className="size-8 p-0 ml-auto" onClick={() => setMobileOpen(false)}>
+                                <X className="size-4" />
+                            </Button>
+                        </div>
+                        <ScrollArea className="flex-1 py-3 px-2">
+                            <AccordionMenu type="single" collapsible matchPath={(href) => !!href && currentUrl.startsWith(href)} selectedValue={currentUrl}>
+                                <AccordionMenuGroup>
+                                    {sideItems.map((item, i) => (
+                                        item.items ? (
+                                            <AccordionMenuSub key={i} value={item.title}>
+                                                <AccordionMenuSubTrigger>{item.title}</AccordionMenuSubTrigger>
+                                                <AccordionMenuSubContent type="single" collapsible parentValue={item.title}>
+                                                    {item.items.map((c, ci) => <AccordionMenuItem key={ci} value={c.href ?? c.title} asChild><a href={c.href}>{c.title}</a></AccordionMenuItem>)}
+                                                </AccordionMenuSubContent>
+                                            </AccordionMenuSub>
+                                        ) : (
+                                            <AccordionMenuItem key={i} value={item.href ?? item.title} asChild><a href={item.href}>{item.title}</a></AccordionMenuItem>
+                                        )
+                                    ))}
+                                </AccordionMenuGroup>
+                            </AccordionMenu>
+                        </ScrollArea>
+                    </aside>
+                </>
+            )}
 
             <div className="flex flex-col flex-1 min-w-0">
                 <header className="flex items-center h-[70px] border-b border-border bg-background px-4 shrink-0">
+                    <Button
+                        variant="ghost" size="sm"
+                        className="size-9 p-0 rounded-full lg:hidden mr-2"
+                        onClick={() => setMobileOpen((o) => !o)}
+                        aria-label="Toggle menu"
+                    >
+                        {mobileOpen ? <X className="size-4" /> : <Menu className="size-4" />}
+                    </Button>
                     <div className="flex-1" />
                     <HeaderTopbar user={user} unreadCount={unreadCount} settingsUrl={settingsUrl} logoutUrl={logoutUrl} onLogout={onLogout} />
                 </header>

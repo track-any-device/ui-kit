@@ -5,11 +5,11 @@ import { InvitePeoplePage, SentInvitesPage } from '../../../src/pages/tenant/Inv
 import type { SentInvite } from '../../../src/pages/tenant/InvitePage';
 
 const MOCK_SENT_INVITES: SentInvite[] = [
-    { name: 'Bilal Chaudhry',  email: 'bilal@suthra.pk',    status: 'Accepted', activity: '2 days ago',  initials: 'BC' },
-    { name: 'Sara Qureshi',    email: 'sara@suthra.pk',     status: 'Pending',  activity: '4 days ago',  initials: 'SQ' },
+    { name: 'Bilal Chaudhry',  email: 'bilal@tad.io',    status: 'Accepted', activity: '2 days ago',  initials: 'BC' },
+    { name: 'Sara Qureshi',    email: 'sara@tad.io',     status: 'Pending',  activity: '4 days ago',  initials: 'SQ' },
     { name: 'Amir Raza',       email: 'amir.raza@gmail.com',status: 'Declined', activity: '1 week ago',  initials: 'AR' },
     { name: 'Faisal Mehmood',  email: 'faisal@example.pk', status: 'Pending',  activity: '1 week ago',  initials: 'FM' },
-    { name: 'Nadia Bashir',    email: 'nadia@suthra.pk',    status: 'Accepted', activity: '2 weeks ago', initials: 'NB' },
+    { name: 'Nadia Bashir',    email: 'nadia@tad.io',    status: 'Accepted', activity: '2 weeks ago', initials: 'NB' },
 ];
 
 const meta: Meta<{ layout: LayoutName }> = {

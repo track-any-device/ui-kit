@@ -8,6 +8,7 @@
  *               then wrap content with <AuthLayoutResolved variant={args.authLayout} ...>.
  */
 import React from 'react';
+import logoUrl from '../assets/logo.png';
 import { AuthLayout } from '@trackany-device/components';
 import type { AuthLayoutVariant } from '@trackany-device/components';
 import {
@@ -72,7 +73,9 @@ const DEFAULT_NAV: NavItem[] = [
     { title: 'Settings',   href: '/settings' },
 ];
 
-const DEFAULT_USER = { name: 'Ahmad Faryab', email: 'ahmad@suthra.pk', avatar: '' };
+const DEFAULT_USER = { name: 'Ahmad Faryab', email: 'ahmad@tad.io', avatar: '' };
+
+const DEFAULT_LOGO = <img src={logoUrl} alt="Logo" className="h-8 w-auto" />;
 
 type LayoutResolvedProps = {
     layout?: LayoutName;
@@ -80,6 +83,7 @@ type LayoutResolvedProps = {
     user?: typeof DEFAULT_USER;
     title?: string;
     currentUrl?: string;
+    logo?: React.ReactNode;
     children: React.ReactNode;
 };
 
@@ -89,14 +93,15 @@ export function LayoutResolved({
     user = DEFAULT_USER,
     title = 'Dashboard',
     currentUrl = '/dashboard',
+    logo = DEFAULT_LOGO,
     children,
 }: LayoutResolvedProps) {
-    const shared = { navItems, user, title, currentUrl, appName: 'Suthra Punjab' };
+    const shared = { navItems, user, title, currentUrl, appName: 'Track Any Device', logo };
 
     switch (layout) {
         case 'TopNav':
             return (
-                <TopNavLayout {...shared} logoHref="/" copyright="© 2026 Suthra Punjab" footerLinks={[{ label: 'Support', href: '#' }]}>
+                <TopNavLayout {...shared} logoHref="/" copyright="© 2026 Track Any Device" footerLinks={[{ label: 'Support', href: '#' }]}>
                     {children}
                 </TopNavLayout>
             );
@@ -140,7 +145,7 @@ export function LayoutResolved({
             return (
                 <WorkspaceSidebarLayout
                     {...shared}
-                    workspaces={[{ id: 'fleet', name: 'Suthra Punjab', href: '/' }, { id: 'admin', name: 'Admin', href: '/admin' }]}
+                    workspaces={[{ id: 'fleet', name: 'Track Any Device', href: '/' }, { id: 'admin', name: 'Admin', href: '/admin' }]}
                     activeWorkspace="fleet"
                 >
                     {children}
@@ -173,12 +178,39 @@ type AuthLayoutResolvedProps = {
     variant?: AuthLayoutVariant;
     title?: string;
     description?: string;
+    logo?: React.ReactNode;
+    appName?: string;
+    backgroundImage?: string;
+    backgroundImageDark?: string;
+    brandImage?: string;
+    brandImageDark?: string;
     children: React.ReactNode;
 };
 
-export function AuthLayoutResolved({ variant = 'split', title, description, children }: AuthLayoutResolvedProps) {
+export function AuthLayoutResolved({
+    variant = 'split',
+    title,
+    description,
+    logo = DEFAULT_LOGO,
+    appName = 'Track Any Device',
+    backgroundImage,
+    backgroundImageDark,
+    brandImage,
+    brandImageDark,
+    children,
+}: AuthLayoutResolvedProps) {
     return (
-        <AuthLayout variant={variant} title={title} description={description}>
+        <AuthLayout
+            variant={variant}
+            title={title}
+            description={description}
+            logo={logo}
+            appName={appName}
+            backgroundImage={backgroundImage}
+            backgroundImageDark={backgroundImageDark}
+            brandImage={brandImage}
+            brandImageDark={brandImageDark}
+        >
             {children}
         </AuthLayout>
     );

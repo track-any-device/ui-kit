@@ -134,6 +134,9 @@ html { scroll-behavior: smooth; }
 /* ── Per-theme primary overrides + Metronic extra tokens ────────────────── */
 @import "../src/styles/themes.css";
 
+/* ── Layout variables (sidebar/header dimension tokens) ─────────────────── */
+@import "../src/styles/layout.css";
+
 /* ── Metronic component CSS layers ──────────────────────────────────────── */
 @import "../src/styles/components/scrollable.css";
 @import "../src/styles/components/image-input.css";

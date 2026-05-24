@@ -11,28 +11,28 @@ import type {
 
 const MOCK_USER: TenantUser = {
     name:     'Ahmad Faryab',
-    email:    'ahmad@suthra.pk',
+    email:    'ahmad@tad.io',
     phone:    '+92-300-1234567',
     role:     'Supervisor',
     initials: 'AF',
 };
 
 const MOCK_ORG: TenantOrg = {
-    name:    'Suthra Punjab',
-    slug:    'suthra-punjab',
-    email:   'admin@suthra.pk',
+    name:    'Track Any Device',
+    slug:    'track-any-device',
+    email:   'admin@tad.io',
     phone:   '+92-42-35761234',
     vat:     'PK-NTN-1234567-8',
     reg:     'EP-0042',
-    website: 'https://suthra.pk',
+    website: 'https://tad.io',
 };
 
 const MOCK_ORG_MEMBERS: OrgMember[] = [
-    { name: 'Ahmad Faryab',  email: 'ahmad@suthra.pk',   role: 'Supervisor', twofa: true,  joined: 'Mar 2024', initials: 'AF' },
-    { name: 'Kamran Arif',   email: 'kamran@suthra.pk',  role: 'Operator',   twofa: false, joined: 'Jun 2024', initials: 'KA' },
-    { name: 'Zeeshan Butt',  email: 'zeeshan@suthra.pk', role: 'Driver',     twofa: true,  joined: 'Aug 2024', initials: 'ZB' },
-    { name: 'Tariq Mahmood', email: 'tariq@suthra.pk',   role: 'Admin',      twofa: true,  joined: 'Jan 2024', initials: 'TM' },
-    { name: 'Usman Malik',   email: 'usman@suthra.pk',   role: 'Operator',   twofa: false, joined: 'Nov 2024', initials: 'UM' },
+    { name: 'Ahmad Faryab',  email: 'ahmad@tad.io',   role: 'Supervisor', twofa: true,  joined: 'Mar 2024', initials: 'AF' },
+    { name: 'Kamran Arif',   email: 'kamran@tad.io',  role: 'Operator',   twofa: false, joined: 'Jun 2024', initials: 'KA' },
+    { name: 'Zeeshan Butt',  email: 'zeeshan@tad.io', role: 'Driver',     twofa: true,  joined: 'Aug 2024', initials: 'ZB' },
+    { name: 'Tariq Mahmood', email: 'tariq@tad.io',   role: 'Admin',      twofa: true,  joined: 'Jan 2024', initials: 'TM' },
+    { name: 'Usman Malik',   email: 'usman@tad.io',   role: 'Operator',   twofa: false, joined: 'Nov 2024', initials: 'UM' },
 ];
 
 const MOCK_SECURITY_LOG: SecurityLogEntry[] = [

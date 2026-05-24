@@ -115,3 +115,6 @@ export { default as illustration35Dark } from './media/illustrations/35-dark.svg
 
 // ── Misc ──────────────────────────────────────────────────────────────────────
 export { default as imagePlaceholder } from './media/misc/placeholder.svg';
+
+// ── Brand ─────────────────────────────────────────────────────────────────────
+export { default as logoUrl } from './logo.png';

@@ -13,7 +13,7 @@ interface ToolbarProps {
 
 export function Toolbar({ title, breadcrumbs = [], actions, className, currentUrl }: ToolbarProps) {
     return (
-        <div className={cn('mb-5 lg:mb-10', className)}>
+        <div className={cn('pt-5 mb-5 lg:pt-7 lg:mb-10', className)}>
             <div className="container mx-auto px-4 flex items-center justify-between flex-wrap gap-5">
                 <div className="flex items-center flex-wrap gap-1 lg:gap-5">
                     {title && <h1 className="font-medium text-lg text-mono">{title}</h1>}

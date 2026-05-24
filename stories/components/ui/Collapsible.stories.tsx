@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Collapsible, CollapsibleTrigger, CollapsibleContent, Button } from '@trackany-device/components';
 import { useState } from 'react';
 
-const meta: Meta = { title: 'Components/UI/Collapsible', tags: ['autodocs'] };
+const meta: Meta = { title: 'UI/Collapsible', tags: ['autodocs'] };
 export default meta;
 
 export const Default: StoryObj = {

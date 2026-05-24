@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 // ProductCard uses @inertiajs/react Link. Render a representative visual mock.
-const meta: Meta = { title: 'Components/Products/ProductCard', tags: ['autodocs'] };
+const meta: Meta = { title: 'Elements/Products/ProductCard', tags: ['autodocs'] };
 export default meta;
 
 const mockProduct = {

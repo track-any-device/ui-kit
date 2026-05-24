@@ -17,7 +17,7 @@ import {
 import { Home, LayoutDashboard, MapPin, Settings, Users } from 'lucide-react';
 
 const meta: Meta<typeof Sidebar> = {
-    title: 'Components/UI/Sidebar',
+    title: 'UI/Sidebar',
     component: Sidebar,
     tags: ['autodocs'],
     parameters: {

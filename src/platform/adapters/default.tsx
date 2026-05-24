@@ -11,7 +11,7 @@ import type {
 
 // ─── Link ────────────────────────────────────────────────────────────────────
 
-function DefaultLink({ href, children, preserveScroll: _ps, replace: _r, ...props }: PlatformLinkProps) {
+function DefaultLink({ href, children, prefetch: _pf, preserveScroll: _ps, replace: _r, ...props }: PlatformLinkProps) {
     return <a href={href} {...props}>{children}</a>;
 }
 

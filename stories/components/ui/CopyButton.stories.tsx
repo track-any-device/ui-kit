@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { CopyButton } from '@trackany-device/components';
 
-const meta: Meta<typeof CopyButton> = { title: 'Components/UI/CopyButton', component: CopyButton, tags: ['autodocs'] };
+const meta: Meta<typeof CopyButton> = { title: 'UI/CopyButton', component: CopyButton, tags: ['autodocs'] };
 export default meta;
 type Story = StoryObj<typeof CopyButton>;
 

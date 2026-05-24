@@ -234,6 +234,16 @@ export { Skeleton } from './components/ui/skeleton';
 export { Toaster } from './components/ui/sonner';
 export { Spinner } from './components/ui/spinner';
 export { StatCard } from './components/ui/stat-card';
+export { ChecklistItem } from './components/ui/checklist-item';
+export type { ChecklistItemProps } from './components/ui/checklist-item';
+export { UsageMeter } from './components/ui/usage-meter';
+export type { UsageMeterItem } from './components/ui/usage-meter';
+export { PlanCard } from './components/ui/plan-card';
+export type { PlanCardProps } from './components/ui/plan-card';
+export { SettingsRow } from './components/ui/settings-row';
+export type { SettingsRowProps } from './components/ui/settings-row';
+export { SettingsSection } from './components/ui/settings-section';
+export type { SettingsSectionProps } from './components/ui/settings-section';
 export { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs';
 export { Timeline, TimelineItem } from './components/ui/timeline';
 export { Toggle, toggleVariants } from './components/ui/toggle';
@@ -312,6 +322,8 @@ export { SolutionsWithFilterSection } from './components/cms/sections/solutions-
 // Device components
 export { DevicesMiniMap } from './components/devices/devices-mini-map';
 export type { MiniMapDevice, MiniMapIncident } from './components/devices/devices-mini-map';
+export { MapMarker } from './components/devices/map-marker';
+export type { MapMarkerProps, MapMarkerIncidentPriority } from './components/devices/map-marker';
 
 // Docs components
 export { default as DocsShell, CodeBlock as DocsCodeBlock, Callout } from './components/docs/docs-shell';
@@ -360,7 +372,6 @@ export { MailLayout } from './layouts/app/MailLayout';
 export { AIChatLayout } from './layouts/app/AIChatLayout';
 export { CalendarSidebarLayout } from './layouts/app/CalendarSidebarLayout';
 export { FocusSidebarLayout } from './layouts/app/FocusSidebarLayout';
-export { SettingsLayout } from './layouts/SettingsLayout';
 export { default as AuthSplitLayout } from './layouts/auth/AuthSplitLayout';
 export { default as AuthCenteredLayout } from './layouts/auth/AuthCenteredLayout';
 export { default as AuthSimpleLayout } from './layouts/auth/AuthSimpleLayout';

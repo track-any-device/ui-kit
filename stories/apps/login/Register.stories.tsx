@@ -1,44 +1,64 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AuthLayout, RegisterForm } from '@trackany-device/components';
+import type { AuthLayoutVariant } from '@trackany-device/components';
 import { useState } from 'react';
+import { AUTH_LAYOUT_ARG_TYPE } from '../../../src/layouts/LayoutSwitcher';
+import RegisterPage from '../../../src/pages/login/RegisterPage';
 
-const meta: Meta = {
+const meta: Meta<{ authLayout: AuthLayoutVariant }> = {
     title: 'Apps/Login/Register',
     tags: ['autodocs'],
     parameters: { layout: 'fullscreen' },
+    argTypes: AUTH_LAYOUT_ARG_TYPE,
+    args: { authLayout: 'split' },
 };
 export default meta;
-type Story = StoryObj;
+type Story = StoryObj<{ authLayout: AuthLayoutVariant }>;
 
-function RegisterPage() {
-    const [data, setData] = useState({ name: '', email: '', password: '', password_confirmation: '' });
-    const [errors] = useState<Record<string, string>>({});
-    return (
-        <AuthLayout title="Create an account" description="Fill in your details to get started">
-            <RegisterForm
+export const Default: Story = {
+    render: ({ authLayout }) => {
+        const [data, setData] = useState({ name: '', email: '', password: '', password_confirmation: '' });
+        return (
+            <RegisterPage
+                authLayout={authLayout}
                 data={data}
-                errors={errors}
+                setData={setData}
+                errors={{}}
                 processing={false}
-                loginUrl="/login"
-                onChange={(field, value) => setData((p) => ({ ...p, [field]: value }))}
-                onSubmit={(e) => e.preventDefault()}
             />
-        </AuthLayout>
-    );
-}
+        );
+    },
+};
 
-export const Default: Story = { render: () => <RegisterPage /> };
 export const WithErrors: Story = {
-    render: () => (
-        <AuthLayout title="Create an account" description="Fill in your details to get started">
-            <RegisterForm
-                data={{ name: 'Ahmad', email: 'not-an-email', password: 'short', password_confirmation: '' }}
-                errors={{ email: 'The email must be a valid email address.', password: 'The password must be at least 8 characters.', password_confirmation: 'The password confirmation does not match.' }}
+    render: ({ authLayout }) => {
+        const [data, setData] = useState({ name: 'Ahmad', email: 'not-an-email', password: 'short', password_confirmation: '' });
+        return (
+            <RegisterPage
+                authLayout={authLayout}
+                data={data}
+                setData={setData}
+                errors={{
+                    email: 'The email must be a valid email address.',
+                    password: 'The password must be at least 8 characters.',
+                    password_confirmation: 'The password confirmation does not match.',
+                }}
                 processing={false}
-                loginUrl="/login"
-                onChange={() => {}}
-                onSubmit={(e) => e.preventDefault()}
             />
-        </AuthLayout>
-    ),
+        );
+    },
+};
+
+export const Processing: Story = {
+    render: ({ authLayout }) => {
+        const [data, setData] = useState({ name: 'Ahmad Faryab', email: 'ahmad@example.com', password: '••••••••', password_confirmation: '••••••••' });
+        return (
+            <RegisterPage
+                authLayout={authLayout}
+                data={data}
+                setData={setData}
+                errors={{}}
+                processing={true}
+            />
+        );
+    },
 };

@@ -1,0 +1,24 @@
+/* ── Layout variables ────────────────────────────────────────────────────── */
+:root {
+    --sidebar-width: 16rem;           /* 256px */
+    --sidebar-collapsed-width: 4rem;  /* 64px  */
+    --header-height: 4rem;            /* 64px  */
+    --content-padding: 1.25rem;       /* 20px  */
+}
+
+@media (max-width: 768px) {
+    :root {
+        --sidebar-width: 100vw;
+        --sidebar-collapsed-width: 0;
+    }
+}
+
+/* ── Layout state utility classes ───────────────────────────────────────── */
+.sidebar-expanded  { width: var(--sidebar-width); }
+.sidebar-collapsed { width: var(--sidebar-collapsed-width); }
+
+.header-full-width           { width: calc(100vw - var(--sidebar-width)); }
+.header-full-width-collapsed { width: calc(100vw - var(--sidebar-collapsed-width)); }
+
+.content-full-width           { width: calc(100vw - var(--sidebar-width)); }
+.content-full-width-collapsed { width: calc(100vw - var(--sidebar-collapsed-width)); }

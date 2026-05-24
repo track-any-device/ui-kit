@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Code, CodeBlock } from '@trackany-device/components';
 
-const meta: Meta = { title: 'Components/UI/Code', tags: ['autodocs'] };
+const meta: Meta = { title: 'UI/Code', tags: ['autodocs'] };
 export default meta;
 
 export const Inline: StoryObj = {

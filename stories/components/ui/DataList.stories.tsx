@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Badge, DataList, DataListItem } from '@trackany-device/components';
 
 const meta: Meta<typeof DataList> = {
-    title: 'Components/UI/DataList',
+    title: 'UI/DataList',
     component: DataList,
     tags: ['autodocs'],
 };

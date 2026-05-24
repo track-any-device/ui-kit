@@ -9,6 +9,8 @@ export interface PlatformLinkProps {
     onClick?: (e?: React.MouseEvent) => void;
     target?: string;
     rel?: string;
+    /** Prefetch the linked page (Next.js option, ignored elsewhere) */
+    prefetch?: boolean;
     /** Preserve scroll position after navigation (Inertia option, ignored elsewhere) */
     preserveScroll?: boolean;
     /** Replace history entry instead of pushing (SPA routers) */

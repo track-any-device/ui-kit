@@ -24,7 +24,7 @@ function hasActiveChild(items: NavItem[], currentUrl: string): boolean {
 
 export function Navbar({ navItems = [], currentUrl = '', rightSlot, className }: NavbarProps) {
     return (
-        <div className={cn('border-b border-border pb-5 lg:pb-0 mb-5 lg:mb-10', className)}>
+        <div className={cn('border-b border-border', className)}>
             <div className="container mx-auto px-4 flex flex-wrap justify-between items-center gap-2">
                 <nav className="flex items-stretch overflow-x-auto">
                     {navItems.map((item, index) => {

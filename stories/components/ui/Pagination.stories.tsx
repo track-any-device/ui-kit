@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 // Pagination uses @inertiajs/react Link — render a static approximation for Storybook.
-const meta: Meta = { title: 'Components/UI/Pagination', tags: ['autodocs'] };
+const meta: Meta = { title: 'UI/Pagination', tags: ['autodocs'] };
 export default meta;
 
 const links = [

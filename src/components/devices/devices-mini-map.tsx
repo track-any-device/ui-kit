@@ -22,8 +22,10 @@ import {
 } from '../../lib/map-markers';
 import {
     isDarkMode,
+    mapStyleByName,
     mapStyleForAppearance,
     watchDarkMode,
+    type MapStyleName,
 } from '../../lib/map-styles';
 import { cn } from '../../lib/utils';
 
@@ -55,6 +57,10 @@ type Props = {
     className?: string;
     title?: string;
     fallbackCenter?: { lat: number; lng: number };
+    /** Override map style. When omitted the style follows app dark/light mode. */
+    mapStyle?: MapStyleName;
+    /** For Storybook only — force the no-key fallback state. */
+    _forceNoKey?: boolean;
 };
 
 /** Size of the arrow image rendered inside AdvancedMarkerElement. */
@@ -111,6 +117,8 @@ export function DevicesMiniMap({
     className,
     title,
     fallbackCenter = { lat: 31.5204, lng: 74.3587 },
+    mapStyle,
+    _forceNoKey = false,
 }: Props) {
     const containerRef = useRef<HTMLDivElement>(null);
     const mapRef      = useRef<google.maps.Map | null>(null);
@@ -126,6 +134,10 @@ export function DevicesMiniMap({
         ),
         [devices],
     );
+
+    const resolvedStyle = mapStyle
+        ? mapStyleByName(mapStyle)
+        : mapStyleForAppearance(isDarkMode());
 
     useEffect(() => {
         if (!containerRef.current || !hasGoogleMapsKey()) return;
@@ -144,9 +156,11 @@ export function DevicesMiniMap({
                     zoomControl: true,
                     clickableIcons: false,
                     backgroundColor: isDarkMode() ? '#212121' : '#f5f5f5',
-                    styles: mapStyleForAppearance(isDarkMode()),
+                    styles: resolvedStyle,
                     mapId: 'devices-mini-map',
                 });
+            } else {
+                mapRef.current.setOptions({ styles: resolvedStyle });
             }
 
             // ── Device markers ──────────────────────────────────────────────
@@ -223,18 +237,19 @@ export function DevicesMiniMap({
         }).catch((e) => console.warn('Map load failed', e));
 
         return () => { cancelled = true; };
-    }, [positioned, incidents, fallbackCenter]);
+    }, [positioned, incidents, fallbackCenter, resolvedStyle]);
 
     useEffect(() => {
+        if (mapStyle) return;
         return watchDarkMode((isDark) => {
             mapRef.current?.setOptions({
                 styles: mapStyleForAppearance(isDark),
                 backgroundColor: isDark ? '#212121' : '#f5f5f5',
             });
         });
-    }, []);
+    }, [mapStyle]);
 
-    if (!hasGoogleMapsKey()) {
+    if (_forceNoKey || !hasGoogleMapsKey()) {
         return (
             <div
                 className={cn(

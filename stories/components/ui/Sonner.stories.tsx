@@ -3,7 +3,7 @@ import { Button } from '@trackany-device/components';
 import { toast, Toaster } from 'sonner';
 
 // Sonner wraps the `sonner` Toaster — show it standalone for Storybook.
-const meta: Meta = { title: 'Components/UI/Sonner', tags: ['autodocs'] };
+const meta: Meta = { title: 'UI/Sonner', tags: ['autodocs'] };
 export default meta;
 
 export const Default: StoryObj = {

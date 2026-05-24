@@ -87,7 +87,7 @@ function IconGrid({ iconStyle }: { iconStyle: KeeniconsStyle }) {
 }
 
 const meta: Meta = {
-    title: 'Components/KeenIcons',
+    title: 'Controls/KeenIcons',
     parameters: { layout: 'fullscreen' },
 };
 export default meta;

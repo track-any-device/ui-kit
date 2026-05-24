@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 // CookieBanner uses @inertiajs/react — show a structural mock.
-const meta: Meta = { title: 'Components/UI/CookieBanner', tags: ['autodocs'] };
+const meta: Meta = { title: 'UI/CookieBanner', tags: ['autodocs'] };
 export default meta;
 
 export const Preview: StoryObj = {

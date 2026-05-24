@@ -169,11 +169,11 @@
 
 @theme {
     /* Extra font-size steps (Metronic) — between xs and sm */
-    --text-2sm: 0.8125rem;           /* 13px */
-    --text-2sm--line-height: 1.3231; /* 17.2px / 13px */
+    --text-2sm: 0.8125rem;                        /* 13px */
+    --text-2sm--line-height: calc(1.075 / 0.8125); /* ≈1.323 */
 
-    --text-2xs: 0.6875rem;           /* 11px */
-    --text-2xs--line-height: 1.1818; /* 13px / 11px */
+    --text-2xs: 0.6875rem;                        /* 11px */
+    --text-2xs--line-height: calc(0.825 / 0.6875); /* ≈1.2 */
 }
 
 /* ──────────────────────────────────────────────────────────────────────

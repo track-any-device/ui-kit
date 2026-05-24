@@ -1,28 +1,63 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AuthLayout, ResetPasswordForm } from '@trackany-device/components';
+import type { AuthLayoutVariant } from '@trackany-device/components';
 import { useState } from 'react';
+import { AUTH_LAYOUT_ARG_TYPE } from '../../../src/layouts/LayoutSwitcher';
+import ResetPasswordPage from '../../../src/pages/login/ResetPasswordPage';
 
-const meta: Meta = {
+const meta: Meta<{ authLayout: AuthLayoutVariant }> = {
     title: 'Apps/Login/ResetPassword',
     tags: ['autodocs'],
     parameters: { layout: 'fullscreen' },
+    argTypes: AUTH_LAYOUT_ARG_TYPE,
+    args: { authLayout: 'simple' },
 };
 export default meta;
-type Story = StoryObj;
+type Story = StoryObj<{ authLayout: AuthLayoutVariant }>;
 
-function ResetPasswordPage() {
-    const [data, setData] = useState({ token: 'abc123', email: 'ahmad@example.com', password: '', password_confirmation: '' });
-    return (
-        <AuthLayout variant="simple" title="Reset password" description="Enter your new password below">
-            <ResetPasswordForm
+export const Default: Story = {
+    render: ({ authLayout }) => {
+        const [data, setData] = useState({ email: 'ahmad@example.com', password: '', password_confirmation: '' });
+        return (
+            <ResetPasswordPage
+                authLayout={authLayout}
                 data={data}
+                setData={setData}
                 errors={{}}
                 processing={false}
-                onChange={(field, value) => setData((p) => ({ ...p, [field as string]: value }))}
-                onSubmit={(e) => e.preventDefault()}
             />
-        </AuthLayout>
-    );
-}
+        );
+    },
+};
 
-export const Default: Story = { render: () => <ResetPasswordPage /> };
+export const WithErrors: Story = {
+    render: ({ authLayout }) => {
+        const [data, setData] = useState({ email: 'ahmad@example.com', password: 'short', password_confirmation: 'mismatch' });
+        return (
+            <ResetPasswordPage
+                authLayout={authLayout}
+                data={data}
+                setData={setData}
+                errors={{
+                    password: 'The password must be at least 8 characters.',
+                    password_confirmation: 'The password confirmation does not match.',
+                }}
+                processing={false}
+            />
+        );
+    },
+};
+
+export const Processing: Story = {
+    render: ({ authLayout }) => {
+        const [data, setData] = useState({ email: 'ahmad@example.com', password: '••••••••', password_confirmation: '••••••••' });
+        return (
+            <ResetPasswordPage
+                authLayout={authLayout}
+                data={data}
+                setData={setData}
+                errors={{}}
+                processing={true}
+            />
+        );
+    },
+};

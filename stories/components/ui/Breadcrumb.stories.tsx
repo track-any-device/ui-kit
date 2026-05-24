@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage, BreadcrumbEllipsis } from '@trackany-device/components';
 
-const meta: Meta = { title: 'Components/UI/Breadcrumb', tags: ['autodocs'] };
+const meta: Meta = { title: 'UI/Breadcrumb', tags: ['autodocs'] };
 export default meta;
 
 export const Default: StoryObj = {

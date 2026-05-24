@@ -13,12 +13,17 @@ const THEMES = [
 const withTheme: Decorator = (Story, context) => {
     const theme = context.globals['theme'] ?? 'default';
     const colorMode = context.globals['colorMode'] ?? 'light';
+    const isFullscreen = context.parameters['layout'] === 'fullscreen';
 
     return (
         <div
             data-theme={theme}
             className={colorMode === 'dark' ? 'dark' : ''}
-            style={{ background: 'var(--background, #ffffff)', minHeight: '100%', padding: '1rem' }}
+            style={{
+                background: 'var(--background, #ffffff)',
+                minHeight: '100%',
+                ...(isFullscreen ? {} : { padding: '1rem' }),
+            }}
         >
             <Story />
         </div>
@@ -55,6 +60,21 @@ const preview: Preview = {
     },
     decorators: [withTheme],
     parameters: {
+        options: {
+            storySort: {
+                order: [
+                    'Design System',
+                    'Apps',
+                    'Components',
+                    'Elements',
+                    'UI',
+                    'Controls',
+                    'Layouts',
+                    'Assets',
+                    '*',
+                ],
+            },
+        },
         controls: {
             matchers: {
                 color: /(background|color)$/i,

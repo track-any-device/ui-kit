@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@trackany-device/components';
 
 const meta: Meta<typeof Card> = {
-    title: 'Components/Card',
+    title: 'UI/Card',
     component: Card,
     tags: ['autodocs'],
 };

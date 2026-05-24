@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Kbd } from '@trackany-device/components';
 
-const meta: Meta = { title: 'Components/UI/Kbd', tags: ['autodocs'] };
+const meta: Meta = { title: 'UI/Kbd', tags: ['autodocs'] };
 export default meta;
 
 export const Default: StoryObj = {

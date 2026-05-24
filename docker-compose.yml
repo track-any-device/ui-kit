@@ -1,0 +1,15 @@
+services:
+  storybook:
+    build:
+      context: .
+      args:
+        # VITE_ vars are baked into the static bundle at build time.
+        # Run: docker compose build (reads from .env automatically)
+        VITE_GOOGLE_MAPS_API_KEY: ${VITE_GOOGLE_MAPS_API_KEY:-}
+        VITE_GOOGLE_MAPS_LIBRARIES: ${VITE_GOOGLE_MAPS_LIBRARIES:-}
+    image: ui-kit-storybook:latest
+    volumes:
+      - .:/app
+    ports:
+      - "6006:80"
+    restart: unless-stopped

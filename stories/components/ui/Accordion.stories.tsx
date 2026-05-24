@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@trackany-device/components';
 
-const meta: Meta<typeof Accordion> = { title: 'Components/UI/Accordion', component: Accordion, parameters: { layout: 'padded' } };
+const meta: Meta<typeof Accordion> = { title: 'UI/Accordion', component: Accordion, parameters: { layout: 'padded' } };
 export default meta;
 type Story = StoryObj<typeof Accordion>;
 

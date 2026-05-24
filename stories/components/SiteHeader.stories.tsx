@@ -69,7 +69,7 @@ function HeaderPreview({
 }
 
 const meta: Meta<typeof HeaderPreview> = {
-    title: 'Components/SiteHeader',
+    title: 'Components/Web/SiteHeader',
     component: HeaderPreview,
     tags: ['autodocs'],
     parameters: {

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogTitle, AlertDialogDescription, AlertDialogAction, AlertDialogCancel } from '@trackany-device/components';
 import { Button } from '@trackany-device/components';
 
-const meta: Meta = { title: 'Components/UI/AlertDialog', parameters: { layout: 'padded' } };
+const meta: Meta = { title: 'UI/AlertDialog', parameters: { layout: 'padded' } };
 export default meta;
 
 export const Default: StoryObj = {

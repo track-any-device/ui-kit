@@ -1,31 +1,61 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AuthLayout, ForgotPasswordForm } from '@trackany-device/components';
+import type { AuthLayoutVariant } from '@trackany-device/components';
 import { useState } from 'react';
+import { AUTH_LAYOUT_ARG_TYPE } from '../../../src/layouts/LayoutSwitcher';
+import ForgotPasswordPage from '../../../src/pages/login/ForgotPasswordPage';
 
-const meta: Meta = {
+const meta: Meta<{ authLayout: AuthLayoutVariant }> = {
     title: 'Apps/Login/ForgotPassword',
     tags: ['autodocs'],
     parameters: { layout: 'fullscreen' },
+    argTypes: AUTH_LAYOUT_ARG_TYPE,
+    args: { authLayout: 'simple' },
 };
 export default meta;
-type Story = StoryObj;
+type Story = StoryObj<{ authLayout: AuthLayoutVariant }>;
 
-function ForgotPasswordPage({ status }: { status?: string }) {
-    const [data, setData] = useState({ email: '' });
-    return (
-        <AuthLayout variant="simple" title="Forgot password?" description="We'll email you a reset link">
-            <ForgotPasswordForm
+export const Default: Story = {
+    render: ({ authLayout }) => {
+        const [data, setData] = useState({ email: '' });
+        return (
+            <ForgotPasswordPage
+                authLayout={authLayout}
                 data={data}
+                setData={setData}
                 errors={{}}
                 processing={false}
-                status={status}
-                loginUrl="/login"
-                onChange={(field, value) => setData((p) => ({ ...p, [field]: value }))}
-                onSubmit={(e) => e.preventDefault()}
             />
-        </AuthLayout>
-    );
-}
+        );
+    },
+};
 
-export const Default: Story = { render: () => <ForgotPasswordPage /> };
-export const WithSuccess: Story = { render: () => <ForgotPasswordPage status="A reset link has been sent to your email address." /> };
+export const WithSuccess: Story = {
+    render: ({ authLayout }) => {
+        const [data, setData] = useState({ email: 'ahmad@example.com' });
+        return (
+            <ForgotPasswordPage
+                authLayout={authLayout}
+                data={data}
+                setData={setData}
+                errors={{}}
+                processing={false}
+                status="A reset link has been sent to your email address."
+            />
+        );
+    },
+};
+
+export const Processing: Story = {
+    render: ({ authLayout }) => {
+        const [data, setData] = useState({ email: 'ahmad@example.com' });
+        return (
+            <ForgotPasswordPage
+                authLayout={authLayout}
+                data={data}
+                setData={setData}
+                errors={{}}
+                processing={true}
+            />
+        );
+    },
+};

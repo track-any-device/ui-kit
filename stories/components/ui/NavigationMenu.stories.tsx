@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink, navigationMenuTriggerStyle } from '@trackany-device/components';
 
-const meta: Meta = { title: 'Components/UI/NavigationMenu', tags: ['autodocs'] };
+const meta: Meta = { title: 'UI/NavigationMenu', tags: ['autodocs'] };
 export default meta;
 
 export const Default: StoryObj = {

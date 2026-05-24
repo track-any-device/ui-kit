@@ -1,46 +1,55 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AppSidebarLayout } from '@trackany-device/components';
-import { Badge } from '@trackany-device/components';
-import { mockUser, mockTenant } from '../../_mock-data';
-import { MonitorPlay, MapPin } from 'lucide-react';
+import { LAYOUT_ARG_TYPE } from '../../../src/layouts/LayoutSwitcher';
+import type { LayoutName } from '../../../src/layouts/LayoutSwitcher';
+import { LiveStreamPage, LiveStreamWithSidebarPage } from '../../../src/pages/tenant/LiveStreamPage';
+import type { LiveStats, LiveIncident, LiveVehicle } from '../../../src/pages/tenant/LiveStreamPage';
 
-const meta: Meta = {
+const MOCK_LIVE_STATS: LiveStats = {
+    online:           247,
+    offline:          65,
+    activeTrips:      31,
+    activeIncidents:  6,
+    lastSync:         '2s ago',
+};
+
+const MOCK_LIVE_INCIDENTS: LiveIncident[] = [
+    { id: 'INC-0042', assignee: 'Kamran Arif',    rule: 'SOS Triggered',        priority: 'critical' },
+    { id: 'INC-0041', assignee: 'Tariq Mahmood',  rule: 'Geofence Exit',        priority: 'high'     },
+    { id: 'INC-0040', assignee: 'Zeeshan Butt',   rule: 'Speeding > 80 km/h',  priority: 'high'     },
+    { id: 'INC-0037', assignee: 'Sajid Hussain',  rule: 'Out of Beat > 30 min', priority: 'medium'   },
+];
+
+const MOCK_LIVE_VEHICLES: LiveVehicle[] = [
+    { reg: 'LP-4821', location: 'Gulberg III, Lahore',  speed: '0 km/h'  },
+    { reg: 'LP-3302', location: 'DHA Phase 4, Lahore',  speed: '45 km/h' },
+    { reg: 'LP-5510', location: 'Wapda Town, Lahore',   speed: '62 km/h' },
+    { reg: 'LP-7734', location: 'Model Town, Lahore',   speed: '38 km/h' },
+    { reg: 'LP-9901', location: 'Raiwind Road, Lahore', speed: '71 km/h' },
+];
+
+const meta: Meta<{ layout: LayoutName }> = {
     title: 'Apps/Tenant/LiveStream',
     tags: ['autodocs'],
     parameters: { layout: 'fullscreen' },
+    argTypes: LAYOUT_ARG_TYPE,
+    args: { layout: 'SidebarFixed' },
 };
 export default meta;
-type Story = StoryObj;
+type Story = StoryObj<{ layout: LayoutName }>;
 
 export const Default: Story = {
-    render: () => (
-        <AppSidebarLayout
-            user={mockUser}
-            tenant={mockTenant}
-            breadcrumbs={[{ title: 'Live Monitoring', href: '/map' }]}
-            unreadCount={2}
-        >
-            <div className="relative flex h-[calc(100vh-3.5rem)]">
-                {/* Map placeholder */}
-                <div className="flex-1 bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
-                    <div className="text-center text-muted-foreground">
-                        <MapPin className="h-12 w-12 mx-auto mb-3 opacity-30" />
-                        <p className="text-sm">Google Maps renders here</p>
-                        <p className="text-xs mt-1">Requires VITE_GOOGLE_MAPS_API_KEY</p>
-                    </div>
-                </div>
-                {/* Status strip */}
-                <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between border-t border-border bg-background/95 px-4 py-2 text-xs text-muted-foreground backdrop-blur-sm">
-                    <div className="flex items-center gap-4">
-                        <span className="flex items-center gap-1"><MonitorPlay className="h-3.5 w-3.5 text-green-500" />187 online</span>
-                        <span>61 idle</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <Badge variant="destructive">6 active incidents</Badge>
-                        <span>Last sync 10:24:36 AM</span>
-                    </div>
-                </div>
-            </div>
-        </AppSidebarLayout>
+    render: ({ layout }) => <LiveStreamPage key={layout} layout={layout} stats={MOCK_LIVE_STATS} />,
+};
+
+export const WithSidebar: Story = {
+    name: 'With status sidebar',
+    render: ({ layout }) => (
+        <LiveStreamWithSidebarPage
+            key={layout}
+            layout={layout}
+            stats={MOCK_LIVE_STATS}
+            incidents={MOCK_LIVE_INCIDENTS}
+            vehicles={MOCK_LIVE_VEHICLES}
+        />
     ),
 };

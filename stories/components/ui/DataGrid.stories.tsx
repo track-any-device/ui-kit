@@ -30,7 +30,7 @@ function VehicleGrid() {
     );
 }
 
-const meta: Meta = { title: 'Components/UI/DataGrid', parameters: { layout: 'padded' } };
+const meta: Meta = { title: 'UI/DataGrid', parameters: { layout: 'padded' } };
 export default meta;
 
 export const Default: StoryObj = { render: () => <VehicleGrid /> };

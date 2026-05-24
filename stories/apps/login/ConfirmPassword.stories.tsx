@@ -1,28 +1,67 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AuthLayout, ConfirmPasswordForm } from '@trackany-device/components';
+import type { AuthLayoutVariant } from '@trackany-device/components';
 import { useState } from 'react';
+import { AUTH_LAYOUT_ARG_TYPE } from '../../../src/layouts/LayoutSwitcher';
+import ConfirmPasswordPage from '../../../src/pages/login/ConfirmPasswordPage';
 
-const meta: Meta = {
+
+const meta: Meta<{ authLayout: AuthLayoutVariant }> = {
     title: 'Apps/Login/ConfirmPassword',
     tags: ['autodocs'],
     parameters: { layout: 'fullscreen' },
+    argTypes: AUTH_LAYOUT_ARG_TYPE,
+    args: { authLayout: 'simple' },
 };
 export default meta;
-type Story = StoryObj;
+type Story = StoryObj<{ authLayout: AuthLayoutVariant }>;
 
-function ConfirmPasswordPage() {
-    const [password, setPassword] = useState('');
-    return (
-        <AuthLayout variant="simple" title="Confirm password" description="This is a secure area — please re-enter your password">
-            <ConfirmPasswordForm
+export const Default: Story = {
+    render: ({ authLayout }) => {
+        const [password, setPassword] = useState('');
+        return (
+            <ConfirmPasswordPage
+                authLayout={authLayout}
                 password={password}
+                setPassword={setPassword}
                 errors={{}}
                 processing={false}
-                onChange={setPassword}
-                onSubmit={(e) => e.preventDefault()}
+                title="Confirm password"
+                description="This is a secure area — please re-enter your password"
             />
-        </AuthLayout>
-    );
-}
+        );
+    },
+};
 
-export const Default: Story = { render: () => <ConfirmPasswordPage /> };
+export const WithError: Story = {
+    render: ({ authLayout }) => {
+        const [password, setPassword] = useState('');
+        return (
+            <ConfirmPasswordPage
+                authLayout={authLayout}
+                password={password}
+                setPassword={setPassword}
+                errors={{ password: 'The password is incorrect.' }}
+                processing={false}
+                title="Confirm password"
+                description="This is a secure area — please re-enter your password"
+            />
+        );
+    },
+};
+
+export const Processing: Story = {
+    render: ({ authLayout }) => {
+        const [password, setPassword] = useState('');
+        return (
+            <ConfirmPasswordPage
+                authLayout={authLayout}
+                password={password}
+                setPassword={setPassword}
+                errors={{}}
+                processing={true}
+                title="Confirm password"
+                description="This is a secure area — please re-enter your password"
+            />
+        );
+    },
+};

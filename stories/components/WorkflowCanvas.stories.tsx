@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 // WorkflowCanvas uses complex drag-and-drop dependencies.
 // Render a representative static placeholder.
-const meta: Meta = { title: 'Components/Workflows/WorkflowCanvas', tags: ['autodocs'] };
+const meta: Meta = { title: 'Components/UI/WorkflowCanvas', tags: ['autodocs'] };
 export default meta;
 
 export const Placeholder: StoryObj = {

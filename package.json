@@ -10,20 +10,33 @@
     "sideEffects": [
         "**/*.css"
     ],
-    "main": "./src/index.ts",
-    "types": "./src/index.ts",
+    "overrides": {
+        "esbuild": "0.24.0"
+    },
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
     "exports": {
-        ".": "./src/index.ts",
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+        },
+        "./assets": {
+            "types": "./dist/assets/index.d.ts",
+            "import": "./dist/assets/index.js"
+        },
         "./styles/*": "./src/styles/*",
         "./styles/keenicons.css": "./src/components/keenicons/assets/styles.css"
     },
     "files": [
         "src",
+        "dist",
         "!src/**/*.test.*",
         "!src/**/*.spec.*",
         "!src/**/.DS_Store"
     ],
     "scripts": {
+        "build": "vite build",
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build",
         "types:check": "tsc --noEmit",
@@ -106,13 +119,127 @@
         "@googlemaps/js-api-loader": {
             "optional": true
         },
+        "@hookform/resolvers": {
+            "optional": true
+        },
+        "@radix-ui/react-accordion": {
+            "optional": true
+        },
+        "@radix-ui/react-alert-dialog": {
+            "optional": true
+        },
+        "@radix-ui/react-aspect-ratio": {
+            "optional": true
+        },
+        "@radix-ui/react-avatar": {
+            "optional": true
+        },
+        "@radix-ui/react-checkbox": {
+            "optional": true
+        },
+        "@radix-ui/react-collapsible": {
+            "optional": true
+        },
+        "@radix-ui/react-dialog": {
+            "optional": true
+        },
+        "@radix-ui/react-dropdown-menu": {
+            "optional": true
+        },
+        "@radix-ui/react-hover-card": {
+            "optional": true
+        },
+        "@radix-ui/react-label": {
+            "optional": true
+        },
+        "@radix-ui/react-navigation-menu": {
+            "optional": true
+        },
+        "@radix-ui/react-popover": {
+            "optional": true
+        },
+        "@radix-ui/react-progress": {
+            "optional": true
+        },
+        "@radix-ui/react-radio-group": {
+            "optional": true
+        },
+        "@radix-ui/react-scroll-area": {
+            "optional": true
+        },
+        "@radix-ui/react-select": {
+            "optional": true
+        },
+        "@radix-ui/react-separator": {
+            "optional": true
+        },
+        "@radix-ui/react-slider": {
+            "optional": true
+        },
+        "@radix-ui/react-slot": {
+            "optional": true
+        },
+        "@radix-ui/react-switch": {
+            "optional": true
+        },
+        "@radix-ui/react-tabs": {
+            "optional": true
+        },
+        "@radix-ui/react-toggle": {
+            "optional": true
+        },
+        "@radix-ui/react-toggle-group": {
+            "optional": true
+        },
+        "@radix-ui/react-tooltip": {
+            "optional": true
+        },
+        "@tanstack/react-table": {
+            "optional": true
+        },
         "@xyflow/react": {
+            "optional": true
+        },
+        "cmdk": {
+            "optional": true
+        },
+        "date-fns": {
+            "optional": true
+        },
+        "input-otp": {
+            "optional": true
+        },
+        "lucide-react": {
+            "optional": true
+        },
+        "motion": {
+            "optional": true
+        },
+        "react-aria-components": {
+            "optional": true
+        },
+        "react-day-picker": {
+            "optional": true
+        },
+        "react-hook-form": {
+            "optional": true
+        },
+        "react-resizable-panels": {
             "optional": true
         },
         "recharts": {
             "optional": true
         },
+        "sonner": {
+            "optional": true
+        },
         "tw-animate-css": {
+            "optional": true
+        },
+        "vaul": {
+            "optional": true
+        },
+        "zod": {
             "optional": true
         }
     },
@@ -156,6 +283,7 @@
         "@storybook/test": "^8.6.18",
         "@tailwindcss/vite": "^4.3.0",
         "@tanstack/react-table": "^8.21.3",
+        "@types/google.maps": "^3.64.1",
         "@types/react": "^19.0.0",
         "@types/react-dom": "^19.0.0",
         "@vitejs/plugin-react": "^4.7.0",
@@ -180,6 +308,10 @@
         "typescript": "^5.0.0",
         "vaul": "^1.1.2",
         "vite": "^6.4.2",
+        "vite-plugin-dts": "^5.0.1",
         "zod": "^3.25.67"
+    },
+    "pnpm": {
+        "onlyBuiltDependencies": ["esbuild"]
     }
 }

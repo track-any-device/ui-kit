@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { MapPin, Navigation, Wifi, WifiOff } from 'lucide-react';
+import { MapPin, Wifi, WifiOff } from 'lucide-react';
 import type { MiniMapDevice } from '@trackany-device/components';
+import { MapMarker } from '../../src/components/devices/map-marker';
 
 /**
  * Map + Pins stories.
@@ -221,6 +222,88 @@ export const PinDesignSystem: StoryObj = {
                         <span>{b.label}</span>
                     </div>
                 ))}
+            </div>
+        </div>
+    ),
+};
+
+export const MapMarkerDesignSystem: StoryObj = {
+    name: 'MapMarker — design system',
+    render: () => (
+        <div className="p-8 space-y-10 bg-[#e8eaed] min-h-screen">
+            <div className="space-y-3">
+                <h2 className="font-semibold text-gray-900 text-sm uppercase tracking-wider">Signal strength (no direction)</h2>
+                <p className="text-xs text-muted-foreground">Static pin · signal 4 → green · 3 → blue · 2 → purple · 0–1 → red</p>
+                <div className="flex items-end gap-8">
+                    {[
+                        { signal: 4, label: '4 bars — full (green)'    },
+                        { signal: 3, label: '3 bars — normal (blue)'   },
+                        { signal: 2, label: '2 bars — low (purple)'    },
+                        { signal: 1, label: '1 bar — almost none (red)'},
+                        { signal: 0, label: '0 bars — offline (red)'   },
+                    ].map(({ signal, label }) => (
+                        <div key={signal} className="flex flex-col items-center gap-2">
+                            <MapMarker signal={signal} size={48} />
+                            <p className="text-xs text-center text-gray-600 max-w-[80px]">{label}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <div className="space-y-3">
+                <h2 className="font-semibold text-gray-900 text-sm uppercase tracking-wider">With direction (arrow)</h2>
+                <p className="text-xs text-muted-foreground">Arrow rotates to heading · same signal → colour mapping</p>
+                <div className="flex items-end gap-8">
+                    {[
+                        { signal: 4, rotation: 0,   label: '0° North (green)'  },
+                        { signal: 3, rotation: 90,  label: '90° East (blue)'   },
+                        { signal: 2, rotation: 180, label: '180° South (purple)'},
+                        { signal: 1, rotation: 270, label: '270° West (red)'   },
+                        { signal: 3, rotation: 45,  label: '45° NE (blue)'     },
+                    ].map(({ signal, rotation, label }) => (
+                        <div key={label} className="flex flex-col items-center gap-2">
+                            <MapMarker signal={signal} rotation={rotation} size={48} />
+                            <p className="text-xs text-center text-gray-600 max-w-[80px]">{label}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <div className="space-y-3">
+                <h2 className="font-semibold text-gray-900 text-sm uppercase tracking-wider">Incident flag overlay</h2>
+                <p className="text-xs text-muted-foreground">Flag colour = incident priority · green flag = resolved</p>
+                <div className="flex items-end gap-8">
+                    {[
+                        { signal: 4, incidentPriority: 'critical' as const, label: 'Critical (red flag)'   },
+                        { signal: 3, incidentPriority: 'high'     as const, label: 'High (yellow flag)'    },
+                        { signal: 3, incidentPriority: 'medium'   as const, label: 'Medium (blue flag)'    },
+                        { signal: 2, incidentPriority: 'low'      as const, label: 'Low (green flag)'      },
+                        { signal: 4, incidentPriority: 'resolved' as const, label: 'Resolved (green flag)' },
+                    ].map(({ signal, incidentPriority, label }) => (
+                        <div key={label} className="flex flex-col items-center gap-2">
+                            <MapMarker signal={signal} incidentPriority={incidentPriority} size={48} />
+                            <p className="text-xs text-center text-gray-600 max-w-[80px]">{label}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <div className="space-y-3">
+                <h2 className="font-semibold text-gray-900 text-sm uppercase tracking-wider">Arrow + incident flag</h2>
+                <p className="text-xs text-muted-foreground">Moving devices with active incidents</p>
+                <div className="flex items-end gap-8">
+                    {[
+                        { signal: 4, rotation: 45,  incidentPriority: 'critical' as const, label: 'NE · critical' },
+                        { signal: 3, rotation: 90,  incidentPriority: 'high'     as const, label: 'E · high'      },
+                        { signal: 2, rotation: 200, incidentPriority: 'medium'   as const, label: 'SSW · medium'  },
+                        { signal: 4, rotation: 315, incidentPriority: 'resolved' as const, label: 'NW · resolved' },
+                    ].map(({ signal, rotation, incidentPriority, label }) => (
+                        <div key={label} className="flex flex-col items-center gap-2">
+                            <MapMarker signal={signal} rotation={rotation} incidentPriority={incidentPriority} size={48} />
+                            <p className="text-xs text-center text-gray-600 max-w-[80px]">{label}</p>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     ),

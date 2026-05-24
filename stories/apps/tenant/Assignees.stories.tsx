@@ -1,66 +1,35 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AppSidebarLayout } from '@trackany-device/components';
-import { Badge, Avatar, AvatarFallback } from '@trackany-device/components';
-import { mockUser, mockTenant } from '../../_mock-data';
+import { LAYOUT_ARG_TYPE } from '../../../src/layouts/LayoutSwitcher';
+import type { LayoutName } from '../../../src/layouts/LayoutSwitcher';
+import { AssigneesTablePage, AssigneesMapPage } from '../../../src/pages/tenant/AssigneesPage';
+import type { Assignee } from '../../../src/pages/tenant/AssigneesPage';
 
-const meta: Meta = {
+const MOCK_ASSIGNEES: Assignee[] = [
+    { id: 1, name: 'Kamran Arif',    initials: 'KA', type: 'Worker',  beat: 'Zone A — Gulberg',       status: 'inside',  device: 'LP-4821', signal: 4 },
+    { id: 2, name: 'Zeeshan Butt',   initials: 'ZB', type: 'Vehicle', beat: 'Zone B — DHA',           status: 'inside',  device: 'LP-3302', signal: 3 },
+    { id: 3, name: 'Tariq Mahmood',  initials: 'TM', type: 'Vehicle', beat: 'Zone C — Wapda Town',    status: 'outside', device: 'LP-5510', signal: 3 },
+    { id: 4, name: 'Usman Malik',    initials: 'UM', type: 'Worker',  beat: 'Zone A — Gulberg',       status: 'offline', device: 'LP-0091', signal: 0 },
+    { id: 5, name: 'Bilal Chaudhry', initials: 'BC', type: 'Vehicle', beat: 'Zone D — Model Town',    status: 'inside',  device: 'LP-7734', signal: 4 },
+    { id: 6, name: 'Sajid Hussain',  initials: 'SH', type: 'Worker',  beat: 'Zone B — DHA',           status: 'outside', device: 'LP-2214', signal: 2 },
+    { id: 7, name: 'Nawaz Ahmed',    initials: 'NA', type: 'Vehicle', beat: 'Zone E — Raiwind Road',  status: 'inside',  device: 'LP-9901', signal: 3 },
+    { id: 8, name: 'Imran Siddiqui', initials: 'IS', type: 'Worker',  beat: 'Zone C — Wapda Town',    status: 'offline', device: 'LP-1173', signal: 0 },
+];
+
+const meta: Meta<{ layout: LayoutName }> = {
     title: 'Apps/Tenant/Assignees',
     tags: ['autodocs'],
     parameters: { layout: 'fullscreen' },
+    argTypes: LAYOUT_ARG_TYPE,
+    args: { layout: 'SidebarFixed' },
 };
 export default meta;
-type Story = StoryObj;
-
-const assignees = [
-    { id: 1, name: 'Raheel Ahmed', type: 'Worker', beat: 'North Lahore', status: 'Inside Beat', device: 'P901 #012' },
-    { id: 2, name: 'Asif Raza', type: 'Worker', beat: 'Central Faisalabad', status: 'Out of Beat', device: 'P901 #007' },
-    { id: 3, name: 'Vehicle 003', type: 'Vehicle', beat: 'South Ring Road', status: 'Offline', device: 'AOT120 #003' },
-    { id: 4, name: 'Tariq Mahmood', type: 'Worker', beat: 'East Gulberg', status: 'Inside Beat', device: 'P901 #019' },
-];
-
-const statusVariant: Record<string, 'default' | 'destructive' | 'secondary'> = {
-    'Inside Beat': 'default',
-    'Out of Beat': 'destructive',
-    'Offline': 'secondary',
-};
+type Story = StoryObj<{ layout: LayoutName }>;
 
 export const Default: Story = {
-    render: () => (
-        <AppSidebarLayout user={mockUser} tenant={mockTenant} breadcrumbs={[{ title: 'Assignees', href: '/assignees' }]}>
-            <div className="p-6">
-                <h1 className="text-xl font-semibold mb-6">Assignees</h1>
-                <div className="rounded-xl border border-border overflow-hidden">
-                    <table className="w-full text-sm">
-                        <thead className="bg-muted/40 border-b border-border">
-                            <tr>
-                                {['Assignee', 'Type', 'Beat', 'Device', 'Status'].map((h) => (
-                                    <th key={h} className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wide">{h}</th>
-                                ))}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {assignees.map((a) => (
-                                <tr key={a.id} className="border-b border-border last:border-0 hover:bg-muted/20">
-                                    <td className="px-4 py-3">
-                                        <div className="flex items-center gap-2">
-                                            <Avatar className="h-7 w-7">
-                                                <AvatarFallback className="text-xs">{a.name.split(' ').map((n) => n[0]).join('')}</AvatarFallback>
-                                            </Avatar>
-                                            <span className="font-medium">{a.name}</span>
-                                        </div>
-                                    </td>
-                                    <td className="px-4 py-3 text-muted-foreground">{a.type}</td>
-                                    <td className="px-4 py-3">{a.beat}</td>
-                                    <td className="px-4 py-3 text-muted-foreground font-mono text-xs">{a.device}</td>
-                                    <td className="px-4 py-3">
-                                        <Badge variant={statusVariant[a.status] ?? 'default'}>{a.status}</Badge>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </AppSidebarLayout>
-    ),
+    render: ({ layout }) => <AssigneesTablePage key={layout} layout={layout} assignees={MOCK_ASSIGNEES} />,
+};
+
+export const MapView: Story = {
+    name: 'Map view — assignees on map',
+    render: ({ layout }) => <AssigneesMapPage key={layout} layout={layout} assignees={MOCK_ASSIGNEES} />,
 };

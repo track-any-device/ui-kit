@@ -1,5 +1,9 @@
 import { setOptions, importLibrary } from '@googlemaps/js-api-loader';
 
+// process.env is injected by Next.js (webpack/turbopack). Declaring the
+// minimal shape avoids a dependency on @types/node in this browser library.
+declare const process: { env: Record<string, string | undefined> } | undefined;
+
 /**
  * Shared Google Maps JS API loader. All map-rendering surfaces
  * (`/map`, `/playback`, `/incidents/{id}`, `/beats/create+edit`,
@@ -20,23 +24,26 @@ import { setOptions, importLibrary } from '@googlemaps/js-api-loader';
  * test / CI environments without a key render an empty placeholder
  * instead of triggering loader errors.
  *
- * NOTE: Reads from import.meta.env.VITE_GOOGLE_MAPS_API_KEY and
- * import.meta.env.VITE_GOOGLE_MAPS_LIBRARIES — configure these env
- * vars in the consuming app's Vite config.
+ * NOTE: Reads the API key from the first env var that is set:
+ *   Vite apps  → VITE_GOOGLE_MAPS_API_KEY / VITE_GOOGLE_MAPS_LIBRARIES
+ *   Next.js    → NEXT_PUBLIC_GOOGLE_MAPS_API_KEY / NEXT_PUBLIC_GOOGLE_MAPS_LIBRARIES
+ * Configure whichever pair matches your framework.
  */
 
-// import.meta.env is only available in Vite bundles (not Next.js/webpack).
-// Read lazily so module evaluation doesn't throw in non-Vite environments.
-function getEnv(key: string): string {
-    try {
-        return (import.meta as unknown as { env?: Record<string, string> }).env?.[key] ?? '';
-    } catch {
-        return '';
-    }
-}
-
-const KEY: string = getEnv('VITE_GOOGLE_MAPS_API_KEY');
-const EXTRA_LIBS: string = getEnv('VITE_GOOGLE_MAPS_LIBRARIES');
+// Use literal import.meta.env accesses so Vite/Rolldown can statically
+// replace them at build time. Dynamic bracket access (env?.[key]) is not
+// recognised by Rolldown's static analysis and silently evaluates to ''.
+//
+// Next.js uses process.env.NEXT_PUBLIC_* instead of import.meta.env.VITE_*.
+// We fall back to those so the same loader works in both runtimes.
+const KEY: string =
+    import.meta.env.VITE_GOOGLE_MAPS_API_KEY ||
+    (typeof process !== 'undefined' ? (process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ?? '') : '') ||
+    '';
+const EXTRA_LIBS: string =
+    import.meta.env.VITE_GOOGLE_MAPS_LIBRARIES ||
+    (typeof process !== 'undefined' ? (process.env.NEXT_PUBLIC_GOOGLE_MAPS_LIBRARIES ?? '') : '') ||
+    '';
 
 // Libraries we always load:
 //   - places   → Autocomplete for beat editor address search

@@ -429,6 +429,10 @@ export {
 } from './lib/map-markers';
 export type { NetworkTier, MarkerColor, IncidentSeverity as MapIncidentSeverity } from './lib/map-markers';
 
+// Tenant pages
+export { BeatsListPage, BeatEditorPage } from './pages/tenant/BeatsPage';
+export type { Beat, BeatStatus, LatLng } from './pages/tenant/BeatsPage';
+
 // Types
 export type { AuthLayoutProps, AuthLayoutVariant } from './types';
 export type { User, Auth, TwoFactorSetupData, TwoFactorSecretKey } from './types/auth';

@@ -39,6 +39,8 @@ export type MiniMapDevice = {
     signal?: number | null;
     /** Heading in degrees clockwise from north (0–360). Present → arrow marker. */
     heading?: number | null;
+    /** Custom icon URL. When provided, overrides the default signal-based pin/arrow. */
+    iconUrl?: string | null;
 };
 
 /** Incident flag placed at the location where the incident was last opened. */
@@ -72,7 +74,7 @@ const FLAG_SIZE_PX = 28;
 
 function makeArrowElement(device: MiniMapDevice): HTMLElement {
     const img = document.createElement('img');
-    img.src = deviceArrowUrl(device.signal);
+    img.src = device.iconUrl ?? deviceArrowUrl(device.signal);
     img.width = ARROW_SIZE_PX;
     img.height = ARROW_SIZE_PX;
     img.title = device.name ?? device.imei ?? `Device ${device.id}`;
@@ -85,7 +87,7 @@ function makeArrowElement(device: MiniMapDevice): HTMLElement {
 
 function makePinElement(device: MiniMapDevice): HTMLElement {
     const img = document.createElement('img');
-    img.src = devicePinUrl(device.signal);
+    img.src = device.iconUrl ?? devicePinUrl(device.signal);
     img.width = PIN_SIZE_PX;
     img.height = PIN_SIZE_PX;
     img.title = device.name ?? device.imei ?? `Device ${device.id}`;

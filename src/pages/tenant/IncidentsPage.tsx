@@ -8,6 +8,7 @@ import type { LayoutName } from '../../layouts/LayoutSwitcher';
 import { AlertTriangle, Battery, CheckCircle, Clock, Shield, Users } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { DevicesMiniMap } from '../../components/devices/devices-mini-map';
+import { incidentFlagUrl } from '../../lib/map-markers';
 
 export type IncidentPriority = 'critical' | 'high' | 'medium' | 'low';
 export type IncidentStatus  = 'open' | 'acknowledged' | 'resolved';
@@ -181,6 +182,13 @@ export function IncidentDetailPage({ layout, incident }: { layout: LayoutName; i
                                         last_lon: incident.lng,
                                         signal: null,
                                         heading: null,
+                                    }] : []}
+                                    incidents={incident.lat != null && incident.lng != null ? [{
+                                        id: incident.id,
+                                        lat: incident.lat,
+                                        lon: incident.lng,
+                                        flagUrl: incidentFlagUrl(incident.priority),
+                                        title: `${incident.priority} — ${incident.rule}`,
                                     }] : []}
                                     fallbackCenter={incident.lat != null && incident.lng != null
                                         ? { lat: incident.lat, lng: incident.lng }

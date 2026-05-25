@@ -9,22 +9,20 @@
  */
 import React from 'react';
 import logoUrl from '../assets/logo.png';
-import { AuthLayout } from '@trackany-device/components';
-import type { AuthLayoutVariant } from '@trackany-device/components';
-import {
-    TopNavLayout,
-    SidebarFixedLayout,
-    NavbarCollapsibleLayout,
-    SplitSidebarLayout,
-    NavbarSidebarLayout,
-    SidebarTabsLayout,
-    MegaMenuLayout,
-    SidebarMinimalLayout,
-    MegaMenuNavbarLayout,
-    SidebarDualMenuLayout,
-    WorkspaceSidebarLayout,
-} from '@trackany-device/components';
-import type { NavItem } from '@trackany-device/components';
+import { AuthLayout } from './AuthLayout';
+import type { AuthLayoutVariant } from '../types';
+import { TopNavLayout } from './app/TopNavLayout';
+import { SidebarFixedLayout } from './app/SidebarFixedLayout';
+import { NavbarCollapsibleLayout } from './app/NavbarCollapsibleLayout';
+import { SplitSidebarLayout } from './app/SplitSidebarLayout';
+import { NavbarSidebarLayout } from './app/NavbarSidebarLayout';
+import { SidebarTabsLayout } from './app/SidebarTabsLayout';
+import { MegaMenuLayout } from './app/MegaMenuLayout';
+import { SidebarMinimalLayout } from './app/SidebarMinimalLayout';
+import { MegaMenuNavbarLayout } from './app/MegaMenuNavbarLayout';
+import { SidebarDualMenuLayout } from './app/SidebarDualMenuLayout';
+import { WorkspaceSidebarLayout } from './app/WorkspaceSidebarLayout';
+import type { NavItem } from '../types/navigation';
 
 export type LayoutName =
     | 'SidebarFixed'

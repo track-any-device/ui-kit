@@ -1,4 +1,6 @@
-import { Badge, StatCard, Card, CardContent, CardHeader, CardTitle } from '@trackany-device/components';
+import { Badge } from '../../components/ui/badge';
+import { StatCard } from '../../components/ui/stat-card';
+import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
 import { LayoutResolved } from '../../layouts/LayoutSwitcher';
 import type { LayoutName } from '../../layouts/LayoutSwitcher';
 import { AlertTriangle, MonitorPlay, Users, Wifi } from 'lucide-react';
@@ -36,6 +38,40 @@ const priorityStyle: Record<LiveIncidentPriority, string> = {
     medium:   'text-amber-600 border-amber-200 bg-amber-50 text-xs',
 };
 
+export function LiveStreamContent({
+    stats,
+    devices = [],
+    mapIncidents = [],
+}: {
+    stats: LiveStats;
+    devices?: MiniMapDevice[];
+    mapIncidents?: MiniMapIncident[];
+}) {
+    return (
+        <div className="relative flex h-[calc(100vh-3.5rem)] flex-col">
+            <div className="flex-1 relative">
+                <DevicesMiniMap
+                    devices={devices}
+                    incidents={mapIncidents}
+                    height="100%"
+                    className="rounded-none border-0"
+                />
+            </div>
+            <div className="flex items-center justify-between border-t border-border bg-background/95 px-4 py-2 text-xs text-muted-foreground backdrop-blur-sm">
+                <div className="flex items-center gap-4">
+                    <span className="flex items-center gap-1.5"><Wifi className="h-3.5 w-3.5 text-green-500" />{stats.online} online</span>
+                    <span className="flex items-center gap-1.5"><Users className="h-3.5 w-3.5" />{stats.offline} offline</span>
+                    <span className="flex items-center gap-1.5"><MonitorPlay className="h-3.5 w-3.5 text-blue-500" />{stats.activeTrips} active trips</span>
+                </div>
+                <div className="flex items-center gap-2">
+                    <Badge variant="destructive">{stats.activeIncidents} active incidents</Badge>
+                    <span>Last sync {stats.lastSync}</span>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 export function LiveStreamPage({
     layout,
     stats,
@@ -49,28 +85,70 @@ export function LiveStreamPage({
 }) {
     return (
         <LayoutResolved layout={layout} title="Live Monitoring" currentUrl="/map">
-            <div className="relative flex h-[calc(100vh-3.5rem)] flex-col">
-                <div className="flex-1 relative">
-                    <DevicesMiniMap
-                        devices={devices}
-                        incidents={mapIncidents}
-                        height="100%"
-                        className="rounded-none border-0"
-                    />
+            <LiveStreamContent stats={stats} devices={devices} mapIncidents={mapIncidents} />
+        </LayoutResolved>
+    );
+}
+
+export function LiveStreamWithSidebarContent({
+    stats,
+    incidents,
+    vehicles,
+    devices = [],
+    mapIncidents = [],
+}: {
+    stats: Pick<LiveStats, 'online' | 'activeIncidents'>;
+    incidents: LiveIncident[];
+    vehicles: LiveVehicle[];
+    devices?: MiniMapDevice[];
+    mapIncidents?: MiniMapIncident[];
+}) {
+    return (
+        <div className="flex h-[calc(100vh-3.5rem)]">
+            <div className="flex-1 relative">
+                <DevicesMiniMap
+                    devices={devices}
+                    incidents={mapIncidents}
+                    height="100%"
+                    className="rounded-none border-0"
+                />
+            </div>
+            <div className="w-80 border-l border-border bg-background flex flex-col overflow-hidden">
+                <div className="p-4 border-b border-border space-y-3">
+                    <div className="grid grid-cols-2 gap-2">
+                        <StatCard icon={Wifi}          label="Online"    value={String(stats.online)} />
+                        <StatCard icon={AlertTriangle} label="Incidents" value={String(stats.activeIncidents)} />
+                    </div>
                 </div>
-                <div className="flex items-center justify-between border-t border-border bg-background/95 px-4 py-2 text-xs text-muted-foreground backdrop-blur-sm">
-                    <div className="flex items-center gap-4">
-                        <span className="flex items-center gap-1.5"><Wifi className="h-3.5 w-3.5 text-green-500" />{stats.online} online</span>
-                        <span className="flex items-center gap-1.5"><Users className="h-3.5 w-3.5" />{stats.offline} offline</span>
-                        <span className="flex items-center gap-1.5"><MonitorPlay className="h-3.5 w-3.5 text-blue-500" />{stats.activeTrips} active trips</span>
+                <div className="flex-1 overflow-y-auto divide-y divide-border">
+                    <div className="px-4 py-2 bg-muted/30">
+                        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Active Incidents</p>
                     </div>
-                    <div className="flex items-center gap-2">
-                        <Badge variant="destructive">{stats.activeIncidents} active incidents</Badge>
-                        <span>Last sync {stats.lastSync}</span>
+                    {incidents.map((inc) => (
+                        <div key={inc.id} className="p-3 hover:bg-muted/30 cursor-pointer">
+                            <div className="flex items-center justify-between mb-1">
+                                <span className="text-xs font-mono text-muted-foreground">{inc.id}</span>
+                                <Badge variant="outline" className={priorityStyle[inc.priority]}>{inc.priority}</Badge>
+                            </div>
+                            <p className="text-sm font-medium">{inc.assignee}</p>
+                            <p className="text-xs text-muted-foreground">{inc.rule}</p>
+                        </div>
+                    ))}
+                    <div className="px-4 py-2 bg-muted/30 mt-2">
+                        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Online Vehicles</p>
                     </div>
+                    {vehicles.map((v) => (
+                        <div key={v.reg} className="p-3 hover:bg-muted/30 cursor-pointer">
+                            <p className="text-sm font-mono font-medium">{v.reg}</p>
+                            <div className="flex items-center justify-between text-xs text-muted-foreground mt-0.5">
+                                <span>{v.location}</span>
+                                <span>{v.speed}</span>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
-        </LayoutResolved>
+        </div>
     );
 }
 
@@ -91,51 +169,7 @@ export function LiveStreamWithSidebarPage({
 }) {
     return (
         <LayoutResolved layout={layout} title="Live Monitoring" currentUrl="/map">
-            <div className="flex h-[calc(100vh-3.5rem)]">
-                <div className="flex-1 relative">
-                    <DevicesMiniMap
-                        devices={devices}
-                        incidents={mapIncidents}
-                        height="100%"
-                        className="rounded-none border-0"
-                    />
-                </div>
-                <div className="w-80 border-l border-border bg-background flex flex-col overflow-hidden">
-                    <div className="p-4 border-b border-border space-y-3">
-                        <div className="grid grid-cols-2 gap-2">
-                            <StatCard icon={Wifi}          label="Online"    value={String(stats.online)} />
-                            <StatCard icon={AlertTriangle} label="Incidents" value={String(stats.activeIncidents)} />
-                        </div>
-                    </div>
-                    <div className="flex-1 overflow-y-auto divide-y divide-border">
-                        <div className="px-4 py-2 bg-muted/30">
-                            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Active Incidents</p>
-                        </div>
-                        {incidents.map((inc) => (
-                            <div key={inc.id} className="p-3 hover:bg-muted/30 cursor-pointer">
-                                <div className="flex items-center justify-between mb-1">
-                                    <span className="text-xs font-mono text-muted-foreground">{inc.id}</span>
-                                    <Badge variant="outline" className={priorityStyle[inc.priority]}>{inc.priority}</Badge>
-                                </div>
-                                <p className="text-sm font-medium">{inc.assignee}</p>
-                                <p className="text-xs text-muted-foreground">{inc.rule}</p>
-                            </div>
-                        ))}
-                        <div className="px-4 py-2 bg-muted/30 mt-2">
-                            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Online Vehicles</p>
-                        </div>
-                        {vehicles.map((v) => (
-                            <div key={v.reg} className="p-3 hover:bg-muted/30 cursor-pointer">
-                                <p className="text-sm font-mono font-medium">{v.reg}</p>
-                                <div className="flex items-center justify-between text-xs text-muted-foreground mt-0.5">
-                                    <span>{v.location}</span>
-                                    <span>{v.speed}</span>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
+            <LiveStreamWithSidebarContent stats={stats} incidents={incidents} vehicles={vehicles} devices={devices} mapIncidents={mapIncidents} />
         </LayoutResolved>
     );
 }

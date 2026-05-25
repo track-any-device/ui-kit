@@ -1,3 +1,11 @@
+# [1.5.0](https://github.com/track-any-device/ui-kit/compare/v1.4.0...v1.5.0) (2026-05-25)
+
+
+### Features
+
+* add new tenant and user profile pages with associated types and components ([aedf5e0](https://github.com/track-any-device/ui-kit/commit/aedf5e0ce2c4fa2d18f7c797200151df594ac314))
+* export Content components for all tenant and user pages ([ce1292b](https://github.com/track-any-device/ui-kit/commit/ce1292bb5059e3263087a4a95216bc584227d18d))
+
 # [1.4.0](https://github.com/track-any-device/ui-kit/compare/v1.3.0...v1.4.0) (2026-05-25)
 
 

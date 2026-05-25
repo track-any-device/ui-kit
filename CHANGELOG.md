@@ -1,3 +1,12 @@
+# [1.6.0](https://github.com/track-any-device/ui-kit/compare/v1.5.0...v1.6.0) (2026-05-25)
+
+
+### Features
+
+* add onSave/onDiscard/onAdd/onEdit callbacks to beat editor and list ([19fc64a](https://github.com/track-any-device/ui-kit/commit/19fc64a2e0a06e06fb03fa0ee7e5fa616f18b7aa))
+* forward beat callbacks through Page wrappers and wire stories ([c5c83bf](https://github.com/track-any-device/ui-kit/commit/c5c83bf79414fd808e2202022f42f0fecb942cfe))
+* run Chromatic on PRs and as part of the release workflow ([39348c4](https://github.com/track-any-device/ui-kit/commit/39348c4e48b10c3a162db8eec5548d34483a55e9))
+
 # [1.5.0](https://github.com/track-any-device/ui-kit/compare/v1.4.0...v1.5.0) (2026-05-25)
 
 

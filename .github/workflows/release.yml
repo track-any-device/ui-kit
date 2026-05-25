@@ -48,6 +48,11 @@ jobs:
       - name: Build
         run: pnpm run build
 
+      - name: Run Chromatic
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+
       # Only publish for fix/feat/BREAKING CHANGE commits
       - name: Release
         if: |

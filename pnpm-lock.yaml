@@ -6200,6 +6200,7 @@ snapshots:
       - supports-color
 
   esbuild@0.25.12:
+    requiresBuild: true
     optionalDependencies:
       '@esbuild/aix-ppc64': 0.25.12
       '@esbuild/android-arm': 0.25.12

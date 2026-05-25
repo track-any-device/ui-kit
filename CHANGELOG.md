@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/track-any-device/ui-kit/compare/v1.2.0...v1.2.1) (2026-05-25)
+
+
+### Bug Fixes
+
+* bundle all dependencies to resolve bare module specifier errors in consumers ([bb00e40](https://github.com/track-any-device/ui-kit/commit/bb00e401d68b1e233e91356879df688ea11eeade))
+
 # [1.2.0](https://github.com/track-any-device/ui-kit/compare/v1.1.0...v1.2.0) (2026-05-24)
 
 

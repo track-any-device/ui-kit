@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/track-any-device/ui-kit/compare/v1.6.0...v1.7.0) (2026-05-25)
+
+
+### Features
+
+* support Next.js env vars in google-maps-loader and fix beat callbacks ([7afef24](https://github.com/track-any-device/ui-kit/commit/7afef24f2db351aa313e1a303ea4375907f92a78))
+
 # [1.6.0](https://github.com/track-any-device/ui-kit/compare/v1.5.0...v1.6.0) (2026-05-25)
 
 

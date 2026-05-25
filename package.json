@@ -1,6 +1,6 @@
 {
   "name": "@trackany-device/components",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Shared React components for the Track Any Device platform.",
   "license": "UNLICENSED",
   "type": "module",

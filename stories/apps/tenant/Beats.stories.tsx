@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 import { LAYOUT_ARG_TYPE } from '../../../src/layouts/LayoutSwitcher';
 import type { LayoutName } from '../../../src/layouts/LayoutSwitcher';
 import { BeatsListPage, BeatEditorPage } from '../../../src/pages/tenant/BeatsPage';
@@ -110,15 +111,38 @@ type Story = StoryObj<{ layout: LayoutName }>;
 
 export const Default: Story = {
     name: 'Beats list + map',
-    render: ({ layout }) => <BeatsListPage key={layout} layout={layout} beats={MOCK_BEATS} />,
+    render: ({ layout }) => (
+        <BeatsListPage
+            key={layout}
+            layout={layout}
+            beats={MOCK_BEATS}
+            onAdd={fn()}
+            onEdit={fn()}
+        />
+    ),
 };
 
 export const Editor: Story = {
     name: 'Beat editor — edit existing',
-    render: ({ layout }) => <BeatEditorPage key={layout} layout={layout} beat={MOCK_BEAT_EDIT} />,
+    render: ({ layout }) => (
+        <BeatEditorPage
+            key={layout}
+            layout={layout}
+            beat={MOCK_BEAT_EDIT}
+            onSave={fn()}
+            onDiscard={fn()}
+        />
+    ),
 };
 
 export const NewBeat: Story = {
     name: 'Beat editor — new beat',
-    render: ({ layout }) => <BeatEditorPage key={layout} layout={layout} />,
+    render: ({ layout }) => (
+        <BeatEditorPage
+            key={layout}
+            layout={layout}
+            onSave={fn()}
+            onDiscard={fn()}
+        />
+    ),
 };

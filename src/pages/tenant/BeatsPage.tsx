@@ -191,10 +191,17 @@ export function BeatsListContent({
     );
 }
 
-export function BeatsListPage({ layout, beats }: { layout: LayoutName; beats: Beat[] }) {
+export function BeatsListPage({
+    layout, beats, onAdd, onEdit,
+}: {
+    layout: LayoutName;
+    beats: Beat[];
+    onAdd?: () => void;
+    onEdit?: (beat: Beat) => void;
+}) {
     return (
         <LayoutResolved layout={layout} title="Beats" currentUrl="/beats">
-            <BeatsListContent beats={beats} />
+            <BeatsListContent beats={beats} onAdd={onAdd} onEdit={onEdit} />
         </LayoutResolved>
     );
 }
@@ -460,11 +467,18 @@ export function BeatEditorContent({
     );
 }
 
-export function BeatEditorPage({ layout, beat }: { layout: LayoutName; beat?: Partial<Beat> }) {
+export function BeatEditorPage({
+    layout, beat, onSave, onDiscard,
+}: {
+    layout: LayoutName;
+    beat?: Partial<Beat>;
+    onSave?: (data: BeatFormData) => void;
+    onDiscard?: () => void;
+}) {
     const isNew = !beat?.id;
     return (
         <LayoutResolved layout={layout} title={isNew ? 'New Beat' : 'Edit Beat'} currentUrl="/beats/edit">
-            <BeatEditorContent beat={beat} />
+            <BeatEditorContent beat={beat} onSave={onSave} onDiscard={onDiscard} />
         </LayoutResolved>
     );
 }

@@ -431,7 +431,7 @@ export type { NetworkTier, MarkerColor, IncidentSeverity as MapIncidentSeverity 
 
 // Tenant pages
 export { BeatsListPage, BeatsListContent, BeatEditorPage, BeatEditorContent } from './pages/tenant/BeatsPage';
-export type { Beat, BeatStatus, LatLng } from './pages/tenant/BeatsPage';
+export type { Beat, BeatStatus, LatLng, BeatFormData } from './pages/tenant/BeatsPage';
 export { AssigneesTablePage, AssigneesTableContent, AssigneesMapPage, AssigneesMapContent } from './pages/tenant/AssigneesPage';
 export type { Assignee, AssigneeStatus, AssigneeType } from './pages/tenant/AssigneesPage';
 export { DashboardPage, DashboardContent, DashboardWithIncidentPage, DashboardWithIncidentContent } from './pages/tenant/DashboardPage';

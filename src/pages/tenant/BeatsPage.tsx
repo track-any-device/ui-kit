@@ -40,7 +40,7 @@ function polygonBounds(maps: typeof google.maps, polygon: LatLng[]): google.maps
     return bounds;
 }
 
-export function BeatsListPage({ layout, beats }: { layout: LayoutName; beats: Beat[] }) {
+export function BeatsListContent({ beats }: { beats: Beat[] }) {
     const [selectedId, setSelectedId] = useState<number | null>(beats[0]?.id ?? null);
     const [mapReady, setMapReady] = useState(false);
 
@@ -98,8 +98,7 @@ export function BeatsListPage({ layout, beats }: { layout: LayoutName; beats: Be
     }, [mapReady, selectedId, beats]);
 
     return (
-        <LayoutResolved layout={layout} title="Beats" currentUrl="/beats">
-            <div className="flex h-[calc(100vh-3.5rem)]">
+        <div className="flex h-[calc(100vh-3.5rem)]">
                 <div className="flex w-1/3 min-w-[260px] flex-col border-r border-border bg-background overflow-hidden">
                     <div className="flex items-center justify-between border-b border-border px-4 py-3 shrink-0">
                         <div>
@@ -171,6 +170,13 @@ export function BeatsListPage({ layout, beats }: { layout: LayoutName; beats: Be
                     )}
                 </div>
             </div>
+    );
+}
+
+export function BeatsListPage({ layout, beats }: { layout: LayoutName; beats: Beat[] }) {
+    return (
+        <LayoutResolved layout={layout} title="Beats" currentUrl="/beats">
+            <BeatsListContent beats={beats} />
         </LayoutResolved>
     );
 }
@@ -183,7 +189,7 @@ const PRESET_COLORS = [
     { label: 'Orange', value: '#f97316' },
 ];
 
-export function BeatEditorPage({ layout, beat }: { layout: LayoutName; beat?: Partial<Beat> }) {
+export function BeatEditorContent({ beat }: { beat?: Partial<Beat> }) {
     const isNew = !beat?.id;
 
     const [name, setName]             = useState(beat?.name ?? '');
@@ -293,8 +299,7 @@ export function BeatEditorPage({ layout, beat }: { layout: LayoutName; beat?: Pa
     }, [color]);
 
     return (
-        <LayoutResolved layout={layout} title={isNew ? 'New Beat' : 'Edit Beat'} currentUrl="/beats/edit">
-            <div className="flex h-[calc(100vh-3.5rem)]">
+        <div className="flex h-[calc(100vh-3.5rem)]">
                 <div className="flex w-[300px] shrink-0 flex-col border-r border-border bg-background overflow-y-auto">
                     <div className="border-b border-border px-4 py-3">
                         <h1 className="text-base font-semibold">{isNew ? 'New Beat' : 'Edit Beat'}</h1>
@@ -401,6 +406,14 @@ export function BeatEditorPage({ layout, beat }: { layout: LayoutName; beat?: Pa
                     )}
                 </div>
             </div>
+    );
+}
+
+export function BeatEditorPage({ layout, beat }: { layout: LayoutName; beat?: Partial<Beat> }) {
+    const isNew = !beat?.id;
+    return (
+        <LayoutResolved layout={layout} title={isNew ? 'New Beat' : 'Edit Beat'} currentUrl="/beats/edit">
+            <BeatEditorContent beat={beat} />
         </LayoutResolved>
     );
 }

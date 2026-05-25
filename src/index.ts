@@ -430,7 +430,7 @@ export {
 export type { NetworkTier, MarkerColor, IncidentSeverity as MapIncidentSeverity } from './lib/map-markers';
 
 // Tenant pages
-export { BeatsListPage, BeatEditorPage } from './pages/tenant/BeatsPage';
+export { BeatsListPage, BeatsListContent, BeatEditorPage, BeatEditorContent } from './pages/tenant/BeatsPage';
 export type { Beat, BeatStatus, LatLng } from './pages/tenant/BeatsPage';
 
 // Types

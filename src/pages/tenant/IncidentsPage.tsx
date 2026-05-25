@@ -1,8 +1,9 @@
-import {
-    Badge, StatCard, Card, CardContent, CardHeader, CardTitle, CardDescription,
-    Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
-    Button, Timeline, TimelineItem,
-} from '@trackany-device/components';
+import { Badge } from '../../components/ui/badge';
+import { Button } from '../../components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../components/ui/card';
+import { StatCard } from '../../components/ui/stat-card';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../components/ui/table';
+import { Timeline, TimelineItem } from '../../components/ui/timeline';
 import { LayoutResolved } from '../../layouts/LayoutSwitcher';
 import type { LayoutName } from '../../layouts/LayoutSwitcher';
 import { AlertTriangle, Battery, CheckCircle, Clock, Shield, Users } from 'lucide-react';

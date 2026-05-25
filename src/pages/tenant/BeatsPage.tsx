@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { Badge, Button, Card, CardContent, Input, Label } from '@trackany-device/components';
+import { Badge } from '../../components/ui/badge';
+import { Button } from '../../components/ui/button';
+import { Input } from '../../components/ui/input';
+import { Label } from '../../components/ui/label';
 import { LayoutResolved } from '../../layouts/LayoutSwitcher';
 import type { LayoutName } from '../../layouts/LayoutSwitcher';
 import { MapPin, Plus, Users } from 'lucide-react';

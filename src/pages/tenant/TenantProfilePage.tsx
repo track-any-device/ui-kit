@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../..
 import { Checkbox } from '../../components/ui/checkbox';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
-import { Textarea } from '../../components/ui/textarea';
+import { Textarea } from '../../controls/Textarea';
 import { PasswordInput } from '../../controls/PasswordInput';
 import { PlanCard } from '../../components/ui/plan-card';
 import { RadioGroup } from '../../components/ui/radio-group';

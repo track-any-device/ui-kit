@@ -1,3 +1,20 @@
+# [1.4.0](https://github.com/track-any-device/ui-kit/compare/v1.3.0...v1.4.0) (2026-05-25)
+
+
+### Bug Fixes
+
+* approve esbuild build scripts in lockfile for frozen installs ([c168b60](https://github.com/track-any-device/ui-kit/commit/c168b60a442d35934024227932fd80e26e32a62f))
+* mark esbuild as requiresBuild in lockfile to unblock CI install ([c998f5b](https://github.com/track-any-device/ui-kit/commit/c998f5b0e4ea2a3523824c0f33751932ebd52f7d))
+* replace self-package imports in LayoutSwitcher with relative paths ([bdc171a](https://github.com/track-any-device/ui-kit/commit/bdc171a37b9686ba495f308083da384df0c5d784))
+* replace self-package imports with relative paths in tenant pages ([6093646](https://github.com/track-any-device/ui-kit/commit/60936469c3491e39422244c25873d6f627bb2e63))
+
+
+### Features
+
+* add pnpm configuration to specify only built dependencies ([58b1ce5](https://github.com/track-any-device/ui-kit/commit/58b1ce5a19a030fb8a3c34d0b6c8cb6ad40bc648))
+* add website section system with SectionRenderer ([06e27d9](https://github.com/track-any-device/ui-kit/commit/06e27d9080635f7b2c9648348fc4aae8f2d014ce))
+* enhance devices mini-map with custom icon support and update incident page to utilize new flag URL ([c6af28a](https://github.com/track-any-device/ui-kit/commit/c6af28a246484905064edb4940fbb0054efc4159))
+
 # [1.3.0](https://github.com/track-any-device/ui-kit/compare/v1.2.1...v1.3.0) (2026-05-25)
 
 

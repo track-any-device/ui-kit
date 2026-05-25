@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/track-any-device/ui-kit/compare/v1.2.1...v1.3.0) (2026-05-25)
+
+
+### Features
+
+* add avatar images to assets ([1af3f99](https://github.com/track-any-device/ui-kit/commit/1af3f990b110d460a69c89b2a07996d8bb6d4cb2))
+
 ## [1.2.1](https://github.com/track-any-device/ui-kit/compare/v1.2.0...v1.2.1) (2026-05-25)
 
 

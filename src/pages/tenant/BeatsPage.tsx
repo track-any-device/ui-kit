@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Badge } from '../../components/ui/badge';
-import { Button } from '../../components/ui/button';
-import { Input } from '../../components/ui/input';
-import { Label } from '../../components/ui/label';
+import { Button } from '../../controls/Button';
+import { Input } from '../../controls/Input';
+import { Label } from '../../controls/Label';
 import { LayoutResolved } from '../../layouts/LayoutSwitcher';
 import type { LayoutName } from '../../layouts/LayoutSwitcher';
 import { MapPin, Plus, Users } from 'lucide-react';
@@ -40,7 +40,15 @@ function polygonBounds(maps: typeof google.maps, polygon: LatLng[]): google.maps
     return bounds;
 }
 
-export function BeatsListContent({ beats }: { beats: Beat[] }) {
+export function BeatsListContent({
+    beats,
+    onAdd,
+    onEdit,
+}: {
+    beats: Beat[];
+    onAdd?: () => void;
+    onEdit?: (beat: Beat) => void;
+}) {
     const [selectedId, setSelectedId] = useState<number | null>(beats[0]?.id ?? null);
     const [mapReady, setMapReady] = useState(false);
 
@@ -105,7 +113,7 @@ export function BeatsListContent({ beats }: { beats: Beat[] }) {
                             <h1 className="text-base font-semibold">Beats</h1>
                             <p className="text-xs text-muted-foreground">{beats.length} total</p>
                         </div>
-                        <Button size="sm">
+                        <Button size="sm" onClick={onAdd}>
                             <Plus className="h-3.5 w-3.5 mr-1" />Add beat
                         </Button>
                     </div>
@@ -146,9 +154,19 @@ export function BeatsListContent({ beats }: { beats: Beat[] }) {
                                                 </Badge>
                                             </div>
                                             <p className="text-xs text-muted-foreground mt-0.5">{beat.zone}</p>
-                                            <div className="flex items-center gap-1 mt-1.5 text-xs text-muted-foreground">
-                                                <Users className="h-3 w-3" />
-                                                <span>{beat.assignees} assignee{beat.assignees !== 1 ? 's' : ''}</span>
+                                            <div className="flex items-center justify-between mt-1.5">
+                                                <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                                                    <Users className="h-3 w-3" />
+                                                    <span>{beat.assignees} assignee{beat.assignees !== 1 ? 's' : ''}</span>
+                                                </div>
+                                                {onEdit && (
+                                                    <button
+                                                        onClick={(e) => { e.stopPropagation(); onEdit(beat); }}
+                                                        className="text-xs text-primary hover:underline"
+                                                    >
+                                                        Edit
+                                                    </button>
+                                                )}
                                             </div>
                                         </div>
                                     </div>
@@ -189,7 +207,24 @@ const PRESET_COLORS = [
     { label: 'Orange', value: '#f97316' },
 ];
 
-export function BeatEditorContent({ beat }: { beat?: Partial<Beat> }) {
+export interface BeatFormData {
+    name: string;
+    zone: string;
+    description: string;
+    status: BeatStatus;
+    color: string;
+    polygon: LatLng[];
+}
+
+export function BeatEditorContent({
+    beat,
+    onSave,
+    onDiscard,
+}: {
+    beat?: Partial<Beat>;
+    onSave?: (data: BeatFormData) => void;
+    onDiscard?: () => void;
+}) {
     const isNew = !beat?.id;
 
     const [name, setName]             = useState(beat?.name ?? '');
@@ -370,8 +405,24 @@ export function BeatEditorContent({ beat }: { beat?: Partial<Beat> }) {
                     </div>
 
                     <div className="border-t border-border px-4 py-3 flex gap-2">
-                        <Button size="sm" className="flex-1">Save Beat</Button>
-                        <Button variant="outline" size="sm">Discard</Button>
+                        <Button
+                            size="sm"
+                            className="flex-1"
+                            onClick={() => {
+                                if (!onSave) return;
+                                const path = polygonRef.current?.getPath();
+                                const polygon: LatLng[] = path
+                                    ? Array.from({ length: path.getLength() }, (_, i) => ({
+                                        lat: path.getAt(i).lat(),
+                                        lng: path.getAt(i).lng(),
+                                    }))
+                                    : (beat?.polygon ?? []);
+                                onSave({ name, zone, description, status, color, polygon });
+                            }}
+                        >
+                            Save Beat
+                        </Button>
+                        <Button variant="outline" size="sm" onClick={onDiscard}>Discard</Button>
                     </div>
                 </div>
 

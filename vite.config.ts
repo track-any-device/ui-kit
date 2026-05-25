@@ -1,15 +1,6 @@
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import { resolve } from 'path'
-import { readFileSync } from 'fs'
-
-const pkg = JSON.parse(readFileSync('./package.json', 'utf-8'))
-
-const externals = new Set([
-    ...Object.keys(pkg.peerDependencies ?? {}),
-    ...Object.keys(pkg.dependencies ?? {}),
-    'react/jsx-runtime',
-])
 
 export default defineConfig({
     esbuild: {
@@ -30,10 +21,7 @@ export default defineConfig({
             formats: ['es'],
         },
         rollupOptions: {
-            external: (id) => {
-                if (externals.has(id)) return true
-                return [...externals].some(dep => id.startsWith(dep + '/'))
-            },
+            external: (id) => id === 'react' || id === 'react-dom' || id.startsWith('react/') || id.startsWith('react-dom/'),
         },
         sourcemap: true,
         copyPublicDir: false,

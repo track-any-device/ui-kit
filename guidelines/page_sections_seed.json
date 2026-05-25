@@ -1,0 +1,215 @@
+[
+  {
+    "page_slug": "home",
+    "type": "topbar",
+    "identifier": "topbar",
+    "active": true,
+    "sort_order": 1,
+    "content": {
+      "variant": "announcement",
+      "message": "🎉 New: Real-time fleet tracking is now available — ",
+      "cta_label": "Learn more →",
+      "cta_link": "/features",
+      "dismissible": true
+    }
+  },
+  {
+    "page_slug": "home",
+    "type": "hero",
+    "identifier": "hero",
+    "active": true,
+    "sort_order": 2,
+    "content": {
+      "size": "full",
+      "alignment": "center",
+      "eyebrow": "Pakistan's #1 fleet tracking platform",
+      "title": "Know where every vehicle is,",
+      "title_highlight": "right now.",
+      "subtitle": "Real-time GPS tracking, geo-fences, smart alerts, and AI-powered route optimisation — all in one dashboard.",
+      "bg": { "kind": "gradient", "gradient_from": "#0f172a", "gradient_to": "#1e3a5f", "gradient_direction": "to-br" },
+      "buttons": [
+        { "label": "Start free trial", "link": "/register", "variant": "primary" },
+        { "label": "Watch demo", "link": "/demo", "variant": "outline" }
+      ]
+    }
+  },
+  {
+    "page_slug": "home",
+    "type": "logo_cloud",
+    "identifier": "clients",
+    "active": true,
+    "sort_order": 3,
+    "content": {
+      "eyebrow": "Trusted by leading organisations",
+      "variant": "bordered",
+      "logos": [
+        { "name": "Punjab Government", "url": null },
+        { "name": "Swift Couriers", "url": null },
+        { "name": "MegaFreight", "url": null },
+        { "name": "Atlas Transit", "url": null },
+        { "name": "Medex Pharma", "url": null },
+        { "name": "LogiPak Ltd", "url": null }
+      ]
+    }
+  },
+  {
+    "page_slug": "home",
+    "type": "services",
+    "identifier": "features",
+    "active": true,
+    "sort_order": 4,
+    "content": {
+      "eyebrow": "Platform features",
+      "title": "Everything your fleet needs in one place",
+      "subtitle": "From live tracking to driver behaviour — all the tools to run a smarter, safer fleet.",
+      "variant": "cards",
+      "items": [
+        { "icon": "📡", "title": "Real-time Tracking", "description": "Live GPS positions refreshed every 5 seconds with speed, heading, and engine status.", "link": "/features/tracking", "link_label": "Learn more" },
+        { "icon": "🔔", "title": "Smart Alerts", "description": "Geo-fence breaches, speeding, idle-time, and custom threshold notifications.", "link": "/features/alerts", "link_label": "Learn more" },
+        { "icon": "📊", "title": "Analytics & Reports", "description": "Fuel consumption, route efficiency, and driver behaviour reports on demand.", "link": "/features/reports", "link_label": "Learn more" },
+        { "icon": "🗺️", "title": "Route Optimisation", "description": "AI-powered routes with live traffic and road condition awareness.", "link": "/features/routing", "link_label": "Learn more" },
+        { "icon": "🔒", "title": "Remote Control", "description": "Engine cut-off and door lock/unlock from dashboard or mobile.", "link": "/features/control", "link_label": "Learn more" },
+        { "icon": "📱", "title": "Mobile App", "description": "Android and iOS apps for drivers and managers on the go.", "link": "/features/app", "link_label": "Learn more" }
+      ]
+    }
+  },
+  {
+    "page_slug": "home",
+    "type": "stats",
+    "identifier": "stats",
+    "active": true,
+    "sort_order": 5,
+    "content": {
+      "variant": "card-grid",
+      "items": [
+        { "value": "50,000", "suffix": "+", "label": "Devices tracked", "icon": "📡" },
+        { "value": "120", "suffix": "+", "label": "Enterprise clients", "icon": "🏢" },
+        { "value": "99.9", "suffix": "%", "label": "Platform uptime", "icon": "✅" },
+        { "value": "4.8", "suffix": "/5", "label": "Customer rating", "icon": "⭐" }
+      ]
+    }
+  },
+  {
+    "page_slug": "home",
+    "type": "how_it_works",
+    "identifier": "how-it-works",
+    "active": true,
+    "sort_order": 6,
+    "content": {
+      "eyebrow": "Simple process",
+      "title": "Up and running in minutes",
+      "subtitle": "No complex integrations. Plug in, sign up, and start tracking.",
+      "variant": "3-step",
+      "items": [
+        { "number": "01", "icon": "📦", "title": "Install the device", "description": "Plug our compact GPS tracker into your vehicle's OBD-II port — takes under 5 minutes." },
+        { "number": "02", "icon": "🔗", "title": "Connect to the platform", "description": "The device auto-registers. Log in and see your fleet appear on the live map instantly." },
+        { "number": "03", "icon": "🚀", "title": "Manage your fleet", "description": "Set geo-fences, configure alerts, invite team members, and pull reports — all from one screen." }
+      ],
+      "buttons": [
+        { "label": "Get started free", "link": "/register", "variant": "primary" }
+      ]
+    }
+  },
+  {
+    "page_slug": "home",
+    "type": "testimonials",
+    "identifier": "testimonials",
+    "active": true,
+    "sort_order": 7,
+    "content": {
+      "eyebrow": "What clients say",
+      "title": "Trusted by fleet operators nationwide",
+      "variant": "cards",
+      "items": [
+        { "name": "Zara Khan", "role": "Fleet Manager", "company": "LogiPak Ltd", "rating": 5, "quote": "We reduced fuel costs by 22% in the first three months. The geo-fence alerts alone paid for the subscription." },
+        { "name": "Ali Raza", "role": "Operations Director", "company": "Swift Couriers", "rating": 5, "quote": "The dashboard is incredibly intuitive. Our drivers adopted the mobile app with zero training." },
+        { "name": "Sara Ahmed", "role": "Head of Transport", "company": "Punjab Government", "rating": 5, "quote": "Real-time visibility transformed how we manage our government fleet. Accountability has never been higher." }
+      ]
+    }
+  },
+  {
+    "page_slug": "home",
+    "type": "pricing",
+    "identifier": "pricing",
+    "active": true,
+    "sort_order": 8,
+    "content": {
+      "eyebrow": "Simple pricing",
+      "title": "Plans for every fleet size",
+      "subtitle": "No hidden fees. Cancel anytime. All plans include a 14-day free trial.",
+      "variant": "tiers",
+      "show_toggle": true,
+      "plans": [
+        {
+          "name": "Starter", "price_monthly": 9, "price_yearly": 7, "currency": "$",
+          "cta_label": "Start free trial", "cta_link": "/register", "cta_variant": "outline",
+          "features": [
+            { "text": "Up to 10 devices", "included": true },
+            { "text": "Real-time tracking", "included": true },
+            { "text": "Basic alerts", "included": true },
+            { "text": "Route optimisation", "included": false },
+            { "text": "API access", "included": false }
+          ]
+        },
+        {
+          "name": "Professional", "price_monthly": 29, "price_yearly": 23, "currency": "$",
+          "badge": "Most popular", "highlighted": true,
+          "cta_label": "Start free trial", "cta_link": "/register", "cta_variant": "primary",
+          "features": [
+            { "text": "Up to 100 devices", "included": true },
+            { "text": "Real-time tracking", "included": true },
+            { "text": "Advanced alerts", "included": true },
+            { "text": "Route optimisation", "included": true },
+            { "text": "API access", "included": true }
+          ]
+        },
+        {
+          "name": "Enterprise", "price_monthly": null, "price_yearly": null, "currency": "$",
+          "cta_label": "Contact sales", "cta_link": "/contact", "cta_variant": "outline",
+          "features": [
+            { "text": "Unlimited devices", "included": true },
+            { "text": "Real-time tracking", "included": true },
+            { "text": "Custom alerts & workflows", "included": true },
+            { "text": "Route optimisation", "included": true },
+            { "text": "Full API access", "included": true }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "page_slug": "home",
+    "type": "faq",
+    "identifier": "faq",
+    "active": true,
+    "sort_order": 9,
+    "content": {
+      "eyebrow": "FAQ",
+      "title": "Frequently asked questions",
+      "variant": "simple",
+      "support_link": "/contact",
+      "support_label": "Contact support",
+      "items": [
+        { "question": "How long does installation take?", "answer": "Most OBD-II trackers are plug-and-play and take under 5 minutes. Hardwired units take 20–40 minutes." },
+        { "question": "Is there a free trial?", "answer": "Yes — all plans include a 14-day free trial with no credit card required." },
+        { "question": "What countries are supported?", "answer": "Pakistan, UAE, Saudi Arabia, Kuwait, and Bahrain. More regions coming in 2025." },
+        { "question": "Do you offer an API?", "answer": "Yes — Professional and Enterprise plans include full REST API and webhook access." }
+      ]
+    }
+  },
+  {
+    "page_slug": "home",
+    "type": "newsletter",
+    "identifier": "newsletter",
+    "active": true,
+    "sort_order": 10,
+    "content": {
+      "eyebrow": "Stay in the loop",
+      "title": "Fleet insights, straight to your inbox",
+      "description": "Monthly digest of best practices, product updates, and fleet management tips.",
+      "cta_label": "Subscribe",
+      "consent_text": "No spam. Unsubscribe anytime.",
+      "variant": "boxed"
+    }
+  }
+]

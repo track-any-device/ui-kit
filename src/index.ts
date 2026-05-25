@@ -319,6 +319,23 @@ export { BlogsListingSection } from './components/cms/sections/blogs-listing-sec
 export { ContactFormSection } from './components/cms/sections/contact-form-section';
 export { SolutionsWithFilterSection } from './components/cms/sections/solutions-with-filter-section';
 
+// Website sections — SectionRenderer + registry + all section components
+export { SectionRenderer, sectionRegistry } from './components/website';
+export type { SectionComponent, PageSection, WebsiteSectionType } from './components/website';
+export { TopBarSection, topBarSampleProps } from './components/website/sections/topbar-section';
+export { LogoCloudSection, logoCloudSampleProps } from './components/website/sections/logo-cloud-section';
+export { ServicesSection, servicesSampleProps } from './components/website/sections/services-section';
+export { AboutSection, aboutSampleProps } from './components/website/sections/about-section';
+export { StatsSection, statsSampleProps } from './components/website/sections/stats-section';
+export { HowItWorksSection, howItWorksSampleProps } from './components/website/sections/how-it-works-section';
+export { TestimonialsSection, testimonialsSampleProps } from './components/website/sections/testimonials-section';
+export { CaseStudiesSection, caseStudiesSampleProps } from './components/website/sections/case-studies-section';
+export { PricingSection, pricingSampleProps } from './components/website/sections/pricing-section';
+export { FaqSection, faqSampleProps } from './components/website/sections/faq-section';
+export { NewsletterSection, newsletterSampleProps } from './components/website/sections/newsletter-section';
+export { TeamSection, teamSampleProps } from './components/website/sections/team-section';
+export { TimelineSection, timelineSampleProps } from './components/website/sections/timeline-section';
+
 // Device components
 export { DevicesMiniMap } from './components/devices/devices-mini-map';
 export type { MiniMapDevice, MiniMapIncident } from './components/devices/devices-mini-map';

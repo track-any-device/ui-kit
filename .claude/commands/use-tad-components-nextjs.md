@@ -320,6 +320,208 @@ Pages inside `(dashboard)/` are plain Server Components — no `'use client'` ne
 
 ---
 
+## 9. Website section components
+
+The library ships a full set of marketing/website section components with a `SectionRenderer` that maps database records to React components. Use these for landing pages, marketing sites, and CMS-driven pages.
+
+### 9.1 Available sections and variants
+
+| Component | Import name | Variants |
+|-----------|-------------|---------|
+| `TopBarSection` | `topbar` | `announcement` · `promo` · `contact` · `social` |
+| `LogoCloudSection` | `logo_cloud` | `row` · `grid` · `grayscale` · `bordered` |
+| `ServicesSection` | `services` | `cards` · `list` · `compact` · `detailed` |
+| `AboutSection` | `about` | `split` · `mission-vision` · `founder` · `compact` |
+| `StatsSection` | `stats` | `simple` · `card-grid` · `icon-stats` · `dark-band` |
+| `HowItWorksSection` | `how_it_works` | `3-step` · `horizontal` · `vertical` · `timeline` |
+| `TestimonialsSection` | `testimonials` | `cards` · `carousel` · `single-quote` · `masonry` |
+| `CaseStudiesSection` | `case_studies` | `grid` · `featured` · `compact` · `detailed` |
+| `PricingSection` | `pricing` | `tiers` · `comparison` · `enterprise` · `compact` |
+| `FaqSection` | `faq` | `simple` · `two-column` · `grouped` · `support` |
+| `NewsletterSection` | `newsletter` | `simple` · `boxed` · `dark` · `image-side` · `footer-inline` |
+| `TeamSection` | `team` | `grid` · `leadership` · `compact` · `profile-card` |
+| `TimelineSection` | `timeline` | `vertical` · `horizontal` · `roadmap` · `milestone` |
+
+### 9.2 Static use — import and render directly
+
+All sections are **Server Component-compatible** except `TopBarSection` (dismissible state), `PricingSection` (billing toggle), `FaqSection` (accordion), and `NewsletterSection` (form state). Mark only those `'use client'`.
+
+```tsx
+// app/(marketing)/about/page.tsx  — Server Component, no 'use client' needed
+import {
+    HeroSection,
+    AboutSection,
+    StatsSection,
+    TestimonialsSection,
+    CtaSection,
+} from '@trackany-device/components';
+
+export default function AboutPage() {
+    return (
+        <>
+            <HeroSection content={{
+                size: 'half',
+                eyebrow: 'Our story',
+                title: 'Built for fleets that cannot afford downtime',
+                bg: { kind: 'gradient', gradient_from: '#0f172a', gradient_to: '#1e3a5f', gradient_direction: 'to-br' },
+                buttons: [{ label: 'Meet the team', link: '/team', variant: 'primary' }],
+            }} />
+
+            <AboutSection content={{
+                variant: 'split',
+                image_side: 'right',
+                eyebrow: 'Who we are',
+                title: 'A small team with big ambitions',
+                body: '<p>We started in 2020 with one goal: make fleet visibility simple and affordable.</p>',
+                stats: [
+                    { value: '50K+', label: 'Devices tracked' },
+                    { value: '120+', label: 'Enterprise clients' },
+                ],
+            }} />
+
+            <StatsSection content={{
+                variant: 'dark-band',
+                items: [
+                    { value: '50,000', suffix: '+', label: 'Devices' },
+                    { value: '99.9', suffix: '%', label: 'Uptime' },
+                    { value: '4.8', suffix: '/5', label: 'Rating' },
+                ],
+            }} />
+
+            <TestimonialsSection content={{
+                variant: 'cards',
+                eyebrow: 'What clients say',
+                title: 'Trusted nationwide',
+                items: [
+                    { name: 'Zara Khan', role: 'Fleet Manager', company: 'LogiPak', rating: 5, quote: 'Reduced fuel costs by 22% in three months.' },
+                ],
+            }} />
+        </>
+    );
+}
+```
+
+### 9.3 CMS-driven use — SectionRenderer
+
+When sections are stored in a database (Laravel `page_sections` table), fetch them server-side and pass to `SectionRenderer`. It reads the `type` field, looks it up in the registry, and renders the matching component with the `content` JSON.
+
+```tsx
+// app/(marketing)/[slug]/page.tsx  — Server Component
+import { SectionRenderer } from '@trackany-device/components';
+import type { PageSection } from '@trackany-device/components';
+
+async function getPageSections(slug: string): Promise<PageSection[]> {
+    const res = await fetch(`${process.env.API_URL}/api/pages/${slug}/sections`, {
+        next: { revalidate: 60 }, // ISR: re-fetch every 60 s
+    });
+    if (!res.ok) return [];
+    return res.json();
+}
+
+export default async function CmsPage({ params }: { params: { slug: string } }) {
+    const sections = await getPageSections(params.slug);
+    return <SectionRenderer sections={sections} />;
+}
+
+export async function generateStaticParams() {
+    const res = await fetch(`${process.env.API_URL}/api/pages`);
+    const pages: { slug: string }[] = await res.json();
+    return pages.map((p) => ({ slug: p.slug }));
+}
+```
+
+`PageSection` shape (matches the Laravel migration):
+
+```ts
+type PageSection = {
+    id: number;
+    type: string;        // e.g. 'hero', 'faq', 'pricing'
+    identifier?: string; // CSS id="" for anchor links
+    active: boolean;     // inactive sections are skipped
+    sort_order: number;  // lower = higher on page
+    content: Record<string, unknown>; // the section's props JSON
+};
+```
+
+### 9.4 Overriding a single section in the registry
+
+Pass a `registry` prop to swap out one component without touching the global registry:
+
+```tsx
+import { SectionRenderer } from '@trackany-device/components';
+import { MyCustomHero } from '@/components/my-custom-hero';
+
+<SectionRenderer
+    sections={sections}
+    registry={{ hero: MyCustomHero }}
+/>
+```
+
+### 9.5 Interactive sections need 'use client'
+
+`PricingSection`, `FaqSection`, `NewsletterSection`, and `TopBarSection` hold local state. When used directly (§ 9.2), mark the page or a wrapper `'use client'`. When used via `SectionRenderer`, the components handle this themselves — no extra marking needed.
+
+```tsx
+// Direct static use of interactive section
+'use client';
+import { PricingSection, pricingSampleProps } from '@trackany-device/components';
+
+export default function PricingPage() {
+    return <PricingSection content={pricingSampleProps} />;
+}
+```
+
+### 9.6 Sample props for every section
+
+Every section exports a `*SampleProps` object — useful for previews, admin UIs, and Storybook stories:
+
+```tsx
+import {
+    topBarSampleProps,
+    logoCloudSampleProps,
+    servicesSampleProps,
+    aboutSampleProps,
+    statsSampleProps,
+    howItWorksSampleProps,
+    testimonialsSampleProps,
+    caseStudiesSampleProps,
+    pricingSampleProps,
+    faqSampleProps,
+    newsletterSampleProps,
+    teamSampleProps,
+    timelineSampleProps,
+} from '@trackany-device/components';
+```
+
+### 9.7 Typical marketing page structure
+
+```
+app/
+  (marketing)/
+    layout.tsx         ← SiteHeader + SiteFooter (Server Component)
+    page.tsx           ← home: SectionRenderer with DB sections
+    about/page.tsx     ← static AboutSection + StatsSection
+    pricing/page.tsx   ← 'use client' — PricingSection
+    [slug]/page.tsx    ← CMS: SectionRenderer with ISR
+```
+
+```tsx
+// app/(marketing)/layout.tsx  — Server Component
+import { SiteHeader, SiteFooter } from '@trackany-device/components';
+
+export default function MarketingLayout({ children }: { children: React.ReactNode }) {
+    return (
+        <>
+            <SiteHeader />
+            <main>{children}</main>
+            <SiteFooter />
+        </>
+    );
+}
+```
+
+---
+
 ## Key rules
 
 - Always wrap with `<PlatformProvider adapter={adapter}>` **in a Client Component** — `createNextjsAdapter` calls `useRouter` and `usePathname`, which require client context.
@@ -327,3 +529,5 @@ Pages inside `(dashboard)/` are plain Server Components — no `'use client'` ne
 - Import `themes.css` (and optionally `keenicons.css`) in your global CSS before any component renders — design tokens (colours, spacing) come from there.
 - Use Next.js `metadata` exports for document `<head>` management — `PlatformHead` is a no-op in this adapter.
 - Mobile layouts are built-in — do not add your own hamburger/overlay logic around layout components.
+- Website section components are Server Component-safe except `TopBarSection`, `PricingSection`, `FaqSection`, and `NewsletterSection` — mark only those pages/wrappers `'use client'`.
+- For CMS-driven pages, fetch sections server-side and pass to `SectionRenderer` — inactive sections are skipped, order is by `sort_order`.

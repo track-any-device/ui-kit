@@ -1,4 +1,5 @@
 import type { TextareaHTMLAttributes } from 'react';
+import { cn } from '../lib/utils';
 
 interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
     error?: string;
@@ -7,12 +8,12 @@ interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 const base =
     'w-full rounded-lg border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 resize-y transition-colors';
 
-export function Textarea({ error, className = '', rows = 4, ...props }: Props) {
+export function Textarea({ error, className, rows = 4, ...props }: Props) {
     return (
         <>
             <textarea
                 rows={rows}
-                className={`${base} ${error ? 'border-destructive' : 'border-border'} ${className}`}
+                className={cn(base, error ? 'border-destructive' : 'border-border', className)}
                 aria-invalid={!!error}
                 {...props}
             />

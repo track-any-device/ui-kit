@@ -53,12 +53,7 @@ jobs:
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
 
-      # Only publish for fix/feat/BREAKING CHANGE commits
       - name: Release
-        if: |
-          startsWith(github.event.head_commit.message, 'fix') ||
-          startsWith(github.event.head_commit.message, 'feat') ||
-          contains(github.event.head_commit.message, 'BREAKING CHANGE')
         run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

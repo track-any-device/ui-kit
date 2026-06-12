@@ -5,7 +5,7 @@ import { Input } from '../../controls/Input';
 import { Label } from '../../controls/Label';
 import { LayoutResolved } from '../../layouts/LayoutSwitcher';
 import type { LayoutName } from '../../layouts/LayoutSwitcher';
-import { MapPin, Plus, Users } from 'lucide-react';
+import { MapPin, Plus, Upload, Users } from 'lucide-react';
 import { loadGoogleMaps, hasGoogleMapsKey } from '../../lib/google-maps-loader';
 
 export type LatLng = { lat: number; lng: number };
@@ -43,10 +43,12 @@ function polygonBounds(maps: typeof google.maps, polygon: LatLng[]): google.maps
 export function BeatsListContent({
     beats,
     onAdd,
+    onImport,
     onEdit,
 }: {
     beats: Beat[];
     onAdd?: () => void;
+    onImport?: () => void;
     onEdit?: (beat: Beat) => void;
 }) {
     const [selectedId, setSelectedId] = useState<number | null>(beats[0]?.id ?? null);
@@ -113,9 +115,16 @@ export function BeatsListContent({
                             <h1 className="text-base font-semibold">Beats</h1>
                             <p className="text-xs text-muted-foreground">{beats.length} total</p>
                         </div>
-                        <Button size="sm" onClick={onAdd}>
-                            <Plus className="h-3.5 w-3.5 mr-1" />Add beat
-                        </Button>
+                        <div className="flex items-center gap-1.5">
+                            {onImport && (
+                                <Button size="sm" variant="outline" onClick={onImport}>
+                                    <Upload className="h-3.5 w-3.5 mr-1" />Import
+                                </Button>
+                            )}
+                            <Button size="sm" onClick={onAdd}>
+                                <Plus className="h-3.5 w-3.5 mr-1" />Add beat
+                            </Button>
+                        </div>
                     </div>
 
                     <div className="grid grid-cols-3 divide-x divide-border border-b border-border shrink-0">
@@ -192,16 +201,17 @@ export function BeatsListContent({
 }
 
 export function BeatsListPage({
-    layout, beats, onAdd, onEdit,
+    layout, beats, onAdd, onImport, onEdit,
 }: {
     layout: LayoutName;
     beats: Beat[];
     onAdd?: () => void;
+    onImport?: () => void;
     onEdit?: (beat: Beat) => void;
 }) {
     return (
         <LayoutResolved layout={layout} title="Beats" currentUrl="/beats">
-            <BeatsListContent beats={beats} onAdd={onAdd} onEdit={onEdit} />
+            <BeatsListContent beats={beats} onAdd={onAdd} onImport={onImport} onEdit={onEdit} />
         </LayoutResolved>
     );
 }

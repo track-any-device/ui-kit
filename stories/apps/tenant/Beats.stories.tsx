@@ -117,6 +117,7 @@ export const Default: Story = {
             layout={layout}
             beats={MOCK_BEATS}
             onAdd={fn()}
+            onImport={fn()}
             onEdit={fn()}
         />
     ),

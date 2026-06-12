@@ -57,3 +57,13 @@ export const WithErrors: Story = {
 export const Processing: Story = {
     render: args => <Controlled processing={true} {...args} />,
 };
+
+const samplePhoneCountries = [
+    { id: 1, iso_code: 'ZA', name: 'South Africa', country_code: '+27' },
+    { id: 2, iso_code: 'US', name: 'United States', country_code: '+1' },
+    { id: 3, iso_code: 'GB', name: 'United Kingdom', country_code: '+44' },
+];
+
+export const WithPhone: Story = {
+    render: args => <Controlled phoneCountries={samplePhoneCountries} {...args} />,
+};

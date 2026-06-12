@@ -1,3 +1,12 @@
+## [1.7.1](https://github.com/track-any-device/ui-kit/compare/v1.7.0...v1.7.1) (2026-06-12)
+
+
+### Bug Fixes
+
+* remove head_commit.message gate from Release step ([7fd3834](https://github.com/track-any-device/ui-kit/commit/7fd3834406aeed5e84dd9a3ae4cc908bca1be1c2)), closes [#N](https://github.com/track-any-device/ui-kit/issues/N)
+* use cn() (tailwind-merge) in form controls for reliable className overrides ([012262f](https://github.com/track-any-device/ui-kit/commit/012262f457542c594a5d473dea51f5803e41a1e2))
+* wrap country code Select in constraining div so phone input is usable ([1a91e4a](https://github.com/track-any-device/ui-kit/commit/1a91e4ae886d93632bfa8dd4ebd1de6fd47efe70))
+
 # [1.7.0](https://github.com/track-any-device/ui-kit/compare/v1.6.0...v1.7.0) (2026-05-25)
 
 

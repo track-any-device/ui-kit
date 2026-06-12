@@ -1,4 +1,5 @@
 import type { InputHTMLAttributes } from 'react';
+import { cn } from '../lib/utils';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
     error?: string;
@@ -7,11 +8,11 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 const base =
     'w-full rounded-lg border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 transition-colors';
 
-export function Input({ error, className = '', ...props }: Props) {
+export function Input({ error, className, ...props }: Props) {
     return (
         <>
             <input
-                className={`${base} ${error ? 'border-destructive' : 'border-border'} ${className}`}
+                className={cn(base, error ? 'border-destructive' : 'border-border', className)}
                 aria-invalid={!!error}
                 {...props}
             />

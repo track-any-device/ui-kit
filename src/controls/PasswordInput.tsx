@@ -3,6 +3,7 @@
 import { Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
 import type { InputHTMLAttributes } from 'react';
+import { cn } from '../lib/utils';
 
 interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
     error?: string;
@@ -11,7 +12,7 @@ interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
 const base =
     'w-full rounded-lg border bg-background px-3 py-2 pr-10 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 transition-colors';
 
-export function PasswordInput({ error, className = '', ...props }: Props) {
+export function PasswordInput({ error, className, ...props }: Props) {
     const [visible, setVisible] = useState(false);
     const Icon = visible ? EyeOff : Eye;
 
@@ -20,7 +21,7 @@ export function PasswordInput({ error, className = '', ...props }: Props) {
             <div className="relative">
                 <input
                     type={visible ? 'text' : 'password'}
-                    className={`${base} ${error ? 'border-destructive' : 'border-border'} ${className}`}
+                    className={cn(base, error ? 'border-destructive' : 'border-border', className)}
                     aria-invalid={!!error}
                     {...props}
                 />

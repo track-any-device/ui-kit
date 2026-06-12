@@ -86,18 +86,19 @@ export function RegisterForm({
             {hasPhone && (
                 <FormField label="Phone number" htmlFor="reg-phone" hint="Used for SMS verification and 2FA.">
                     <div className="flex gap-2">
-                        <Select
-                            value={data.mobile_country_iso ?? phoneCountries[0]?.iso_code}
-                            onChange={e => onChange('mobile_country_iso', e.target.value)}
-                            aria-label="Country dial code"
-                            className="w-28 flex-none"
-                        >
-                            {phoneCountries.map(c => (
-                                <option key={c.id} value={c.iso_code}>
-                                    {c.iso_code} {c.country_code}
-                                </option>
-                            ))}
-                        </Select>
+                        <div className="w-28 flex-none">
+                            <Select
+                                value={data.mobile_country_iso ?? phoneCountries[0]?.iso_code}
+                                onChange={e => onChange('mobile_country_iso', e.target.value)}
+                                aria-label="Country dial code"
+                            >
+                                {phoneCountries.map(c => (
+                                    <option key={c.id} value={c.iso_code}>
+                                        {c.iso_code} {c.country_code}
+                                    </option>
+                                ))}
+                            </Select>
+                        </div>
                         <Input
                             id="reg-phone"
                             type="tel"
